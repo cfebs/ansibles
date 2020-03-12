@@ -1,0 +1,76 @@
+---
+- name: Pkgs
+  become: yes
+  pacman:
+    name:
+      - xorg-server
+      - xorg-xclock
+      - xorg-xev
+      - xorg-xinit
+      - xorg-xinput
+      - xprintidle
+      - xss-lock
+      - xterm
+      - xclip
+      - i3-wm
+      - i3lock
+      - i3status
+      - pulseaudio
+      - pulseaudio-alsa
+      - pulseaudio-bluetooth
+      - pulseaudio-equalizer
+      - pavucontrol
+      - alacritty
+      - arandr
+      - dhclient
+      - wireless_tools
+      - networkmanager
+      - network-manager-applet
+      - networkmanager-openvpn
+      - networkmanager-vpnc
+      - ttf-dejavu
+      - noto-fonts-cjk
+      - noto-fonts-emoji
+      - nitrogen
+      - libmicrodns
+      - vlc
+      - thunar
+      - chromium
+      - dunst
+      - tlp
+    state: present
+
+- name: conf dirs
+  file:
+    state: directory
+    dest: "{{ user_home }}/.config/{{ item }}"
+    owner: "{{ user }}"
+    group: "{{ user }}"
+  with_items:
+    - fontconfig
+    - i3
+    - i3status
+
+- name: i3 conf
+  file:
+    state: link
+    src: "{{ role_path }}/files/i3config"
+    dest: "{{ user_home }}/.config/i3/config"
+    owner: "{{ user }}"
+    group: "{{ user }}"
+
+- name: i3 status conf
+  file:
+    state: link
+    src: "{{ role_path }}/files/i3status"
+    dest: "{{ user_home }}/.config/i3status/config"
+    owner: "{{ user }}"
+    group: "{{ user }}"
+
+- name: font config
+  file:
+    state: link
+    src: "{{ role_path }}/files/fonts.conf"
+    dest: "{{ user_home }}/.config/fontconfig/fonts.conf"
+    owner: "{{ user }}"
+    group: "{{ user }}"

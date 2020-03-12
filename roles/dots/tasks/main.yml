@@ -1,0 +1,30 @@
+---
+- name: Conf dirs
+  file:
+    dest: "{{ user_home }}/.config/{{ item }}"
+    state: directory
+    owner: "{{ user }}"
+    group: "{{ user }}"
+  with_items:
+    - nvim
+
+- name: Link dots
+  file:
+    state: link
+    src: "{{ role_path }}/files/{{ item }}"
+    dest: "{{ user_home }}/.{{ item }}"
+    owner: "{{ user }}"
+    group: "{{ user }}"
+  with_items:
+    - vimrc
+    - screenrc
+    - tmux.conf
+    - bash_aliases
+
+- name: Link nvim
+  file:
+    state: link
+    src: "{{ user_home }}/.vimrc"
+    dest: "{{ user_home }}/.config/nvim/init.vim"
+    owner: "{{ user }}"
+    group: "{{ user }}"

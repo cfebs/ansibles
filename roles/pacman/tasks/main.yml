@@ -1,0 +1,32 @@
+- name: Install common pkgs
+  become: yes
+  pacman:
+    name:
+      - ansible
+      - zip
+      - unzip
+      - vi
+      - vim
+      - wget
+      - curl
+      - whois
+      - sudo
+      - ruby
+      - ruby-irb
+      - rsync
+      - openssh
+      - make
+      - jq
+      - htop
+      - fzf
+      - bash-completion
+      - bc
+      - emacs-nox
+      - screen
+      - tmux
+      - git
+      - bind-tools
+      - the_silver_searcher
+      - strace
+      - tree
+    state: present
