@@ -47,6 +47,7 @@
     owner: "{{ user }}"
     group: "{{ user }}"
   with_items:
+    - dunst
     - fontconfig
     - i3
     - i3status
@@ -72,5 +73,13 @@
     state: link
     src: "{{ role_path }}/files/fonts.conf"
     dest: "{{ user_home }}/.config/fontconfig/fonts.conf"
+    owner: "{{ user }}"
+    group: "{{ user }}"
+
+- name: dunst config
+  file:
+    state: link
+    src: "{{ role_path }}/files/dunstrc"
+    dest: "{{ user_home }}/.config/dunst/dunstrc"
     owner: "{{ user }}"
     group: "{{ user }}"
