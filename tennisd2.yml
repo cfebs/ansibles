@@ -1,0 +1,6 @@
+---
+- hosts: tennisd2
+  roles:
+    - dots
+    - pacman
+    - arch-i3-desktop

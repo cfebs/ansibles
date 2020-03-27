@@ -83,3 +83,9 @@
     dest: "{{ user_home }}/.config/dunst/dunstrc"
     owner: "{{ user }}"
     group: "{{ user }}"
+
+- name: git prompt
+  get_url:
+    url: https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
+    dest: "{{ user_home }}/.git-prompt.sh"
+    mode: "0755"
