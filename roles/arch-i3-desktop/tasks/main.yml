@@ -89,3 +89,13 @@
     url: https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
     dest: "{{ user_home }}/.git-prompt.sh"
     mode: "0755"
+
+- name: PS1
+  blockinfile:
+    path: "{{ user_home }}/.bashrc"
+    marker: '# PS1: ansible managed block'
+    block: |
+      [[ -f ~/.git-prompt.sh ]] && source ~/.git-prompt.sh
+      export GIT_PS1_SHOWDIRTYSTATE=1
+      export GIT_PS1_SHOWUNTRACKEDFILES=1
+      PS1='[\u@\h \W]$(__git_ps1 " (%s)")\n\$ '
