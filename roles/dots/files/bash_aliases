@@ -468,3 +468,9 @@ rss-read() {
     rawdog -Nuw
     xdg-open ~/.rawdog/output.html
 }
+
+update-pacman-mirrors() {
+    sudo reflector -a 12 -p https -i '\.edu' -f 5 --save /etc/pacman.d/mirrorlist
+    rc=$?
+    echo "Done. Exit $rc"
+}
