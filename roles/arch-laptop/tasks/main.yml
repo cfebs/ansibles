@@ -14,3 +14,10 @@
     name: tlp
     enabled: yes
     state: started
+
+- name: touchpad xorg
+  become: yes
+  file:
+    state: link
+    src: "{{ role_path }}/files/30-touchpad.conf"
+    path: '/etc/X11/xorg.conf.d/30-touchpad.conf'
