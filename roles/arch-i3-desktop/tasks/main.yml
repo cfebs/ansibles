@@ -93,6 +93,24 @@
     owner: "{{ user }}"
     group: "{{ user }}"
 
+- name: xinitrc
+  file:
+    state: link
+    src: "{{ role_path }}/files/i3xinitrc"
+    dest: "{{ user_home }}/.xinitrc"
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: '0755'
+
+- name: sxrc
+  file:
+    state: link
+    src: "{{ user_home }}/.xinitrc"
+    dest: "{{ user_home }}/.config/sx/sxrc"
+    owner: "{{ user }}"
+    group: "{{ user }}"
+
+
 ##############################
 ### Services
 ##############################
