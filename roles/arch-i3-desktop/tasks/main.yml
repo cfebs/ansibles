@@ -46,6 +46,7 @@
       - arc-gtk-theme
       - papirus-icon-theme
       - docker
+      - keychain
     state: present
 
 - name: conf dirs
@@ -164,3 +165,10 @@
     marker: '# {mark} rupa z: ansible managed block'
     block: |
       [[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh
+
+- name: keychain
+  blockinfile:
+    path: "{{ user_home }}/.bashrc"
+    marker: '# {mark} keychain: ansible managed block'
+    block: |
+      eval $(keychain --eval --quiet --noask ~/.ssh/id_*)
