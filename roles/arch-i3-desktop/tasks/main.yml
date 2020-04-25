@@ -30,6 +30,7 @@
       - networkmanager-openvpn
       - networkmanager-vpnc
       - ttf-dejavu
+      - noto-fonts
       - noto-fonts-cjk
       - noto-fonts-emoji
       - nitrogen

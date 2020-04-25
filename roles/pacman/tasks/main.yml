@@ -30,4 +30,5 @@
       - the_silver_searcher
       - strace
       - tree
+      - pacman-contrib
     state: present
