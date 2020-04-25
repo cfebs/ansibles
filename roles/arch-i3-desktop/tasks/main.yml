@@ -45,6 +45,7 @@
       - lxappearance
       - arc-gtk-theme
       - papirus-icon-theme
+      - docker
     state: present
 
 - name: conf dirs
@@ -100,6 +101,14 @@
     name: bluetooth
     enabled: yes
     state: started
+
+- name: docker
+  become: yes
+  systemd:
+    name: docker
+    enabled: yes
+    state: started
+
 
 ##############################
 ### Bashrc
