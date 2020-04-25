@@ -176,12 +176,13 @@ bindsym $mod+p workspace prev
 bindsym Mod1+Shift+3 exec flameshot gui
 bindsym Mod1+Shift+1 exec rofimoji
 
-# lenovo btns
-bindsym XF86MonBrightnessUp exec xbacklight -inc 10
-bindsym XF86MonBrightnessDown exec xbacklight -dec 10
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
+# laptop btns
+# should work with lenovo + huawei
+bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set 10%+
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%-
+bindsym XF86AudioRaiseVolume exec --no-startup-id exec pactl set-sink-volume 0 +5%
+bindsym XF86AudioLowerVolume exec --no-startup-id exec pactl set-sink-volume 0 -5%
+bindsym XF86AudioMute exec --no-startup-id exec pactl set-sink-mute 0 toggle
 
 # alternative buttons for volume and brightness
 #bindsym $mod+F6 exec --no-startup-id pactl set-sink-volume 0 +5% &&  notify-send 'vol +' && killall -SIGUSR1 i3status

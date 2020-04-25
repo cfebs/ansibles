@@ -4,6 +4,8 @@
   pacman:
     name:
       - tlp
+      - xorg-xbacklight
+      - brightnessctl
     state: present
 
 - name: tlp
