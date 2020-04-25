@@ -13,6 +13,8 @@
       - xclip
       - i3lock
       - i3status
+      - bluez
+      - bluez-utils
       - pulseaudio
       - pulseaudio-alsa
       - pulseaudio-bluetooth
@@ -91,6 +93,12 @@
 ##############################
 ### Services
 ##############################
+- name: bluetooth
+  become: yes
+  systemd:
+    name: bluetooth
+    enabled: yes
+    state: started
 
 ##############################
 ### Bashrc

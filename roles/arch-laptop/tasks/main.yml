@@ -7,5 +7,8 @@
     state: present
 
 - name: tlp
+  become: yes
   systemd:
-    state: enabled
+    name: tlp
+    enabled: yes
+    state: started
