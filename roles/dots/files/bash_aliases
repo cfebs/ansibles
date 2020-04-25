@@ -7,7 +7,10 @@ getmakej() {
     echo $(($(nproc) + 1));
 }
 
-export EDITOR='vim'
+if [ -z "$EDITOR" ];
+then
+    export EDITOR='vim'
+fi
 
 alias makej="make -j$(getmakej)"
 alias tmux="TERM=screen-256color-bce tmux"
