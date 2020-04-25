@@ -20,11 +20,26 @@
     - screenrc
     - tmux.conf
     - bash_aliases
+    - gitconfig
 
 - name: Link nvim
   file:
     state: link
     src: "{{ user_home }}/.vimrc"
     dest: "{{ user_home }}/.config/nvim/init.vim"
+    owner: "{{ user }}"
+    group: "{{ user }}"
+
+- name: Src dir
+  file:
+    path: "{{ user_home }}/src"
+    state: directory
+    owner: "{{ user }}"
+    group: "{{ user }}"
+
+- name: vim tmp
+  file:
+    path: "{{ user_home }}/.vim-tmp"
+    state: directory
     owner: "{{ user }}"
     group: "{{ user }}"

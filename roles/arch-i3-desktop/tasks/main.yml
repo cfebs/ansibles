@@ -3,16 +3,14 @@
   become: yes
   pacman:
     name:
-      - xorg-server
-      - xorg-xclock
+      - i3-wm
+      - sx
       - xorg-xev
       - xorg-xinit
       - xorg-xinput
       - xprintidle
       - xss-lock
-      - xterm
       - xclip
-      - i3-wm
       - i3lock
       - i3status
       - pulseaudio
@@ -20,6 +18,7 @@
       - pulseaudio-bluetooth
       - pulseaudio-equalizer
       - pavucontrol
+      - pasystray
       - alacritty
       - arandr
       - dhclient
@@ -38,6 +37,11 @@
       - chromium
       - dunst
       - tlp
+      - z
+      - blueman
+      - lxappearance
+      - arc-gtk-theme
+      - papirus-icon-theme
     state: present
 
 - name: conf dirs
@@ -84,18 +88,61 @@
     owner: "{{ user }}"
     group: "{{ user }}"
 
+##############################
+### Services
+##############################
+
+##############################
+### Bashrc
+##############################
+
 - name: git prompt
   get_url:
     url: https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
     dest: "{{ user_home }}/.git-prompt.sh"
     mode: "0755"
 
+- name: git completion
+  get_url:
+    url: https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
+    dest: "{{ user_home }}/.git-completion.sh"
+    mode: "0755"
+
 - name: PS1
   blockinfile:
     path: "{{ user_home }}/.bashrc"
-    marker: '# PS1: ansible managed block'
+    marker: '# {mark} PS1: ansible managed block'
     block: |
       [[ -f ~/.git-prompt.sh ]] && source ~/.git-prompt.sh
       export GIT_PS1_SHOWDIRTYSTATE=1
       export GIT_PS1_SHOWUNTRACKEDFILES=1
       PS1='[\u@\h \W]$(__git_ps1 " (%s)")\n\$ '
+
+- name: bash aliases
+  blockinfile:
+    path: "{{ user_home }}/.bashrc"
+    marker: '# {mark} bash aliases: ansible managed block'
+    block: |
+      [[ -f ~/.bash_aliases ]] && source ~/.bash_aliases
+
+- name: nvim alias
+  blockinfile:
+    path: "{{ user_home }}/.bashrc"
+    marker: '# {mark} nvim alias: ansible managed block'
+    block: |
+      alias vim=nvim
+      export EDITOR=nvim
+
+- name: i3 terminal
+  blockinfile:
+    path: "{{ user_home }}/.bashrc"
+    marker: '# {mark} i3 terminal var: ansible managed block'
+    block: |
+      export TERMINAL=alacritty
+
+- name: rupa z
+  blockinfile:
+    path: "{{ user_home }}/.bashrc"
+    marker: '# {mark} rupa z: ansible managed block'
+    block: |
+      [[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh

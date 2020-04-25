@@ -89,20 +89,11 @@ TEST_FILE="$HOME/.rm_preserve_test" && touch $TEST_FILE && rm --preserve-root $T
 TEST_FILE="$HOME/.rm_preserve_test" && touch $TEST_FILE && rm -I $TEST_FILE 2> /dev/null && \
     alias rm='rm -I'
 
-if git --version | grep 2.17.1 2>&1 1>/dev/null; then
-    if [ -f ~/src/etc/git-completion217.bash ]
-    then
-        . ~/src/etc/git-completion217.bash
-        alias g="git"
-        __git_complete g _git
-    fi
-else
-    if [ -f ~/src/etc/git-completion.bash ]
-    then
-        . ~/src/etc/git-completion.bash
-        alias g="git"
-        __git_complete g _git
-    fi
+if [ -f ~/.git-completion.sh ]
+then
+    source ~/.git-completion.sh
+    alias g="git"
+    __git_complete g _git
 fi
 
 # confirmation #

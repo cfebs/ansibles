@@ -1,0 +1,11 @@
+---
+- name: Pkgs
+  become: yes
+  pacman:
+    name:
+      - tlp
+    state: present
+
+- name: tlp
+  systemd:
+    state: enabled
