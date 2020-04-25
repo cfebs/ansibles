@@ -31,4 +31,5 @@
       - strace
       - tree
       - pacman-contrib
+      - reflector
     state: present
