@@ -135,6 +135,12 @@
     enabled: yes
     state: started
 
+- name: systemd-timesyncd
+  become: yes
+  systemd:
+    name: docker
+    enabled: yes
+    state: started
 
 ##############################
 ### Bashrc
