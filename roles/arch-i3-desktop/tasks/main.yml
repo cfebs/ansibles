@@ -202,4 +202,4 @@
     path: "{{ user_home }}/.bashrc"
     marker: '# {mark} keychain: ansible managed block'
     block: |
-      eval $(keychain --eval --quiet --noask ~/.ssh/id_*)
+      eval $(keychain --eval --quiet $(find ~/.ssh -type f -iname 'id_*' -not -iname '*.pub'))
