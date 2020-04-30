@@ -466,7 +466,7 @@ let g:ale_pattern_options = {
 \ '\.rb$': {'ale_linters': [ 'ruby' ], 'ale_fixers': []},
 \ '\.erb$': {'ale_linters': [ 'erb' ], 'ale_fixers': []},
 \ '\.php$': {'ale_linters': [ 'php', 'psalm' ], 'ale_fixers': [ ]},
-\ '\.js$': {'ale_linters': [ ], 'ale_fixers': []},
+\ '\.js$': {'ale_linters': [ 'eslint' ], 'ale_fixers': []},
 \ '\.go$': {'ale_linters': [ 'gofmt', 'gobuild' ], 'ale_fixers': ['gofmt', 'goimports']},
 \ '\.py$': {'ale_linters': [ 'pylint' ], 'ale_fixers': []},
 \ '\.phtml$': {'ale_linters': [ 'prettier' ], 'ale_fixers': []},
