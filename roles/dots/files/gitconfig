@@ -50,3 +50,5 @@
 	protocol = ssh
 [url "git@github.vimeows.com:"]
 	insteadOf = https://github.vimeows.com
+[pull]
+	ff = only

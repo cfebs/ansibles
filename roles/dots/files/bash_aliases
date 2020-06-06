@@ -21,6 +21,11 @@ alias tmn="tmux new-session -s"
 alias sshno="ssh -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null"
 alias sshbatch="ssh -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -oConnectTimeout=5 -oBatchMode=yes -n"
 
+myscrot() {
+    mkdir -p ~/Pictures/Screenshots
+    scrot ~/Pictures/Screenshots/%Y-%m-%d_\$wx\$h.png "$@"
+}
+
 tma() {
     tmux attach -t $(tmux ls | fzf | cut -d: -f1)
 }
@@ -313,10 +318,29 @@ sshtun() {
     # $3 local port
     if [ $# -lt 3 ]
     then
-        echo "\$1 hostname, \$2 host port, \$3 local port"
+
+        echo "Usage: ${FUNCNAME[0]} <connect-to-addr> <remote-port> <local-port> [remote-addr]"
+        echo ""
+        echo "Arguments:"
+        echo "  connect-to-addr:  ssh will connect to this address or hostname"
+        echo "  remote-port:      forward traffic from this port on the destination to the local port"
+        echo "  local-port:       local port to forward to"
+        echo "  remote-addr:      default: localhost, connect to this address on the remote"
+        echo "Examples:"
+        echo ""
+        echo "  # connect to no.city, make no.city:8545 (localhost) -> localhost:9545"
+        echo "  ${FUNCNAME[0]} no.city 8545 9545"
         return 1
     fi
-    ssh -v "$1" -L "$3:$1:$2" -N
+
+    local connectto="${1}"
+    local remoteport="${2}"
+    local localport="${3}"
+    local remoteaddr="${4-localhost}"
+
+    echo "connect-to-addr: $connectto, remoteport: $remoteport, local-port: $localport, remote-addr: $remoteaddr"
+
+    ssh -v -N "$connectto" -L "$localport:$remoteaddr:$remoteport" -N
 }
 
 socksproxy() {
@@ -467,4 +491,32 @@ update-pacman-mirrors() {
     sudo reflector -a 12 -p https -i '\.edu' -f 5 --save /etc/pacman.d/mirrorlist
     rc=$?
     echo "Done. Exit $rc"
+}
+
+vimeo-vpn() {
+    nmcli c up Vimeo_collin@vimeo.com_us-udp
+}
+
+eth-proxy() {
+    sshtun droplet2 8545 9545
+}
+
+eth-attach() {
+    geth attach http://127.0.0.1:9545
+}
+
+eth-miner() {
+    ethminer -P http://127.0.0.1:9545
+}
+
+eth-watch-sync() {
+    watch -n30 geth attach http://127.0.0.1:9545 --exec 'eth.syncing'
+}
+
+eth-watch-balance() {
+    watch -n30 geth attach http://127.0.0.1:9545 --exec 'web3.fromWei\(eth.getBalance\(eth.coinbase\),\"ether\"\)'
+}
+
+percent-change() {
+python3 -c 'import sys; z, a, b = sys.argv; r=(float(b) - float(a)) / float(a); print(round(r*100.0, 4),"%change")' $@
 }

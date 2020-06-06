@@ -45,7 +45,9 @@ Plug 'dart-lang/dart-vim-plugin'
 "Plug 'Yggdroot/indentLine'
 Plug 'fatih/vim-go'
 Plug 'jvirtanen/vim-hcl'
+Plug 'jakwings/vim-pony'
 Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'Glench/Vim-Jinja2-Syntax'
 
 set fileformat=unix
 set fileformats=unix,dos
@@ -184,6 +186,7 @@ augroup vimrcEx
   autocmd FileType phtml setlocal ai et sw=4 sts=4 tabstop=4
   autocmd FileType go setlocal noexpandtab ai sw=4 sts=4 tabstop=4
   autocmd! FileType yaml setlocal ts=2 sts=2 sw=2 expandtab indentkeys-=0# indentkeys-=<:>
+  autocmd! FileType gitcommit setlocal spell
 
   autocmd! BufRead,BufNewFile *.jade set ft=pug
   autocmd! BufRead,BufNewFile *.es6 set ft=javascript.jsx
@@ -466,7 +469,7 @@ let g:ale_pattern_options = {
 \ '\.rb$': {'ale_linters': [ 'ruby' ], 'ale_fixers': []},
 \ '\.erb$': {'ale_linters': [ 'erb' ], 'ale_fixers': []},
 \ '\.php$': {'ale_linters': [ 'php', 'psalm' ], 'ale_fixers': [ ]},
-\ '\.js$': {'ale_linters': [ 'eslint' ], 'ale_fixers': []},
+\ '\.js$': {'ale_linters': [ 'eslint', 'tsserver' ], 'ale_fixers': []},
 \ '\.go$': {'ale_linters': [ 'gofmt', 'gobuild' ], 'ale_fixers': ['gofmt', 'goimports']},
 \ '\.py$': {'ale_linters': [ 'pylint' ], 'ale_fixers': []},
 \ '\.phtml$': {'ale_linters': [ 'prettier' ], 'ale_fixers': []},
