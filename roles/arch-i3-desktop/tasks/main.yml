@@ -117,6 +117,15 @@
     owner: "{{ user }}"
     group: "{{ user }}"
 
+# default applications
+- name: mimeapps list
+  file:
+    state: link
+    src: "{{ role_path }}/files/mimeapps.list"
+    dest: "{{ user_home }}/.config/mimeapps.list"
+    owner: "{{ user }}"
+    group: "{{ user }}"
+
 
 ##############################
 ### Services
