@@ -520,3 +520,9 @@ eth-watch-balance() {
 percent-change() {
 python3 -c 'import sys; z, a, b = sys.argv; r=(float(b) - float(a)) / float(a); print(round(r*100.0, 4),"%change")' $@
 }
+
+strongbox() {
+    # https://github.com/ogri-la/strongbox/releases
+    # curl -sL '...' -o ~/strongbox.jar
+    java -jar ~/strongbox.jar
+}

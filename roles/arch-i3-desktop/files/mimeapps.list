@@ -7,6 +7,7 @@ image/png=sxiv.desktop;gimp.desktop;
 [Default Applications]
 inode/directory=thunar.desktop;
 text/html=chromium.desktop;
+text/plain=geany.desktop;
 x-scheme-handler/about=chromium.desktop;
 x-scheme-handler/http=chromium.desktop;
 x-scheme-handler/https=chromium.desktop;
