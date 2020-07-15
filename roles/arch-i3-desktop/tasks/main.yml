@@ -117,6 +117,21 @@
     owner: "{{ user }}"
     group: "{{ user }}"
 
+- name: pulseaudio conf dir
+  file:
+    state: directory
+    path: "{{ user_home }}/.config/pulse"
+    owner: "{{ user }}"
+    group: "{{ user }}"
+
+- name: pulseaudio conf
+  file:
+    state: link
+    src: "{{ role_path }}/files/pulse_default.pa"
+    dest: "{{ user_home }}/.config/pulse/default.pa"
+    owner: "{{ user }}"
+    group: "{{ user }}"
+
 # default applications
 - name: mimeapps list
   file:
