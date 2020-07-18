@@ -12,6 +12,8 @@ then
     export EDITOR='vim'
 fi
 
+alias dok="docker"
+alias dokc="docker-compose"
 alias makej="make -j$(getmakej)"
 alias tmux="TERM=screen-256color-bce tmux"
 
@@ -111,8 +113,43 @@ alias ln='ln -i'
 
 alias clipboard='xclip -se c'
 
-alias upgrade='sudo apt update && sudo apt upgrade -y'
-alias sag='sudo apt-get'
+upgrade() {
+    (
+    set -e
+    if grep -q Arch /etc/lsb-release; then
+        echo ">> Upgrading archlinux" 1>&2
+        if which flatpak 1>/dev/null 2>&1; then
+            echo ">> Upgrading flatpack" 1>&2
+            flatpak update
+        fi
+
+        if which snap 1>/dev/null 2>&1; then
+            echo ">> Upgrading snaps" 1>&2
+            sudo snap refresh
+        fi
+
+        if which yay 1>/dev/null 2>&1; then
+            echo ">> Upgrading yay" 1>&2
+            yay
+        else
+            echo ">> Upgrading pacman" 1>&2
+            pacman -Syu
+        fi
+
+        return 0
+    fi
+
+    if which apt 1>/dev/null 2>&1; then
+        echo ">> Upgrading apt" 1>&2
+        apt update && sudo apt upgrade -y
+    fi
+
+    echo ">> WARNING: no package manager found" 1>&2
+    return 1
+    )
+    rc=$?
+    echo ">> Finished with code $rc" 1>&2
+}
 
 alias agi='ag -i --ignore "*.min.js" --ignore "web/assets/fonts/" --ignore "web/assets/js/vendor/" --ignore "web_portfolio/assets/js/jquery*.js"'
 

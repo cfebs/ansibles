@@ -53,3 +53,5 @@
 	insteadOf = https://github.vimeows.com
 [pull]
 	ff = only
+[merge]
+	renameLimit = 999999
