@@ -196,6 +196,7 @@ augroup vimrcEx
   autocmd! BufRead,BufNewFile *.jade set ft=javascript.jsx
   autocmd! BufRead,BufNewFile *.tsx,*.jsx set ft=typescript.tsx
   autocmd! BufRead,BufNewFile *.tsv set ft=tsv
+  autocmd! BufRead,BufNewFile *.j2 set ft=jinja
 
   autocmd FileType json setlocal conceallevel=0
 

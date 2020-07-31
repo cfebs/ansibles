@@ -173,6 +173,39 @@
     enabled: yes
     state: started
 
+
+##############################
+### hosts/ssh config
+##############################
+- set_fact:
+    custom_etc_hosts_content: "{{ lookup('template', '{{ role_path }}/templates/custom-etc-hosts-block.j2') }}"
+
+- name: etc hosts
+  become: yes
+  blockinfile:
+    path: "/etc/hosts"
+    content: '{{ custom_etc_hosts_content }}'
+    marker: '# {mark} custom hosts: ansible managed block'
+
+- name: ssh config custom
+  blockinfile:
+    path: "{{ user_home }}/.ssh/config"
+    marker: '# {mark} ssh config custom: ansible managed block'
+    insertbefore: 'BOF'
+    block: |
+      Host tennisp1
+          User collin
+          StrictHostKeyChecking no
+          UserKnownHostsFile=/dev/null
+
+      Host droplet
+          HostName 162.243.53.195
+          User deploy
+
+      Host droplet2
+          HostName 162.243.19.32
+          User collin
+
 ##############################
 ### Bashrc
 ##############################
