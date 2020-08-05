@@ -116,7 +116,7 @@ alias clipboard='xclip -se c'
 upgrade() {
     (
     set -e
-    if grep -q Arch /etc/lsb-release; then
+    if grep -q DISTRIB_ID=Arch /etc/lsb-release; then
         echo ">> Upgrading archlinux" 1>&2
         if which flatpak 1>/dev/null 2>&1; then
             echo ">> Upgrading flatpack" 1>&2
@@ -156,8 +156,8 @@ alias agi='ag -i --ignore "*.min.js" --ignore "web/assets/fonts/" --ignore "web/
 ## Functions
 
 simp() {
-    local port=8181
-    local addr='0.0.0.0'
+    local port=${1-8181}
+    local addr=${2-0.0.0.0}
 
     if python3 --version &> /dev/null
     then
