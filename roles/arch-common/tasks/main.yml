@@ -2,4 +2,4 @@
 - import_tasks: timesync.yml
 
 - import_tasks: docker.yml
-  when: "not arch_common_docker|bool"
+  when: "arch_common_docker|bool"
