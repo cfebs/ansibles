@@ -1,0 +1,15 @@
+---
+- name: add to sudo
+  become: yes
+  user:
+    name: "{{ user }}"
+    append: true
+    groups: sudo
+
+- name: add to docker
+  become: yes
+  when: "arch_common_docker|bool"
+  user:
+    name: "{{ user }}"
+    append: true
+    groups: docker

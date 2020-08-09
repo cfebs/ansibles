@@ -6,14 +6,8 @@
       - docker
       - docker-compose
 
-- name: add user to docker group
-  user:
-    name: "{{ user }}"
-    comment: "{{ user }}"
-    append: yes
-    groups: docker
-
 - name: enable docker service
+  become: yes
   systemd:
     name: docker
     enabled: yes
