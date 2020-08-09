@@ -1,7 +1,9 @@
-- name: Install common pkgs
+---
+- name: Install pkgs needed on every arch, no gfx
   become: yes
   pacman:
     name:
+      - base-devel
       - ansible
       - zip
       - unzip
@@ -30,6 +32,13 @@
       - strace
       - tree
       - pacman-contrib
-      - reflector
       - inetutils
+    state: present
+
+- name: Install only if not arm
+  become: yes
+  when: "'arm' not in ansible_facts['ansible_architecture']"
+  pacman:
+    name:
+      - reflector
     state: present

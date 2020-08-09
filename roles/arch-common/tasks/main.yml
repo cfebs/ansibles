@@ -1,0 +1,4 @@
+- import_tasks: pacman-base.yml
+
+- import_tasks: docker.yml
+  when: "not arch_common_skip_docker|bool"

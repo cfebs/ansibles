@@ -1,0 +1,20 @@
+---
+- name: install docker
+  become: yes
+  pacman:
+    name:
+      - docker
+      - docker-compose
+
+- name: add user to docker group
+  user:
+    name: "{{ user }}"
+    comment: "{{ user }}"
+    append: yes
+    groups: docker
+
+- name: enable docker service
+  systemd:
+    name: docker
+    enabled: yes
+    state: started

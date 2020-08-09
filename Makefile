@@ -15,3 +15,7 @@ tennisd2:
 .PHONY: tennislhua
 tennislhua:
 	ansible-playbook -i hosts.ini tennislhua.yml --limit tennislhua --ask-become-pass
+
+.PHONY: tennispi1
+tennispi1:
+	ansible-playbook -i hosts.ini tennispi1.yml --limit tennispi1 --ask-become-pass
