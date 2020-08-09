@@ -35,9 +35,9 @@
       - inetutils
     state: present
 
-- name: Install only if not arm
+- name: Install on non arm
   become: yes
-  when: "'arm' not in ansible_facts['ansible_architecture']"
+  when: "'arm' not in ansible_architecture"
   pacman:
     name:
       - reflector

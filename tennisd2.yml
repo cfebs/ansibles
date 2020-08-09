@@ -2,5 +2,5 @@
 - hosts: tennisd2
   roles:
     - dots
-    - pacman
+    - arch-common
     - arch-i3-desktop
