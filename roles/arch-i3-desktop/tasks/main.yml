@@ -190,6 +190,9 @@
 - name: ssh config custom
   blockinfile:
     path: "{{ user_home }}/.ssh/config"
+    create: yes
+    owner: "{{ user }}"
+    group: "{{ user }}"
     marker: '# {mark} ssh config custom: ansible managed block'
     insertbefore: 'BOF'
     block: |

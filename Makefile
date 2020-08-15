@@ -1,8 +1,15 @@
 export ANSIBLE_NOCOWS=1
 
+hostname:=$(shell hostname)
+
 .PHONY: dummy
 dummy:
 	@
+
+.PHONY: this
+this:
+	@echo Running playbook for $(hostname)
+	ansible-playbook -i hosts.ini $(hostname).yml --limit $(hostname) --ask-become-pass
 
 .PHONY: tennisl1
 tennisl1:
