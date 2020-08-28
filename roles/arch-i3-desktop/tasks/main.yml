@@ -99,7 +99,7 @@
 - name: xinitrc
   file:
     state: link
-    src: "{{ role_path }}/files/i3xinitrc"
+    src: "{{ role_path }}/files/xinitrc"
     dest: "{{ user_home }}/.xinitrc"
     owner: "{{ user }}"
     group: "{{ user }}"
@@ -108,10 +108,17 @@
 - name: sxrc
   file:
     state: link
-    src: "{{ user_home }}/.xinitrc"
+    src: "{{ role_path }}/files/sxrc"
     dest: "{{ user_home }}/.config/sx/sxrc"
     owner: "{{ user }}"
     group: "{{ user }}"
+
+- name: emptty conf
+  become: yes
+  file:
+    state: link
+    src: "{{ role_path }}/files/empttyconf"
+    dest: "/etc/emptty/conf"
 
 - name: pulseaudio conf
   file:

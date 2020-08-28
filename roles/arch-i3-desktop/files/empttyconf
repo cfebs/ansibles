@@ -1,0 +1,28 @@
+#!/bin/sh
+
+# TTY, where emptty will start.
+TTY_NUMBER=7
+
+# Enables switching to defined TTY number.
+SWITCH_TTY=true
+
+# Enables printing of /etc/issue in daemon mode.
+PRINT_ISSUE=true
+
+# Preselected user, if AUTOLOGIN is enabled, this user is logged in.
+#DEFAULT_USER=user
+
+# Enables Autologin, if DEFAULT_USER is defined. Possible values are "true" or "false".
+AUTOLOGIN=false
+
+# Default LANG, if user does not have set own in init script.
+#LANG=en_US.UTF-8
+
+# Starts desktop with calling "dbus-launch".
+DBUS_LAUNCH=false
+
+# Starts Xorg desktop with calling "~/.xinitrc" script, if is true, file exists and selected WM/DE is Xorg session, it overrides DBUS_LAUNCH.
+XINITRC_LAUNCH=true
+
+# Prints available WM/DE each on new line instead of printing on single line.
+VERTICAL_SELECTION=true
