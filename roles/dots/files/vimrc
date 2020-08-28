@@ -48,6 +48,7 @@ Plug 'jvirtanen/vim-hcl'
 Plug 'jakwings/vim-pony'
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'Glench/Vim-Jinja2-Syntax'
+Plug 'evanleck/vim-svelte', { 'branch': 'main' }
 
 set fileformat=unix
 set fileformats=unix,dos
@@ -129,6 +130,8 @@ colorscheme solarized
 "colorscheme dracula
 set nolazyredraw
 syntax on
+" avoid lines > 100 lines
+set colorcolumn=100
 
 "" Tabbing
 set ai

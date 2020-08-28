@@ -12,6 +12,7 @@ then
     export EDITOR='vim'
 fi
 
+alias tailcat="tail -n +1"
 alias dok="docker"
 alias dokc="docker-compose"
 alias makej="make -j$(getmakej)"
@@ -562,4 +563,8 @@ strongbox() {
     # https://github.com/ogri-la/strongbox/releases
     # curl -sL '...' -o ~/strongbox.jar
     java -jar ~/strongbox.jar
+}
+
+docxtotxt() {
+    abiword --to=txt --to-name=fd://1 "$1"
 }
