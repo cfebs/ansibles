@@ -60,6 +60,9 @@
     - fontconfig
     - i3
     - i3status
+    - redshift
+    - pulse
+    - sx
 
 - name: i3 conf
   file:
@@ -102,25 +105,11 @@
     group: "{{ user }}"
     mode: '0755'
 
-- name: sxrc dir
-  file:
-    state: directory
-    path: "{{ user_home }}/.config/sx"
-    owner: "{{ user }}"
-    group: "{{ user }}"
-
 - name: sxrc
   file:
     state: link
     src: "{{ user_home }}/.xinitrc"
     dest: "{{ user_home }}/.config/sx/sxrc"
-    owner: "{{ user }}"
-    group: "{{ user }}"
-
-- name: pulseaudio conf dir
-  file:
-    state: directory
-    path: "{{ user_home }}/.config/pulse"
     owner: "{{ user }}"
     group: "{{ user }}"
 
@@ -131,6 +120,15 @@
     dest: "{{ user_home }}/.config/pulse/default.pa"
     owner: "{{ user }}"
     group: "{{ user }}"
+
+- name: redshift conf
+  file:
+    state: link
+    src: "{{ role_path }}/files/redshift.conf"
+    dest: "{{ user_home }}/.config/redshift/redshift.conf"
+    owner: "{{ user }}"
+    group: "{{ user }}"
+
 
 # default applications
 - name: mimeapps list
