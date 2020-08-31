@@ -230,6 +230,13 @@
     dest: "{{ user_home }}/.git-completion.sh"
     mode: "0755"
 
+- name: tmux term
+  blockinfile:
+    path: "{{ user_home }}/.bashrc"
+    marker: '# {mark} tmux term: ansible managed block'
+    block: |
+      [ -n "$TMUX" ] && export TERM=screen-256color
+
 - name: PS1
   blockinfile:
     path: "{{ user_home }}/.bashrc"
