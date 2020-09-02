@@ -1,0 +1,3 @@
+handlers:
+  - name: regen-grub
+    command: sudo grub-mkconfig -o /boot/grub/grub.cfg

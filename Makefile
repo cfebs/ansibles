@@ -11,6 +11,12 @@ this:
 	@echo Running playbook for $(hostname)
 	ansible-playbook -i hosts.ini $(hostname).yml --limit $(hostname) --ask-become-pass
 
+.PHONY: this-debug
+this-debug:
+	@echo Running playbook for $(hostname) with debug tag
+	ansible-playbook -i hosts.ini $(hostname).yml --limit $(hostname) --tags debug --ask-become-pass
+
+
 .PHONY: tennisl1
 tennisl1:
 	ansible-playbook -i hosts.ini tennisl1.yml --limit tennisl1 --ask-become-pass
@@ -26,3 +32,7 @@ tennislhua:
 .PHONY: tennispi1
 tennispi1:
 	ansible-playbook -i hosts.ini tennispi1.yml --limit tennispi1 --ask-become-pass
+
+.PHONY: facts
+facts:
+	ansible -i hosts.ini -m setup $(hostname)
