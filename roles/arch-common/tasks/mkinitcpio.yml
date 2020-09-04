@@ -1,0 +1,10 @@
+- name: mkinitcpio hooks
+  become: yes
+  lineinfile:
+    path: /etc/mkinitcpio.conf
+    backup: yes
+    state: present
+    regexp: '^HOOKS='
+    line: "HOOKS=({{ mkinitcpio_hooks_lists[mkinitcpio_hooks_list] | join(' ') }})"
+  notify:
+    - regen-mkinitcpio

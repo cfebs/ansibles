@@ -5,26 +5,22 @@
 # set lid action
 
 - name: get swap device
-  tags: debug
   run_once: true
   register: swap_device
   shell: swapon --noheadings --show=NAME
 
 - name: label swap
-  tags: debug
   # we have swap device and no existing label
   when: swap_device.stdout and 'swap' not in (ansible_device_links.labels.values() | flatten)
   become: yes
   shell: swapoff -a && swaplabel -L "swap" {{ swap_device.stdout }} && swapon -a
 
 - name: stat grub
-  tags: debug
   stat:
     path: /etc/default/grub
   register: stat_grub
 
 - name: set grub param
-  tags: debug
   become: yes
   when: stat_grub.stat.exists
   lineinfile:
@@ -53,11 +49,3 @@
     state: present
     regexp: '#HandleLidSwitchExternalPower=suspend'
     line: HandleLidSwitchExternalPower=hibernate
-
-# TODO maybe throw this out when resume can be added to
-# hooks
-- name: Check for missing resume option
-  tags: debug
-  register: check_mkinitcpio
-  command: grep -q '^HOOKS=.*resume' /etc/mkinitcpio.conf
-  failed_when: check_mkinitcpio.rc != 0

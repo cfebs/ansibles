@@ -8,6 +8,7 @@
 
 - import_tasks: user-groups.yml
 
-# TODO
-# figure out a way to manage mkinitcpio hooks
-#- import_tasks: swap-hibernate.yml
+- import_tasks: swap-hibernate.yml
+  when: "arch_common_swap_hibernate|bool"
+
+- import_tasks: mkinitcpio.yml

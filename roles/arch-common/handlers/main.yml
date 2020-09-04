@@ -1,3 +1,7 @@
-handlers:
-  - name: regen-grub
-    command: sudo grub-mkconfig -o /boot/grub/grub.cfg
+- name: regen-grub
+  become: yes
+  command: grub-mkconfig -o /boot/grub/grub.cfg
+
+- name: regen-mkinitcpio
+  become: yes
+  command: mkinitcpio -P

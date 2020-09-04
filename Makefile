@@ -9,7 +9,7 @@ dummy:
 .PHONY: this
 this:
 	@echo Running playbook for $(hostname)
-	ansible-playbook -i hosts.ini $(hostname).yml --limit $(hostname) --ask-become-pass
+	ansible-playbook -v -i hosts.ini $(hostname).yml --limit $(hostname) --ask-become-pass
 
 .PHONY: this-debug
 this-debug:

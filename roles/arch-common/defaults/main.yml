@@ -1,3 +1,33 @@
 ---
 # run docker setup by default
 arch_common_docker: true
+
+# arch_common_swap_hibernate
+arch_common_swap_hibernate: false
+
+# default hooks from install
+# HOOKS=(base udev autodetect modconf block filesystems keyboard fsck)
+mkinitcpio_hooks_list: default
+
+mkinitcpio_hooks_lists:
+  default:
+    - base
+    - udev
+    - autodetect
+    - modconf
+    - block
+    - filesystems
+    - keyboard
+    - resume
+    - fsck
+
+  resume:
+    - base
+    - udev
+    - autodetect
+    - modconf
+    - block
+    - filesystems
+    - keyboard
+    - resume
+    - fsck
