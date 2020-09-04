@@ -32,6 +32,42 @@
   notify:
     - regen-grub
 
+- name: stat systemd boot
+  stat:
+    path: /boot/loader/entries/arch.conf
+  register: stat_systemd_boot_arch
+
+- name: stat systemd boot lts
+  stat:
+    path: /boot/loader/entries/arch-lts.conf
+  register: stat_systemd_boot_arch_lts
+
+- debug:
+    msg: "WARNING: Systemd boot will not update resume, need 'arch_os' label on partition"
+  when: stat_systemd_boot_arch.stat.exists and 'arch_os' not in (ansible_device_links.labels.values() | flatten)
+
+- name: add resume to systemd boot
+  become: yes
+  when: stat_systemd_boot_arch.stat.exists and 'arch_os' in (ansible_device_links.labels.values() | flatten)
+  lineinfile:
+    path: /boot/loader/entries/arch.conf
+    state: present
+    regexp: '^options'
+    line: options root="LABEL=arch_os" rw resume="LABEL=swap"
+  notify:
+    - regen-systemdboot
+
+- name: add resume to systemd boot lts
+  become: yes
+  when: stat_systemd_boot_arch_lts.stat.exists and 'arch_os' in (ansible_device_links.labels.values() | flatten)
+  lineinfile:
+    path: /boot/loader/entries/arch-lts.conf
+    state: present
+    regexp: '^options'
+    line: options root="LABEL=arch_os" rw resume="LABEL=swap"
+  notify:
+    - regen-systemdboot
+
 - name: lid switch
   become: yes
   lineinfile:

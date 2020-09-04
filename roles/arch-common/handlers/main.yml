@@ -2,6 +2,10 @@
   become: yes
   command: grub-mkconfig -o /boot/grub/grub.cfg
 
+- name: regen-systemdboot
+  become: yes
+  command: bootctl update
+
 - name: regen-mkinitcpio
   become: yes
   command: mkinitcpio -P
