@@ -36,4 +36,8 @@ fi
 # for i3's terminal selection
 export TERMINAL=alacritty
 
+if [ -f /etc/profile ]; then
+    source /etc/profile
+fi
+
 exec $@
