@@ -13,6 +13,7 @@
       - xclip
       - i3lock
       - i3status
+      - i3blocks
       - bluez
       - bluez-utils
       - pulseaudio
@@ -47,6 +48,7 @@
       - papirus-icon-theme
       - docker
       - keychain
+      - android-udev
     state: present
 
 - name: conf dirs

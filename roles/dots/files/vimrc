@@ -49,6 +49,7 @@ Plug 'jakwings/vim-pony'
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'evanleck/vim-svelte', { 'branch': 'main' }
+"Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 set fileformat=unix
 set fileformats=unix,dos
@@ -502,3 +503,19 @@ let g:vim_json_syntax_conceal = 0
 
 " annoying sql omni complete disable
 let g:ftplugin_sql_omni_key = '<Plug>DisableSqlOmni'
+
+""" Completion
+"" These are some default options that work well
+set omnifunc=syntaxcomplete#Complete
+set completeopt=noinsert,menuone
+" enter key selects highlighted thing
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+inoremap <C-Space> <C-x><C-o>
+inoremap <C-@> <C-Space>
+
+" coc
+"if has('nvim')
+"  inoremap <silent><expr> <c-space> coc#refresh()
+"else
+"  inoremap <silent><expr> <c-@> coc#refresh()
+"endif

@@ -1,6 +1,7 @@
 #!/bin/bash
 
-# food
+# 
+
 if [ -f ~/.bash_ssh_agent ]; then . ~/.bash_ssh_agent; fi
 
 getmakej() {
@@ -23,6 +24,8 @@ alias tmn="tmux new-session -s"
 
 alias sshno="ssh -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null"
 alias sshbatch="ssh -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -oConnectTimeout=5 -oBatchMode=yes -n"
+
+alias nethack-remote="alacritty --config-file /dev/null -e /bin/bash -c 'ssh nethack@alt.org'"
 
 myscrot() {
     mkdir -p ~/Pictures/Screenshots
@@ -117,6 +120,9 @@ alias clipboard='xclip -se c'
 upgrade() {
     (
     set -e
+    # elevate with a noop
+    sudo cat /dev/null
+
     if grep -q DISTRIB_ID=Arch /etc/lsb-release; then
         echo ">> Upgrading archlinux" 1>&2
         if which flatpak 1>/dev/null 2>&1; then
@@ -152,7 +158,8 @@ upgrade() {
     echo ">> Finished with code $rc" 1>&2
 }
 
-alias agi='ag -i --ignore "*.min.js" --ignore "web/assets/fonts/" --ignore "web/assets/js/vendor/" --ignore "web_portfolio/assets/js/jquery*.js"'
+# replaced by agignore stuff
+#alias agi='ag -i --ignore "*.min.js" --ignore "web/assets/fonts/" --ignore "web/assets/js/vendor/" --ignore "web_portfolio/assets/js/jquery*.js"'
 
 ## Functions
 
