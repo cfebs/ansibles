@@ -1,4 +1,12 @@
 ---
+- name: lockout relax
+  become: yes
+  blockinfile:
+    path: /etc/security/faillock.conf
+    marker: '# {mark} ansible maintained settings'
+    content: |
+      deny = 10
+
 - name: add to sudo
   become: yes
   user:

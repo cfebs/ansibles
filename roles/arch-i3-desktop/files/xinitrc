@@ -36,6 +36,8 @@ fi
 # for i3's terminal selection
 export TERMINAL=alacritty
 
+# sets up other important vars for use by i3 programs
+# ex. flatpak uses XDG_DATA_DIRS, i3-dmenu-desktop needs this
 if [ -f /etc/profile ]; then
     source /etc/profile
 fi
