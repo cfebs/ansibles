@@ -601,8 +601,6 @@ unbak() {
     local abs="$(readlink -f "$target")"
     local unbaked="$(echo "$abs" | sed 's/\.bak$//g')"
 
-    echo "UNBACKED $abs -- $unbaked"
-
     if [[ "$abs" == "$unbaked" ]]; then
         echo ">> Target for unbak $target does not contain .bak" 1>&2
         return 1
