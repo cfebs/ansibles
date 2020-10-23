@@ -575,3 +575,49 @@ strongbox() {
 docxtotxt() {
     abiword --to=txt --to-name=fd://1 "$1"
 }
+
+bak() {
+    local target="$1"
+    if [[ ! -e "$target" ]]; then
+        echo ">> Target for bak $target does not exist" 1>&2
+        return 1
+    fi
+
+    local abs="$(readlink -f "$target")"
+    local bak_dest="${abs}.bak"
+
+    echo ">> Creating $bak_dest from $abs" 1>&2
+    cp "$abs" "$bak_dest"
+    echo "Done" 1>&2
+}
+
+unbak() {
+    local target="$1"
+    if [[ ! -e "$target" ]]; then
+        echo ">> Target for unbak $target does not exist" 1>&2
+        return 1
+    fi
+
+    local abs="$(readlink -f "$target")"
+    local unbaked="$(echo "$abs" | sed 's/\.bak$//g')"
+
+    echo "UNBACKED $abs -- $unbaked"
+
+    if [[ "$abs" == "$unbaked" ]]; then
+        echo ">> Target for unbak $target does not contain .bak" 1>&2
+        return 1
+    fi
+
+    # copy existing unbaked to .bak.bak
+    dbl_bak="${unbaked}.bak.bak"
+    echo ">> Copying $unbaked to $dbl_bak" 1>&2
+    cp "$unbaked" "$dbl_bak"
+
+    # mv .bak to existing
+    echo ">> Move $abs to $unbaked" 1>&2
+    mv "$abs" "$unbaked"
+
+    # mv .bak.bak to .bak
+    echo ">> Move $dbl_bak to $abs" 1>&2
+    mv "$dbl_bak" "$abs"
+}
