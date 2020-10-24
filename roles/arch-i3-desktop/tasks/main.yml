@@ -143,6 +143,7 @@
 - name: mimeapps list
   file:
     state: link
+    force: yes
     src: "{{ role_path }}/files/mimeapps.list"
     dest: "{{ user_home }}/.config/mimeapps.list"
     owner: "{{ user }}"
