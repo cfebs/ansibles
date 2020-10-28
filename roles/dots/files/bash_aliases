@@ -135,7 +135,10 @@ upgrade() {
             sudo snap refresh
         fi
 
-        if which yay 1>/dev/null 2>&1; then
+        if which paru 1>/dev/null 2>&1; then
+            echo ">> Upgrading paru" 1>&2
+            paru
+        elif which yay 1>/dev/null 2>&1; then
             echo ">> Upgrading yay" 1>&2
             yay
         else
