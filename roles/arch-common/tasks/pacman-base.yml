@@ -33,6 +33,7 @@
       - tree
       - pacman-contrib
       - inetutils
+      - lsb-release
     state: present
 
 - name: Install on non arm

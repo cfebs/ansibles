@@ -115,10 +115,17 @@
     owner: "{{ user }}"
     group: "{{ user }}"
 
+- name: emptty dir dirs
+  becmoe: yes
+  file:
+    state: directory
+    dest: "/etc/emptty"
+
 - name: emptty conf
   become: yes
   file:
     state: link
+    force: yes
     src: "{{ role_path }}/files/empttyconf"
     dest: "/etc/emptty/conf"
 
