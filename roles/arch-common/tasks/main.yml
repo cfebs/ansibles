@@ -3,6 +3,9 @@
 - debug:
     msg:
       - Task vars
+      - " - user {{ user }}"
+      - " - user home {{ user_home }}"
+      - " - arch_common_swap_hibernate val {{ arch_common_swap_hibernate }}"
       - " - arch_common_swap_hibernate {{ arch_common_swap_hibernate | bool }}"
       - " - arch_common_docker {{ arch_common_docker | bool }}"
       - " - mkinitcpio_hooks_list {{ mkinitcpio_hooks_list }}"

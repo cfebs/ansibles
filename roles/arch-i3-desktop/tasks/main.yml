@@ -117,7 +117,7 @@
     group: "{{ user }}"
 
 - name: emptty dir dirs
-  becmoe: yes
+  become: yes
   file:
     state: directory
     dest: "/etc/emptty"

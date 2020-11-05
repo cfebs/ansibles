@@ -1,5 +1,8 @@
 ---
 - hosts: tennislhua
+  vars:
+    arch_common_swap_hibernate: yes
+    mkinitcpio_hooks_list: resume
   roles:
     - arch-common
     - dots

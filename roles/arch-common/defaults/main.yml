@@ -1,6 +1,6 @@
 ---
 # run docker setup by default
-arch_common_docker: 1
+arch_common_docker: yes
 
 # arch_common_swap_hibernate
 arch_common_swap_hibernate: no
