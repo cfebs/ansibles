@@ -3,7 +3,7 @@
 arch_common_docker: 1
 
 # arch_common_swap_hibernate
-arch_common_swap_hibernate: 0
+arch_common_swap_hibernate: no
 
 # default hooks from install
 # HOOKS=(base udev autodetect modconf block filesystems keyboard fsck)
