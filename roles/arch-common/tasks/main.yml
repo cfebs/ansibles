@@ -1,8 +1,10 @@
 ---
 
-- debug:
+- name: debug
+  tags: debug
+  debug:
     msg:
-      - Task vars
+      - Var dump
       - " - user {{ user }}"
       - " - user home {{ user_home }}"
       - " - arch_common_swap_hibernate val {{ arch_common_swap_hibernate }}"
