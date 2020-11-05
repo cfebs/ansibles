@@ -49,6 +49,7 @@
       - docker
       - keychain
       - android-udev
+      - archlinux-wallpaper
     state: present
 
 - name: conf dirs
