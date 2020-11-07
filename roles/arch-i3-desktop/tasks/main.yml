@@ -67,6 +67,15 @@
     - pulse
     - sx
 
+- name: xresources
+  file:
+    state: link
+    force: yes
+    src: "{{ role_path }}/files/{{ xresources_file }}"
+    dest: "{{ user_home}}/.Xresources"
+    owner: "{{ user }}"
+    group: "{{ user }}"
+
 - name: i3 conf
   file:
     state: link
