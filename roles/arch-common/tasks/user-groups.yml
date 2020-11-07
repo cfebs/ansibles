@@ -1,11 +1,20 @@
 ---
-- name: lockout relax
+- name: add group
   become: yes
-  blockinfile:
-    path: /etc/security/faillock.conf
-    marker: '# {mark} ansible maintained settings'
-    content: |
-      deny = 10
+  group:
+    name: "{{ user }}"
+
+- name: add user
+  become: yes
+  user:
+    name: "{{ user }}"
+    groups: "{{ user }}"
+    append: yes
+
+- name: add sudo group
+  become: yes
+  group:
+    name: sudo
 
 - name: add to sudo
   become: yes
@@ -21,3 +30,26 @@
     name: "{{ user }}"
     append: true
     groups: docker
+
+- name: lockout relax
+  become: yes
+  blockinfile:
+    path: /etc/security/faillock.conf
+    marker: '# {mark} ansible maintained settings'
+    content: |
+      deny = 10
+
+- name: sudo grp config file
+  become: yes
+  file:
+    path: /etc/sudoers.d/sudo_group
+    state: touch
+    owner: root
+    group: root
+
+- name: sudo grp config
+  become: yes
+  copy:
+    dest: /etc/sudoers.d/sudo_group
+    content: |
+      %sudo   ALL=(ALL) ALL
