@@ -9,3 +9,11 @@
 - name: regen-mkinitcpio
   become: yes
   command: mkinitcpio -P
+
+- name: regen-hwclock
+  become: yes
+  command: hwclock --systohc
+
+- name: regen-locale
+  become: yes
+  command: locale-gen

@@ -14,6 +14,8 @@
 
 - import_tasks: pacman-base.yml
 
+- import_tasks: arch-install-guide.yml
+
 - import_tasks: timesync.yml
 
 - import_tasks: docker.yml

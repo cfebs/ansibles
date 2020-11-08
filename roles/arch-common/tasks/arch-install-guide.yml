@@ -1,0 +1,49 @@
+---
+
+# Take care of the steps after chroot https://wiki.archlinux.org/index.php/installation_guide#Chroot
+
+- name: link tz
+  become: yes
+  file:
+    state: link
+    force: yes
+    src: /usr/share/zoneinfo/America/New_York
+    dest: /etc/localtime
+  notify:
+    - regen-hwclock
+
+- name: edit /etc/locale.gen
+  become: yes
+  lineinfile:
+    path: /etc/locale.gen
+    state: present
+    regexp: '#en_US.UTF-8 UTF-8'
+    line: 'en_US.UTF-8 UTF-8'
+  notify:
+    - regen-locale
+
+- name: locale conf
+  become: yes
+  copy:
+    dest: /etc/locale.conf
+    content: |
+      LANG=en_US.UTF-8
+
+- name: hostname
+  become: yes
+  when: 'hostname_init != ""'
+  hostname:
+    name: '{{ hostname_init }}'
+
+- name: default etc hosts
+  become: yes
+  when: 'hostname_init != ""'
+  blockinfile:
+    path: /etc/hosts
+    create: yes
+    insertbefore: BOF
+    marker: '# {mark} default hosts: ansible managed block'
+    block: |
+      127.0.0.1	localhost
+      ::1		    localhost
+      127.0.1.1	{{ hostname_init}}.localdomain {{ hostname_init }}

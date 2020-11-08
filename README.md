@@ -5,7 +5,7 @@ ansible configs for my own machines
 ## Usage
 
 ```
-make $(hostname)
+./run
 ```
 
 ## Layout
@@ -24,6 +24,9 @@ tennislhua:
 
 ## Roles
 
+- `arch-common`: sets up arch linux across different host types, should be runnable right after
+the chroot step into a new install
+    - Set `hostname_init` in playbook file for the host.
 - `dots`: links dot files
 - `pacman`: installs common base pkgs
 - `arch-i3-desktop`: installs an i3 "desktop environment"

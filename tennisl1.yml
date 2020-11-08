@@ -1,6 +1,7 @@
 ---
 - hosts: tennisl1
   vars:
+    hostname_init: tennisl1
     arch_common_swap_hibernate: yes
     mkinitcpio_hooks_list: resume
   roles:

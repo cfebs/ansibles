@@ -1,4 +1,7 @@
 ---
+# what hostname should be initialized
+hostname_init: ''
+
 # run docker setup by default
 arch_common_docker: yes
 

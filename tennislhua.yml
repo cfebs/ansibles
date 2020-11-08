@@ -1,6 +1,7 @@
 ---
 - hosts: tennislhua
   vars:
+    hostname_init: tennislhua
     arch_common_swap_hibernate: yes
     mkinitcpio_hooks_list: resume
   roles:
