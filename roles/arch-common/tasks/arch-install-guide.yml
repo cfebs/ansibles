@@ -17,7 +17,6 @@
   lineinfile:
     path: /etc/locale.gen
     state: present
-    regexp: '#en_US.UTF-8 UTF-8'
     line: 'en_US.UTF-8 UTF-8'
   notify:
     - regen-locale
@@ -44,6 +43,6 @@
     insertbefore: BOF
     marker: '# {mark} default hosts: ansible managed block'
     block: |
-      127.0.0.1	localhost
-      ::1		    localhost
-      127.0.1.1	{{ hostname_init}}.localdomain {{ hostname_init }}
+      127.0.0.1   localhost
+      ::1         localhost
+      127.0.1.1   {{ hostname_init}}.localdomain {{ hostname_init }}

@@ -5,7 +5,11 @@ ansible configs for my own machines
 ## Usage
 
 ```
-./run
+# as root
+./ run
+
+# as sudo user
+sudo ./run
 ```
 
 ## Layout

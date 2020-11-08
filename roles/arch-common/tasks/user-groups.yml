@@ -39,17 +39,11 @@
     content: |
       deny = 10
 
-- name: sudo grp config file
-  become: yes
-  file:
-    path: /etc/sudoers.d/sudo_group
-    state: touch
-    owner: root
-    group: root
-
 - name: sudo grp config
   become: yes
-  copy:
+  lineinfile:
+    create: yes
     dest: /etc/sudoers.d/sudo_group
-    content: |
-      %sudo   ALL=(ALL) ALL
+    owner: root
+    group: root
+    line: '%sudo   ALL=(ALL) ALL'
