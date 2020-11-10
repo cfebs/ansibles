@@ -34,6 +34,8 @@
       - pacman-contrib
       - inetutils
       - lsb-release
+      - man-db
+      - man-pages
     state: present
 
 - name: Install on non arm
