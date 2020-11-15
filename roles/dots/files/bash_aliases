@@ -48,7 +48,7 @@ sshscreen() {
 wttr()
 {
     # change Paris to your default location
-    curl -H "Accept-Language: ${LANG%_*}" wttr.in/"${1:-11211?2}"
+    curl https://wttr.in/"${1:-lga?3}"
 }
 
 # Quick nav
@@ -103,8 +103,7 @@ TEST_FILE="$HOME/.rm_preserve_test" && touch $TEST_FILE && rm --preserve-root $T
 TEST_FILE="$HOME/.rm_preserve_test" && touch $TEST_FILE && rm -I $TEST_FILE 2> /dev/null && \
     alias rm='rm -I'
 
-if [ -f ~/.git-completion.sh ]
-then
+if [ -z "$ZSH_VERSION" ] && [ -f ~/.git-completion.sh ]; then
     source ~/.git-completion.sh
     alias g="git"
     __git_complete g _git
@@ -621,4 +620,11 @@ unbak() {
     # mv .bak.bak to .bak
     echo ">> Move $dbl_bak to $abs" 1>&2
     mv "$dbl_bak" "$abs"
+}
+
+tenor() {
+    args="$@"
+    query="$(echo "$@" | sed 's/ \+/+/g')"
+    echo "Query: $query" 1>&2
+    curl -sL "https://api.tenor.com/v1/search?q=${query}&key=&limit=3" | jq -r '.results[].media[].mediumgif.url'
 }

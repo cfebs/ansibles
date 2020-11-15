@@ -519,3 +519,6 @@ inoremap <C-@> <C-Space>
 "else
 "  inoremap <silent><expr> <c-@> coc#refresh()
 "endif
+
+""" Rust
+let g:rustfmt_autosave = 1
