@@ -13,11 +13,9 @@ PS1='[\u@\h \W]\$ '
 # public common stuff between shells, tracked in SCM
 [ -f $HOME/.exports.common ] && source $HOME/.exports.common
 
-# BEGIN PS1: ansible managed block
 [[ -f ~/.git-prompt.sh ]] && source ~/.git-prompt.sh
 export GIT_PS1_SHOWDIRTYSTATE=1
 export GIT_PS1_SHOWUNTRACKEDFILES=1
 PS1='[\u@\h \W]$(__git_ps1 " (%s)")\n\$ '
-# END PS1: ansible managed block
 
 hash starship 1>/dev/null 2>&1 && eval "$(starship init bash)"
