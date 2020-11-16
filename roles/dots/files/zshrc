@@ -1,0 +1,18 @@
+autoload -Uz compinit promptinit edit-command-line
+compinit
+promptinit
+
+bindkey -e
+
+# ctrlx ctrle for editing lines
+zle -N edit-command-line
+bindkey '^xe' edit-command-line
+bindkey '^x^e' edit-command-line
+
+# private stuff, no SCM
+[ -f $HOME/.exports ] && source $HOME/.exports
+
+# public common stuff between shells, tracked in SCM
+[ -f $HOME/.exports.common ] && source $HOME/.exports.common
+
+hash starship 1>/dev/null 2>&1 && eval "$(starship init zsh)"

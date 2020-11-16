@@ -1,9 +1,5 @@
 #!/bin/bash
 
-# 
-
-if [ -f ~/.bash_ssh_agent ]; then . ~/.bash_ssh_agent; fi
-
 getmakej() {
     echo $(($(nproc) + 1));
 }
@@ -103,9 +99,9 @@ TEST_FILE="$HOME/.rm_preserve_test" && touch $TEST_FILE && rm --preserve-root $T
 TEST_FILE="$HOME/.rm_preserve_test" && touch $TEST_FILE && rm -I $TEST_FILE 2> /dev/null && \
     alias rm='rm -I'
 
+alias g="git"
 if [ -z "$ZSH_VERSION" ] && [ -f ~/.git-completion.sh ]; then
     source ~/.git-completion.sh
-    alias g="git"
     __git_complete g _git
 fi
 

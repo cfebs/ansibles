@@ -11,15 +11,19 @@
 - name: Link dots
   file:
     state: link
+    force: yes
     src: "{{ role_path }}/files/{{ item }}"
     dest: "{{ user_home }}/.{{ item }}"
     owner: "{{ user }}"
     group: "{{ user }}"
   with_items:
+    - zshrc
+    - bashrc
+    - bash_aliases
+    - exports.common
     - vimrc
     - screenrc
     - tmux.conf
-    - bash_aliases
     - gitconfig
 
 - name: Link nvim
