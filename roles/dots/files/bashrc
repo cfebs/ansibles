@@ -7,6 +7,9 @@
 
 PS1='[\u@\h \W]\$ '
 
+# REMINDER this is tracked in public github
+# No secrets in bashrc, put it in .exports
+
 # private stuff, no SCM
 [ -f $HOME/.exports ] && source $HOME/.exports
 

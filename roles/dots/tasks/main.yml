@@ -26,6 +26,17 @@
     - tmux.conf
     - gitconfig
 
+- name: Link others
+  file:
+    state: link
+    force: yes
+    src: "{{ role_path }}/files/{{ item }}"
+    dest: "{{ user_home }}/{{ item }}"
+    owner: "{{ user }}"
+    group: "{{ user }}"
+  with_items:
+    - starship.toml
+
 - name: Link nvim
   file:
     state: link
