@@ -4,11 +4,6 @@ getmakej() {
     echo $(($(nproc) + 1));
 }
 
-if [ -z "$EDITOR" ];
-then
-    export EDITOR='vim'
-fi
-
 alias tailcat="tail -n +1"
 alias dok="docker"
 alias dokc="docker-compose"
@@ -77,12 +72,17 @@ alias lh='ls --hide="*.pyc"'
 alias l='ls'
 alias lsat='ls -at'
 
-hash nvim 2>&1 1>/dev/null && alias vim=nvim
-alias vi=vim
-alias v=vim
-alias svi='sudo vi'
-alias vis='vim "+set si"'
-alias edit='vim'
+export EDITOR='vim'
+if hash nvim 2>&1 1>/dev/null; then
+    export EDITOR='nvim'
+    alias vim=nvim
+fi
+
+alias vi=$EDITOR
+alias v=$EDITOR
+alias svi="sudo $EDITOR"
+alias vis="$EDITOR \"+set si\""
+alias edit="$EDITOR"
 
 alias dmenu="dmenu -b -i -l 15 -fn '-misc-fixed-medium-r-normal--18-*-*-*-*-*-*-*'"
 alias dmenu_run="dmenu_run -b -i -l 15 -fn '-misc-fixed-medium-r-normal--18-*-*-*-*-*-*-*'"
