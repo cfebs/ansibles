@@ -36,6 +36,7 @@
       - lsb-release
       - man-db
       - man-pages
+      - lsd
     state: present
 
 - name: Install on non arm
