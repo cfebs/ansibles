@@ -17,4 +17,10 @@ bindkey '^x^e' edit-command-line
 # public common stuff between shells, tracked in SCM
 [ -f $HOME/.exports.common ] && source $HOME/.exports.common
 
+function refresh_ssh_autocomplete () {
+    host_list=($(grep -r 'Host ' ~/.ssh/ | awk '{s = s $2 " "} END {print s}'))
+    zstyle ':completion:*:(ssh|scp|sftp):*' hosts $host_list
+}
+refresh_ssh_autocomplete
+
 hash starship 1>/dev/null 2>&1 && eval "$(starship init zsh)"
