@@ -37,6 +37,7 @@
       - man-db
       - man-pages
       - lsd
+      - zsh
     state: present
 
 - name: Install on non arm
