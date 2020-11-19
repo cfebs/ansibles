@@ -9,7 +9,7 @@ success_symbol = "[➜](bold green)"     # The "success_symbol" segment is being
 show_milliseconds = true
 
 [git_status]
-format = '([\[$all_status$ahead_behind\]]($style) )'
+format = '([\[$conflicted$deleted$renamed$modified$staged$untracked$ahead_behind\]]($style) )'
 
 # Disable the package module, hiding it from the prompt completely
 [package]
