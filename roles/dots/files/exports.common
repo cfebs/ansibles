@@ -2,7 +2,7 @@
 
 # Put stuff that can be shared between bash, zsh here
 
-if hash lsd 1>/dev/null 2>&2; then
+if hash lsd 1>/dev/null 2>&1; then
     alias ls='lsd'
 else
     alias ls='ls --color=auto'
