@@ -26,12 +26,12 @@
     - tmux.conf
     - gitconfig
 
-- name: Link others
+- name: Link config others
   file:
     state: link
     force: yes
     src: "{{ role_path }}/files/{{ item }}"
-    dest: "{{ user_home }}/{{ item }}"
+    dest: "{{ user_home }}/.config/{{ item }}"
     owner: "{{ user }}"
     group: "{{ user }}"
   with_items:
