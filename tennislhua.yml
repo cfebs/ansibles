@@ -4,6 +4,7 @@
     hostname_init: tennislhua
     arch_common_swap_hibernate: yes
     mkinitcpio_hooks_list: resume
+    xresources_file: Xresources.larger
   roles:
     - arch-common
     - dots
