@@ -7,6 +7,7 @@
     group: "{{ user }}"
   with_items:
     - nvim
+    - alacritty
 
 - name: Link dots
   file:
@@ -42,6 +43,14 @@
     state: link
     src: "{{ user_home }}/.vimrc"
     dest: "{{ user_home }}/.config/nvim/init.vim"
+    owner: "{{ user }}"
+    group: "{{ user }}"
+
+- name: Link alacritty
+  file:
+    state: link
+    src: "{{ role_path }}/files/alacritty.yml"
+    dest: "{{ user_home }}/.config/alacritty/alacritty.yml"
     owner: "{{ user }}"
     group: "{{ user }}"
 

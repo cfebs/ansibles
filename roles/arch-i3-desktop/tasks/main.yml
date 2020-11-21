@@ -34,6 +34,7 @@
       - noto-fonts
       - noto-fonts-cjk
       - noto-fonts-emoji
+      - ttf-jetbrains-mono
       - ttf-nerd-fonts-symbols-mono
       - nitrogen
       - libmicrodns
@@ -51,6 +52,7 @@
       - keychain
       - android-udev
       - archlinux-wallpaper
+      - redshift
     state: present
 
 - name: conf dirs
