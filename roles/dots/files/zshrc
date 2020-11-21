@@ -23,4 +23,8 @@ function refresh_ssh_autocomplete () {
 }
 refresh_ssh_autocomplete
 
+__git_files () {
+    _wanted files expl 'local files' _files
+}
+
 hash starship 1>/dev/null 2>&1 && eval "$(starship init zsh)"
