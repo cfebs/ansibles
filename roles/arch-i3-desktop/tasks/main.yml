@@ -53,6 +53,7 @@
       - android-udev
       - archlinux-wallpaper
       - redshift
+      - flameshot
     state: present
 
 - name: conf dirs
