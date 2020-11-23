@@ -1,3 +1,13 @@
+function refresh_ssh_autocomplete () {
+    host_list=($(grep -r 'Host ' ~/.ssh/ | awk '{s = s $2 " "} END {print s}'))
+    zstyle ':completion:*:(scp|rsync):*' tag-order ' hosts:-ipaddr:ip\ address hosts:-host:host files'
+    zstyle ':completion:*:(ssh|scp|rsync):*:hosts-host' ignored-patterns '*(.|:)*' loopback ip6-loopback localhost ip6-localhost broadcasthost
+    zstyle ':completion:*:(ssh|scp|rsync):*:hosts-ipaddr' ignored-patterns '^(<->.<->.<->.<->|(|::)([[:xdigit:].]##:(#c,2))##(|%*))' '127.0.0.<->' '255.255.255.255' '::1' 'fe80::*'
+    zstyle ':completion:*:(ssh|scp|sftp):*' hosts $host_list
+}
+refresh_ssh_autocomplete
+# zstyle ':completion:*' hosts off
+
 autoload -Uz compinit promptinit edit-command-line select-word-style
 select-word-style bash
 compinit
@@ -16,12 +26,6 @@ bindkey '^x^e' edit-command-line
 
 # public common stuff between shells, tracked in SCM
 [ -f $HOME/.exports.common ] && source $HOME/.exports.common
-
-function refresh_ssh_autocomplete () {
-    host_list=($(grep -r 'Host ' ~/.ssh/ | awk '{s = s $2 " "} END {print s}'))
-    zstyle ':completion:*:(ssh|scp|sftp):*' hosts $host_list
-}
-refresh_ssh_autocomplete
 
 __git_files () {
     _wanted files expl 'local files' _files
