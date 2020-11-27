@@ -16,9 +16,12 @@ PS1='[\u@\h \W]\$ '
 # public common stuff between shells, tracked in SCM
 [ -f $HOME/.exports.common ] && source $HOME/.exports.common
 
-[[ -f ~/.git-prompt.sh ]] && source ~/.git-prompt.sh
-export GIT_PS1_SHOWDIRTYSTATE=1
-export GIT_PS1_SHOWUNTRACKEDFILES=1
-PS1='[\u@\h \W]$(__git_ps1 " (%s)")\n\$ '
 
-hash starship 1>/dev/null 2>&1 && eval "$(starship init bash)"
+if hash starship 1>/dev/null 2>&1; then
+    eval "$(starship init bash)"
+else
+    [[ -f ~/.git-prompt.sh ]] && source ~/.git-prompt.sh
+    export GIT_PS1_SHOWDIRTYSTATE=1
+    export GIT_PS1_SHOWUNTRACKEDFILES=1
+    PS1='[\u@\h \W]$(__git_ps1 " (%s)")\n\$ '
+fi

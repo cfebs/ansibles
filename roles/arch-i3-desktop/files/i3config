@@ -178,6 +178,7 @@ for_window [class="^Steam$" title=".*library.*folder.*"] floating enable
 
 
 # custom
+exec --no-startup-id udiskie
 exec --no-startup-id nm-applet
 exec --no-startup-id blueman-applet
 exec --no-startup-id redshift-gtk

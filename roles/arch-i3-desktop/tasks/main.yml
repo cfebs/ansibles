@@ -54,6 +54,9 @@
       - archlinux-wallpaper
       - redshift
       - flameshot
+      - ntfs-3g
+      - udiskie
+      - udisks2
     state: present
 
 - name: conf dirs
