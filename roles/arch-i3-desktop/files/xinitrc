@@ -42,4 +42,9 @@ if [ -f /etc/profile ]; then
     source /etc/profile
 fi
 
-exec $@
+if [ -z "$DBUS_SESSION_BUS_ADDRESS" ]; then
+    echo ".xinitrc: No session bus detected, using dbus-launch" 1>&2
+    exec dbus-launch $@
+else
+    exec $@
+fi

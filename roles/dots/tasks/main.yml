@@ -49,6 +49,7 @@
 - name: Link alacritty
   file:
     state: link
+    force: yes
     src: "{{ role_path }}/files/alacritty.yml"
     dest: "{{ user_home }}/.config/alacritty/alacritty.yml"
     owner: "{{ user }}"
