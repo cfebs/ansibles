@@ -240,19 +240,3 @@
       Host droplet2
           HostName 162.243.19.32
           User collin
-
-##############################
-### Bashrc
-##############################
-
-- name: git prompt
-  get_url:
-    url: https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
-    dest: "{{ user_home }}/.git-prompt.sh"
-    mode: "0755"
-
-- name: git completion
-  get_url:
-    url: https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
-    dest: "{{ user_home }}/.git-completion.sh"
-    mode: "0755"

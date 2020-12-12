@@ -86,3 +86,17 @@
     url: 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
     dest: "{{ user_home }}/.local/share/nvim/site/autoload/plug.vim"
     mode: "0755"
+
+
+# bash utils for git completion
+- name: git prompt
+  get_url:
+    url: https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
+    dest: "{{ user_home }}/.git-prompt.sh"
+    mode: "0755"
+
+- name: git completion
+  get_url:
+    url: https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
+    dest: "{{ user_home }}/.git-completion.sh"
+    mode: "0755"
