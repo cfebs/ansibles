@@ -535,6 +535,7 @@ rss-read() {
 }
 
 update-pacman-mirrors() {
+    echo "Starting reflector update" 1>&2
     sudo reflector --connection-timeout 2 -c 'United States' -a 3 -p https -i '\.edu' \
         -f 5 --save /etc/pacman.d/mirrorlist
     rc=$?
