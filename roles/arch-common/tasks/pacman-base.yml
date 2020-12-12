@@ -38,6 +38,7 @@
       - man-pages
       - lsd
       - zsh
+      - keychain
     state: present
 
 - name: Install on non arm
