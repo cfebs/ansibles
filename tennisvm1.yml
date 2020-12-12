@@ -1,0 +1,7 @@
+---
+- hosts: tennisvm1
+  vars:
+    hostname_init: tennisd2
+  roles:
+    - arch-common
+    - dots
