@@ -57,6 +57,8 @@
       - ntfs-3g
       - udiskie
       - udisks2
+      - discord
+      - transmission-gtk
     state: present
 
 - name: conf dirs
