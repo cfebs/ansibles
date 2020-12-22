@@ -145,6 +145,18 @@ upgrade() {
             pacman -Syu
         fi
 
+        if which pacdiff 1>/dev/null 2>&1; then
+            echo ">> Running pacdiff" 1>&2
+            if which meld 1>/dev/null 2>&1; then
+                DIFFPROG=/usr/bin/meld sudo -E pacdiff
+            elif which vimdiff 1>/dev/null 2>&1; then
+                DIFFPROG=/usr/bin/vimdiff sudo -E pacdiff
+            else
+                echo ">> ERROR: no good diff programs" 1>&2
+                return 1
+            fi
+        fi
+
         return 0
     fi
 
