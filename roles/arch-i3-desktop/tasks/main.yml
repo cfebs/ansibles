@@ -59,6 +59,7 @@
       - udisks2
       - discord
       - transmission-gtk
+      - code
     state: present
 
 - name: conf dirs
