@@ -36,6 +36,10 @@ else
     if [ -f '~/google-cloud-sdk/completion.bash.inc' ]; then . '~/google-cloud-sdk/completion.bash.inc'; fi
 fi
 
+if which rbenv 1>/dev/null 2>&1; then
+    eval "$(rbenv init -)"
+fi
+
 if [[ -e /usr/share/nvm/init-nvm.sh ]]; then
     source /usr/share/nvm/init-nvm.sh
 else
