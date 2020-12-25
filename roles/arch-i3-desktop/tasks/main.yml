@@ -60,8 +60,11 @@
       - discord
       - transmission-gtk
       - code
+      - linux-headers
+      - linux-lts-headers
       - virtualbox
       - virtualbox-host-dkms
+      - gimp
     state: present
 
 - name: conf dirs
