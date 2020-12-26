@@ -39,6 +39,7 @@
       - lsd
       - zsh
       - keychain
+      - arch-wiki-docs
     state: present
 
 - name: Install on non arm
