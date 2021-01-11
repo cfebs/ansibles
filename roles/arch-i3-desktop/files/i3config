@@ -191,7 +191,9 @@ bindsym Ctrl+Mod1+Delete exec i3lock -c 111111
 bindsym $mod+n workspace next
 bindsym $mod+p workspace prev
 bindsym Mod1+Shift+3 exec flameshot gui
+bindsym $mod+Shift+s exec flameshot gui
 bindsym Mod1+Shift+1 exec rofimoji
+bindsym $mod+Shift+b exec blueman-manager
 
 # laptop btns
 # should work with lenovo + huawei
