@@ -56,4 +56,8 @@ if [ -f $HOME/src/vimeo/etcutl/vimeo-functions.sh ]; then
     export PATH="$HOME/src/vimeo/etcutl/bin:$HOME/src/vimeo/etcutl/agignore:$PATH"
 fi
 
+if [ -d $HOME/src/ansibles/roles/dots/files/bin ]; then
+    export PATH="$HOME/src/ansibles/roles/dots/files/bin:$PATH"
+fi
+
 eval $(keychain --eval --quiet $(find ~/.ssh -type f -iname 'id_*' -not -iname '*.pub'))

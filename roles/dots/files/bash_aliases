@@ -177,19 +177,19 @@ upgrade() {
 
 ## Functions
 
-simp() {
-    local port=${1-8181}
-    local addr=${2-0.0.0.0}
-
-    if python3 --version &> /dev/null
-    then
-        echo "Python 3"
-        python3 -m http.server --bind "$addr" "$port"
-    else
-        echo "Python 2"
-        python -m SimpleHTTPServer "$port"
-    fi
-}
+#simp() {
+#    local port=${1-8181}
+#    local addr=${2-0.0.0.0}
+#
+#    if python3 --version &> /dev/null
+#    then
+#        echo "Python 3"
+#        python3 -m http.server --bind "$addr" "$port"
+#    else
+#        echo "Python 2"
+#        python -m SimpleHTTPServer "$port"
+#    fi
+#}
 
 pn() {
     while read data;
@@ -644,21 +644,21 @@ tenor() {
     curl -sL "https://api.tenor.com/v1/search?q=${query}&key=&limit=3" | jq -r '.results[].media[].mediumgif.url'
 }
 
-bt-sony-pair() {
-    scanned="$(timeout 15s bluetoothctl scan on)"
-    if ! echo "$scanned" | grep -q 'CC:98:8B:B6:B3:3B'; then
-        echo "Could not find sony WH-1000XM3 CC:98:8B:B6:B3:3B in scan. Is it in pairing mode?"
-        return 1
-    fi
-
-    bluetoothctl pair CC:98:8B:B6:B3:3B && \
-        bluetoothctl trust CC:98:8B:B6:B3:3B
-}
-
-bt-sony-on() {
-    bluetoothctl connect CC:98:8B:B6:B3:3B
-}
-
-bt-sony-off() {
-    bluetoothctl disconnect CC:98:8B:B6:B3:3B
-}
+# bt-sony-pair() {
+#     scanned="$(timeout 15s bluetoothctl scan on)"
+#     if ! echo "$scanned" | grep -q 'CC:98:8B:B6:B3:3B'; then
+#         echo "Could not find sony WH-1000XM3 CC:98:8B:B6:B3:3B in scan. Is it in pairing mode?"
+#         return 1
+#     fi
+#
+#     bluetoothctl pair CC:98:8B:B6:B3:3B && \
+#         bluetoothctl trust CC:98:8B:B6:B3:3B
+# }
+#
+# bt-sony-on() {
+#     bluetoothctl connect CC:98:8B:B6:B3:3B
+# }
+#
+# bt-sony-off() {
+#     bluetoothctl disconnect CC:98:8B:B6:B3:3B
+# }
