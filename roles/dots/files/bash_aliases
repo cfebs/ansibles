@@ -172,6 +172,19 @@ upgrade() {
     echo ">> Finished with code $rc" 1>&2
 }
 
+agr() {
+    if [[ -z "$1" ]] || [[ -z "$2" ]]; then
+        echo "Usage: ${FUNCNAME[0]} <original> <replacement>" 1>&2
+        return 0
+    fi
+
+    echo "Replacing s/$1/$2 with ag + sed" 1>&2
+    ag -0 -l $1 | xargs -0 sed -ri.bak -e "s/$1/$2/g"
+    rc=$?
+    echo "Done with code $rc" 1>&2
+}
+
+
 # replaced by agignore stuff
 #alias agi='ag -i --ignore "*.min.js" --ignore "web/assets/fonts/" --ignore "web/assets/js/vendor/" --ignore "web_portfolio/assets/js/jquery*.js"'
 
