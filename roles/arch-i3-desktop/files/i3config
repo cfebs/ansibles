@@ -30,7 +30,7 @@ font pango:monospace 10
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+t exec i3-sensible-terminal
+bindsym $mod+Return exec i3-sensible-terminal
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -79,7 +79,7 @@ bindsym $mod+b split h
 bindsym $mod+v split v
 
 # enter fullscreen mode for the focused container
-bindsym $mod+f fullscreen toggle
+bindsym $mod+Shift+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
@@ -196,6 +196,7 @@ bindsym Mod1+Shift+3 exec flameshot gui
 bindsym $mod+Shift+s exec flameshot gui
 bindsym Mod1+Shift+1 exec rofimoji
 bindsym $mod+Shift+b exec blueman-manager
+bindsym $mod+f exec thunar
 
 # laptop btns
 # should work with lenovo + huawei

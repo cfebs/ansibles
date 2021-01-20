@@ -65,6 +65,7 @@
       - virtualbox
       - virtualbox-host-dkms
       - gimp
+      - rofi
     state: present
 
 - name: conf dirs
