@@ -9,6 +9,7 @@
 general {
     colors = true
     interval = 5
+    separator = "  "
 }
 
 #order += "ipv6"
@@ -34,6 +35,7 @@ wireless _first_ {
 #}
 
 battery all {
+    format_down = ""
     format = "%status %percentage"
 }
 
@@ -42,26 +44,28 @@ tztime local {
 }
 
 load {
-    format = "%1min"
+    format = "﬙ %1min"
 }
 
 disk "/" {
-    format = "%avail"
+    format = " %avail"
 }
 
 volume master {
-    format = "♪: %volume"
+    format = "♪ %volume"
     format_muted = "♪: muted (%volume)"
     device = "default"
 }
 
 path_exists VPN {
+    format = " %status"
+    format_down = ""
     # path exists when a VPN tunnel launched by nmcli/nm-applet is active
     path = "/proc/sys/net/ipv4/conf/tun0"
 }
 
 memory {
-        format = "mem %available"
+        format = " %available"
         threshold_degraded = "1G"
         format_degraded = "MEMORY < %available"
 }

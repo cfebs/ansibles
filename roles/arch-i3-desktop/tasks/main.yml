@@ -66,6 +66,8 @@
       - virtualbox-host-dkms
       - gimp
       - rofi
+      - ttf-roboto
+      - ttf-roboto-mono
     state: present
 
 - name: conf dirs
