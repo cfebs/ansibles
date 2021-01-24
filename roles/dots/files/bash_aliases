@@ -116,73 +116,73 @@ alias ln='ln -i'
 
 alias clipboard='xclip -se c'
 
-upgrade() {
-    (
-    set -e
-    # elevate with a noop
-    sudo cat /dev/null
-
-    if grep -q DISTRIB_ID=Arch /etc/lsb-release; then
-        echo ">> Upgrading archlinux" 1>&2
-        if which flatpak 1>/dev/null 2>&1; then
-            echo ">> Upgrading flatpack" 1>&2
-            flatpak update
-        fi
-
-        if which snap 1>/dev/null 2>&1; then
-            echo ">> Upgrading snaps" 1>&2
-            sudo snap refresh
-        fi
-
-        if which paru 1>/dev/null 2>&1; then
-            echo ">> Upgrading paru" 1>&2
-            paru
-        elif which yay 1>/dev/null 2>&1; then
-            echo ">> Upgrading yay" 1>&2
-            yay
-        else
-            echo ">> Upgrading pacman" 1>&2
-            pacman -Syu
-        fi
-
-        if which pacdiff 1>/dev/null 2>&1; then
-            echo ">> Running pacdiff" 1>&2
-            if which meld 1>/dev/null 2>&1; then
-                DIFFPROG=/usr/bin/meld sudo -E pacdiff
-            elif which vimdiff 1>/dev/null 2>&1; then
-                DIFFPROG=/usr/bin/vimdiff sudo -E pacdiff
-            else
-                echo ">> ERROR: no good diff programs" 1>&2
-                return 1
-            fi
-        fi
-
-        return 0
-    fi
-
-    if which apt 1>/dev/null 2>&1; then
-        echo ">> Upgrading apt" 1>&2
-        apt update && sudo apt upgrade -y
-    fi
-
-    echo ">> WARNING: no package manager found" 1>&2
-    return 1
-    )
-    rc=$?
-    echo ">> Finished with code $rc" 1>&2
-}
-
-agr() {
-    if [[ -z "$1" ]] || [[ -z "$2" ]]; then
-        echo "Usage: ${FUNCNAME[0]} <original> <replacement>" 1>&2
-        return 0
-    fi
-
-    echo "Replacing s/$1/$2 with ag + sed" 1>&2
-    ag -0 -l $1 | xargs -0 sed -ri.bak -e "s/$1/$2/g"
-    rc=$?
-    echo "Done with code $rc" 1>&2
-}
+#upgrade() {
+#    (
+#    set -e
+#    # elevate with a noop
+#    sudo cat /dev/null
+#
+#    if grep -q DISTRIB_ID=Arch /etc/lsb-release; then
+#        echo ">> Upgrading archlinux" 1>&2
+#        if which flatpak 1>/dev/null 2>&1; then
+#            echo ">> Upgrading flatpack" 1>&2
+#            flatpak update
+#        fi
+#
+#        if which snap 1>/dev/null 2>&1; then
+#            echo ">> Upgrading snaps" 1>&2
+#            sudo snap refresh
+#        fi
+#
+#        if which paru 1>/dev/null 2>&1; then
+#            echo ">> Upgrading paru" 1>&2
+#            paru
+#        elif which yay 1>/dev/null 2>&1; then
+#            echo ">> Upgrading yay" 1>&2
+#            yay
+#        else
+#            echo ">> Upgrading pacman" 1>&2
+#            pacman -Syu
+#        fi
+#
+#        if which pacdiff 1>/dev/null 2>&1; then
+#            echo ">> Running pacdiff" 1>&2
+#            if which meld 1>/dev/null 2>&1; then
+#                DIFFPROG=/usr/bin/meld sudo -E pacdiff
+#            elif which vimdiff 1>/dev/null 2>&1; then
+#                DIFFPROG=/usr/bin/vimdiff sudo -E pacdiff
+#            else
+#                echo ">> ERROR: no good diff programs" 1>&2
+#                return 1
+#            fi
+#        fi
+#
+#        return 0
+#    fi
+#
+#    if which apt 1>/dev/null 2>&1; then
+#        echo ">> Upgrading apt" 1>&2
+#        apt update && sudo apt upgrade -y
+#    fi
+#
+#    echo ">> WARNING: no package manager found" 1>&2
+#    return 1
+#    )
+#    rc=$?
+#    echo ">> Finished with code $rc" 1>&2
+#}
+#
+#agr() {
+#    if [[ -z "$1" ]] || [[ -z "$2" ]]; then
+#        echo "Usage: ${FUNCNAME[0]} <original> <replacement>" 1>&2
+#        return 0
+#    fi
+#
+#    echo "Replacing s/$1/$2 with ag + sed" 1>&2
+#    ag -0 -l $1 | xargs -0 sed -ri.bak -e "s/$1/$2/g"
+#    rc=$?
+#    echo "Done with code $rc" 1>&2
+#}
 
 
 # replaced by agignore stuff

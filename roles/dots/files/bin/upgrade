@@ -1,0 +1,73 @@
+#!/usr/bin/env bash
+
+main() {
+    (
+    set -e
+    # elevate with a noop
+    sudo cat /dev/null
+
+    if grep -q DISTRIB_ID=Arch /etc/lsb-release; then
+        echo ">> Upgrading archlinux" 1>&2
+        if which flatpak 1>/dev/null 2>&1; then
+            echo ">> Upgrading flatpack" 1>&2
+            flatpak update
+        fi
+
+        if which snap 1>/dev/null 2>&1; then
+            echo ">> Upgrading snaps" 1>&2
+            sudo snap refresh
+        fi
+
+        if which paru 1>/dev/null 2>&1; then
+            echo ">> Upgrading paru" 1>&2
+            paru
+        elif which yay 1>/dev/null 2>&1; then
+            echo ">> Upgrading yay" 1>&2
+            yay
+        else
+            echo ">> Upgrading pacman" 1>&2
+            pacman -Syu
+        fi
+
+        if which pacdiff 1>/dev/null 2>&1; then
+            echo ">> Running pacdiff" 1>&2
+            if which meld 1>/dev/null 2>&1; then
+                DIFFPROG=/usr/bin/meld sudo -E pacdiff
+            elif which vimdiff 1>/dev/null 2>&1; then
+                DIFFPROG=/usr/bin/vimdiff sudo -E pacdiff
+            else
+                echo ">> ERROR: no good diff programs" 1>&2
+                return 1
+            fi
+        fi
+    fi
+
+    if which apt 1>/dev/null 2>&1; then
+        echo ">> Upgrading apt" 1>&2
+        apt update && sudo apt upgrade -y
+    fi
+
+    if which git 1>/dev/null 2>&1; then
+        if [[ -d "$HOME/src/ansibles" ]]; then
+            echo ">> Checking for ansible run"
+            pushd "$HOME/src/ansibles/roles/"
+            if [ ! -z "$(git status --untracked-files=no --porcelain)" ]; then
+                echo ">> WARNING: Ansible git not clean, not running"
+                return 1
+            fi
+
+            sudo ./run
+            popd
+        fi
+    fi
+
+    echo ">> WARNING: no package manager found" 1>&2
+    return 1
+    )
+    rc=$?
+    return $rc
+}
+
+main
+rc=$?
+echo ">> Finished with code $rc" 1>&2
