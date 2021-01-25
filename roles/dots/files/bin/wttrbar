@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+LOCATION="Brooklyn NY"
+FILE_OUT="/tmp/wttrbar.txt"
+curl -m10 -sL "https://wttr.in/$LOCATION?m&format=%c%f+%l" -o /tmp/wttrbar.txt
+rc=$?
+
+if [[ "$rc" != "0" ]]; then
+    truncate -s0 > /tmp/wttrbar.txt
+    echo "Removing $FILE_OUT, return code $rc" 1>&2
+    exit 0
+fi
+
+echo "Wrote $FILE_OUT"
+exit 0

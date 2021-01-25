@@ -13,6 +13,7 @@ general {
 }
 
 #order += "ipv6"
+order += "read_file WTTR"
 order += "disk /"
 #order += "wireless _first_"
 order += "path_exists VPN"
@@ -58,7 +59,7 @@ volume master {
 }
 
 path_exists VPN {
-    format = " %status"
+    format = " vpn"
     format_down = ""
     # path exists when a VPN tunnel launched by nmcli/nm-applet is active
     path = "/proc/sys/net/ipv4/conf/tun0"
@@ -68,4 +69,10 @@ memory {
         format = " %available"
         threshold_degraded = "1G"
         format_degraded = "MEMORY < %available"
+}
+
+read_file WTTR {
+    color_good = "#FFFFFF"
+    path = "/tmp/wttrbar.txt"
+    format_bad = ""
 }
