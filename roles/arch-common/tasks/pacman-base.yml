@@ -40,6 +40,8 @@
       - zsh
       - keychain
       - arch-wiki-docs
+      - python-pip
+      - python-pipenv
     state: present
 
 - name: Install on non arm
