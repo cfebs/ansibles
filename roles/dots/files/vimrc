@@ -50,6 +50,7 @@ Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'evanleck/vim-svelte', { 'branch': 'main' }
 "Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'vim-crystal/vim-crystal'
 
 set fileformat=unix
 set fileformats=unix,dos
@@ -181,8 +182,12 @@ augroup vimrcEx
   autocmd InsertLeave * match ExtraWhitespace /\s\+$/
   autocmd BufWinLeave * call clearmatches()
 
+  "" syntax complete per ft
+  autocmd FileType python set omnifunc=syntaxcomplete#Complete
+
   "" 4 spaces
   autocmd FileType python,javascript setlocal tabstop=4 softtabstop=4 shiftwidth=4
+
   "" 2 spaces
   autocmd FileType coffee,ruby,haml,eruby,html,sass,cucumber,pug setlocal ai sw=2 sts=2 et
 
