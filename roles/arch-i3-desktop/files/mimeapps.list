@@ -1,3 +1,7 @@
+# This is managed by ansible
+# Notes:
+#   - get mime type: `file --mime-type -b ./file.pdf`
+
 [Added Associations]
 application/vnd.openxmlformats-officedocument.wordprocessingml.document=abiword.desktop;
 application/xhtml+xml=nvim.desktop;
@@ -8,6 +12,7 @@ image/png=sxiv.desktop;gimp.desktop;
 inode/directory=thunar.desktop;
 text/html=google-chrome.desktop;chromium.desktop;
 text/plain=geany.desktop;
+application/pdf=google-chrome.desktop;chromium.desktop;
 x-scheme-handler/about=google-chrome.desktop;chromium.desktop;
 x-scheme-handler/http=google-chrome.desktop;chromium.desktop;
 x-scheme-handler/https=google-chrome.desktop;chromium.desktop;
