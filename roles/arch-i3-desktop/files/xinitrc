@@ -36,10 +36,17 @@ fi
 # for i3's terminal selection
 export TERMINAL=alacritty
 
+# for qt apps to use gtk themes when launched via rofi/dmenu in i3
+export QT_QPA_PLATFORMTHEME=gtk2
+
 # sets up other important vars for use by i3 programs
 # ex. flatpak uses XDG_DATA_DIRS, i3-dmenu-desktop needs this
 if [ -f /etc/profile ]; then
     source /etc/profile
+    # Debugging env
+    date >> /tmp/xinit_rc_env
+    env >> /tmp/xinit_rc_env
+    echo '==========' >> /tmp/xinit_rc_env
 fi
 
 if [ -z "$DBUS_SESSION_BUS_ADDRESS" ]; then
