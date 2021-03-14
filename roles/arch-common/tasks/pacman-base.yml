@@ -42,6 +42,8 @@
       - arch-wiki-docs
       - python-pip
       - python-pipenv
+      - rclone
+      - fuse2
     state: present
 
 - name: Install on non arm
