@@ -18,6 +18,8 @@ alias sshbatch="ssh -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -o
 
 alias nethack-remote="alacritty --config-file /dev/null -e /bin/bash -c 'ssh nethack@alt.org'"
 
+alias gistdiff="gist -f diff.diff"
+
 digany() {
     dig +noall +answer "$1" ANY
 }
