@@ -46,6 +46,10 @@ run_upgrade_pkgs() {
         echo ">> Upgrading apt" 1>&2
         apt update && sudo apt upgrade -y
     fi
+
+    # Vim plug update
+    (vim +PlugInstall +PlugUpdate +qall; exit 0)
+
     )
     rc=$?
     echo ">> ${FUNCNAME[0]} function returned with code $?"
