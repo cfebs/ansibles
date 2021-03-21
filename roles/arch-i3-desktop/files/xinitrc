@@ -33,21 +33,38 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
  unset f
 fi
 
+# Setup debug file
+_debug() {
+    echo "$(date -I'seconds') - $@" >> /tmp/xinit_rc_debug
+}
+
+_debug 'Starting custom xinitrc stuff'
+
+# sets up other important vars for use by i3 programs
+# ex. flatpak uses XDG_DATA_DIRS, i3-dmenu-desktop needs this
+if [ -f /etc/profile ]; then
+    _debug 'Sourcing profile'
+    source /etc/profile
+fi
+
 # for i3's terminal selection
 export TERMINAL=alacritty
 
 # for qt apps to use gtk themes when launched via rofi/dmenu in i3
 export QT_QPA_PLATFORMTHEME=gtk2
 
-# sets up other important vars for use by i3 programs
-# ex. flatpak uses XDG_DATA_DIRS, i3-dmenu-desktop needs this
-if [ -f /etc/profile ]; then
-    source /etc/profile
-    # Debugging env
-    date >> /tmp/xinit_rc_env
-    env >> /tmp/xinit_rc_env
-    echo '==========' >> /tmp/xinit_rc_env
+# so every app that launches will export current GTK_THEME which should enable dark mode
+# in certain apps like chrome
+if [ -s "$XDG_CONFIG_HOME/gtk-3.0/settings.ini" ]; then
+    theme_name="$(cat "$XDG_CONFIG_HOME/gtk-3.0/settings.ini" | grep '^gtk-theme-name' | awk -F= '{print $2}')"
+    if [ -n "$theme_name" ]; then
+        _debug "Exporting theme $theme_name"
+        export GTK_THEME="$theme_name"
+    fi
 fi
+
+_debug "$(env)"
+_debug "Done"
 
 if [ -z "$DBUS_SESSION_BUS_ADDRESS" ]; then
     echo ".xinitrc: No session bus detected, using dbus-launch" 1>&2
