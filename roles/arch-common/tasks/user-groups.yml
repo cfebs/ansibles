@@ -43,6 +43,7 @@
   become: yes
   lineinfile:
     create: yes
+    mode: '0440'
     dest: /etc/sudoers.d/sudo_group
     owner: root
     group: root
@@ -52,6 +53,7 @@
   become: yes
   lineinfile:
     create: yes
+    mode: '0440'
     dest: /etc/sudoers.d/sudo_timeout
     owner: root
     group: root
