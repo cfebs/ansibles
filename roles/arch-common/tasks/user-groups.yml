@@ -47,3 +47,12 @@
     owner: root
     group: root
     line: '%sudo   ALL=(ALL) ALL'
+
+- name: sudo timeout config
+  become: yes
+  lineinfile:
+    create: yes
+    dest: /etc/sudoers.d/sudo_timeout
+    owner: root
+    group: root
+    line: 'Defaults timestamp_timeout=10'
