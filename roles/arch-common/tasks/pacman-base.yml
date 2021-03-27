@@ -16,6 +16,8 @@
       - sudo
       - ruby
       - ruby-irb
+      - crystal
+      - shards
       - rsync
       - openssh
       - make
