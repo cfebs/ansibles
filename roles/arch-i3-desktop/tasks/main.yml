@@ -41,6 +41,9 @@
       - libmicrodns
       - vlc
       - thunar
+      - gvfs
+      - gvfs-smb
+      - sshfs
       - chromium
       - dunst
       - tlp
