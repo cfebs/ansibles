@@ -40,6 +40,10 @@ if which rbenv 1>/dev/null 2>&1; then
     eval "$(rbenv init -)"
 fi
 
+if which ruby >/dev/null && which gem >/dev/null; then
+    PATH="$(ruby -r rubygems -e 'puts Gem.user_dir')/bin:$PATH"
+fi
+
 if [[ -e /usr/share/nvm/init-nvm.sh ]]; then
     source /usr/share/nvm/init-nvm.sh
 else
