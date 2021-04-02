@@ -21,7 +21,6 @@ Plug 'gcmt/breeze.vim'
 Plug 'gregsexton/gitv'
 Plug 'pangloss/vim-javascript'
 Plug 'ekalinin/Dockerfile.vim'
-Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'lvht/mru'
 Plug 'digitaltoad/vim-pug'
@@ -42,14 +41,12 @@ Plug 'fgsch/vim-varnish'
 Plug 'maksimr/vim-jsbeautify'
 Plug 'tpope/vim-vinegar'
 Plug 'dart-lang/dart-vim-plugin'
-"Plug 'Yggdroot/indentLine'
 Plug 'fatih/vim-go'
 Plug 'jvirtanen/vim-hcl'
 Plug 'jakwings/vim-pony'
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'evanleck/vim-svelte', { 'branch': 'main' }
-"Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'vim-crystal/vim-crystal'
 
 set fileformat=unix
@@ -130,7 +127,7 @@ colorscheme solarized
 "colorscheme lucius
 "colorscheme jellybeans
 "colorscheme dracula
-set nolazyredraw
+set lazyredraw
 syntax on
 " avoid lines > 100 lines
 set colorcolumn=100
@@ -181,9 +178,6 @@ augroup vimrcEx
   autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
   autocmd InsertLeave * match ExtraWhitespace /\s\+$/
   autocmd BufWinLeave * call clearmatches()
-
-  "" syntax complete per ft
-  autocmd FileType python set omnifunc=syntaxcomplete#Complete
 
   "" 4 spaces
   autocmd FileType python,javascript setlocal tabstop=4 softtabstop=4 shiftwidth=4
@@ -263,25 +257,8 @@ tnoremap <C-h> <C-\><C-n><C-w>h
 tnoremap <C-l> <C-\><C-n><C-w>l
 tnoremap <Esc> <C-\><C-n>
 
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" MULTIPURPOSE TAB KEY
-" Indent if we're at the beginning of a line. Else, do completion.
-" Not used anymore
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"function! InsertTabWrapper()
-    "let col = col('.') - 1
-    "if !col || getline('.')[col - 1] !~ '\k'
-        "return "\<tab>"
-    "else
-        "return "\<c-p>"
-    "endif
-"endfunction
-"inoremap <tab> <c-r>=InsertTabWrapper()<cr>
-"inoremap <s-tab> <c-n>
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" ARROW KEYS ARE UNACCEPTABLE
+" kill arrow keys
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 map <Left> <Nop>
 map <Right> <Nop>
@@ -292,7 +269,7 @@ map <Down> <Nop>
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" RENAME CURRENT FILE
+" rename current file
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! RenameFile()
     let old_name = expand('%')
@@ -340,25 +317,6 @@ nmap <silent> <Leader>t :Files<CR>
 nmap <silent> <Leader>f :GitFiles<CR>
 nmap <silent> <Leader>b :Buffers<CR>
 nmap <silent> <Leader>m :History<CR>
-
-"" ctrlp
-"nmap <silent> <Leader>f :CtrlP<CR>
-"nmap <silent> <Leader>d :CtrlPDir<CR>
-"nmap <silent> <Leader>b :CtrlPBuffer<CR>
-"nmap <silent> <Leader>m :CtrlPMRU<CR>
-"let g:ctrlp_working_path_mode = ''
-"let g:ctrlp_max_files = 0
-"let g:ctrlp_custom_ignore = {
-"  \ 'dir':  '\v[\/]_site|\.(git|hg|svn)|node_modules|source_maps$',
-"  \ 'file': '\v\.(exe|so|dll|pyc)$',
-"  \ 'link': 'some_bad_symbolic_links',
-"  \ }
-
-"" Tabularize
-"if exists(":Tabularize")
-" nmap <Leader>a= :Tabularize /=<CR>
-" nmap <Leader>a: :Tabularize /:\zs<CR>
-"endif
 
 "" Breeze
 let g:breeze_active_filetypes = "*.html,*.htm,*.xhtml,*.xml,*.phtml"
@@ -445,21 +403,6 @@ noremap <leader>vt :call InsertTemplateTag()<cr>
 noremap <leader>vo :call InsertTemplateTagOut()<cr>
 noremap <leader>vl :call InsertLogger()<cr>
 
-""" ag command suffix, [options]
-""function! FzfGitCheckouRecentHandler(lines)
-""    echom a:lines
-""endfunction
-""
-""function! FzfGitCheckoutRecentRaw()
-""  return s:fzf('ag', fzf#vim#wrap({
-""  \ 'source':  'git reflog | grep checkout | head -80 | grep moving | pn 8 | grep -v ''^master$'',
-""  \ 'sink*':    s:function('FzfGitCheckouRecentHandler'),
-""  \ 'options': '--ansi --delimiter : --nth 4..,.. --prompt "Git checkout> " '.
-""  \            '--multi --bind alt-a:select-all,alt-d:deselect-all '.
-""  \            '--color hl:68,hl+:110'}), a:000)
-""endfunction
-""nmap <silent> <leader>gc :FzfGitCheckoutRecentRaw<cr>
-
 set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
 
 let g:gh_line_map_default = 0
@@ -476,7 +419,7 @@ let g:ale_python_pylint_executable = "find-pylint.sh"
 "\ '\.go$': {'ale_linters': [ 'govet', 'gofmt', 'gobuild' ], 'ale_fixers': ['gofmt', 'goimports']},
 let g:ale_pattern_options = {
 \ '\.sql$': {'ale_linters': [ ], 'ale_fixers': []},
-\ '\.rb$': {'ale_linters': [ 'ruby' ], 'ale_fixers': []},
+\ '\.rb$': {'ale_linters': [ 'solargraph' ], 'ale_fixers': []},
 \ '\.erb$': {'ale_linters': [ 'erb' ], 'ale_fixers': []},
 \ '\.php$': {'ale_linters': [ 'php', 'psalm' ], 'ale_fixers': [ ]},
 \ '\.js$': {'ale_linters': [ 'eslint', 'tsserver' ], 'ale_fixers': []},
@@ -485,7 +428,6 @@ let g:ale_pattern_options = {
 \ '\.phtml$': {'ale_linters': [ 'prettier' ], 'ale_fixers': []},
 \ '\.tf$': {'ale_linters': ['terraform'], 'ale_fixers': ['terraform']},
 \}
-
 
 " If you configure g:ale_pattern_options outside of vimrc, you need this.
 let g:ale_pattern_options_enabled = 1
@@ -509,21 +451,9 @@ let g:vim_json_syntax_conceal = 0
 " annoying sql omni complete disable
 let g:ftplugin_sql_omni_key = '<Plug>DisableSqlOmni'
 
-""" Completion
-"" These are some default options that work well
-set omnifunc=syntaxcomplete#Complete
-set completeopt=noinsert,menuone
-" enter key selects highlighted thing
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-inoremap <C-Space> <C-x><C-o>
-inoremap <C-@> <C-Space>
 
-" coc
-"if has('nvim')
-"  inoremap <silent><expr> <c-space> coc#refresh()
-"else
-"  inoremap <silent><expr> <c-@> coc#refresh()
-"endif
+""" Completion
+"" TODO
 
 """ Rust
 let g:rustfmt_autosave = 1
