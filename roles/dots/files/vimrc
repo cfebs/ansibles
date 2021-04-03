@@ -414,17 +414,22 @@ let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 0
 
 """" Ale
 
-let g:ale_python_pylint_executable = "find-pylint.sh"
+let g:ale_completion_enabled = 0
+set omnifunc=ale#completion#OmniFunc
+inoremap <silent> <C-Space> <C-\><C-O>:ALEComplete<CR>
+
+"let g:ale_python_pylint_executable = "find-pylint.sh"
+
 " govet broken
 "\ '\.go$': {'ale_linters': [ 'govet', 'gofmt', 'gobuild' ], 'ale_fixers': ['gofmt', 'goimports']},
 let g:ale_pattern_options = {
 \ '\.sql$': {'ale_linters': [ ], 'ale_fixers': []},
-\ '\.rb$': {'ale_linters': [ 'solargraph' ], 'ale_fixers': []},
+\ '\.rb$': {'ale_linters': [ 'ruby', 'solargraph' ], 'ale_fixers': []},
 \ '\.erb$': {'ale_linters': [ 'erb' ], 'ale_fixers': []},
 \ '\.php$': {'ale_linters': [ 'php', 'psalm' ], 'ale_fixers': [ ]},
 \ '\.js$': {'ale_linters': [ 'eslint', 'tsserver' ], 'ale_fixers': []},
 \ '\.go$': {'ale_linters': [ 'gofmt', 'gobuild' ], 'ale_fixers': ['gofmt', 'goimports']},
-\ '\.py$': {'ale_linters': [ 'pylint' ], 'ale_fixers': []},
+\ '\.py$': {'ale_linters': [ 'pylint', 'jedils' ], 'ale_fixers': []},
 \ '\.phtml$': {'ale_linters': [ 'prettier' ], 'ale_fixers': []},
 \ '\.tf$': {'ale_linters': ['terraform'], 'ale_fixers': ['terraform']},
 \}
@@ -438,7 +443,6 @@ let g:ale_fix_on_save = 1
 
 let g:ale_history_enabled = 1
 let g:ale_history_log_output = 1
-
 
 nnoremap <leader>a :ALEFix<cr>
 
