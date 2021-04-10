@@ -70,6 +70,8 @@
       - virtualbox-host-dkms
       - gimp
       - rofi
+      - rofimoji
+      - xdotool
       - ttf-roboto
       - ttf-roboto-mono
     state: present

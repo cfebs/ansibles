@@ -198,7 +198,7 @@ bindsym $mod+n workspace next
 bindsym $mod+p workspace prev
 bindsym Mod1+Shift+3 exec flameshot gui
 bindsym $mod+Shift+s exec flameshot gui
-bindsym Mod1+Shift+1 exec rofimoji
+bindsym Mod1+space exec rofimoji
 bindsym $mod+Shift+b exec blueman-manager
 bindsym $mod+f exec thunar
 
