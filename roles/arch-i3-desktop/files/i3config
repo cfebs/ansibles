@@ -200,7 +200,7 @@ bindsym Mod1+Shift+3 exec flameshot gui
 bindsym $mod+Shift+s exec flameshot gui
 bindsym Mod1+space exec rofimoji
 bindsym $mod+Shift+b exec blueman-manager
-bindsym $mod+Shift+v exec ~/bin/rofi-vpn
+bindsym $mod+Shift+v exec ~/src/ansibles/roles/dots/files/bin/rofi-vpn
 bindsym $mod+f exec thunar
 
 # laptop btns
