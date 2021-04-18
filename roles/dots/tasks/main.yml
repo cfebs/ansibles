@@ -27,6 +27,16 @@
     - tmux.conf
     - gitconfig
 
+- name: Link bins
+  become: yes
+  file:
+    state: link
+    force: no
+    src: "{{ item }}"
+    dest: "/usr/local/bin/{{ item | basename }}"
+  with_fileglob:
+    - "{{ role_path }}/files/bin/*"
+
 - name: Link config others
   file:
     state: link
