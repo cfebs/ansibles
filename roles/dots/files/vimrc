@@ -313,6 +313,7 @@ function! s:all_files()
 endfunction
 
 "" fzf
+let g:fzf_preview_window = []
 nmap <silent> <Leader>t :Files<CR>
 nmap <silent> <Leader>f :GitFiles<CR>
 nmap <silent> <Leader>b :Buffers<CR>
