@@ -323,7 +323,7 @@ nmap <silent> <Leader>m :History<CR>
 let g:breeze_active_filetypes = "*.html,*.htm,*.xhtml,*.xml,*.phtml"
 
 "" Fugitive
-nmap <silent> <leader>gs :Gstatus<cr>
+nmap <silent> <leader>gs :Git<cr>
 nmap <silent> <leader>gf :Gdiff<cr>
 nmap <silent> <leader>gd :Git diff<cr>
 nmap <silent> <leader>gc :Git diff --cached<cr>
