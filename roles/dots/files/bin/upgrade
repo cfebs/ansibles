@@ -29,6 +29,12 @@ run_upgrade_pkgs() {
             pacman -Syu
         fi
 
+        if which paccache 1>/dev/null 2>&1; then
+            echo ">> Running paccache cleanup" 1>&2
+            sudo paccache -r -k 4
+        fi
+
+
         if which pacdiff 1>/dev/null 2>&1; then
             echo ">> Running pacdiff" 1>&2
             if which meld 1>/dev/null 2>&1; then
