@@ -20,6 +20,10 @@ alias nethack-remote="alacritty --config-file /dev/null -e /bin/bash -c 'ssh net
 
 alias gistdiff="gist -f diff.diff"
 
+alias somafm="~/.yarn/bin/somafm"
+alias somafm-groove="~/.yarn/bin/somafm play groovesalad"
+alias somafm-drone="~/.yarn/bin/somafm play dronezone"
+
 digany() {
     dig +noall +answer "$1" ANY
 }
