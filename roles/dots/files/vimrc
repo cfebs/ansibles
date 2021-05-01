@@ -462,3 +462,6 @@ let g:ftplugin_sql_omni_key = '<Plug>DisableSqlOmni'
 
 """ Rust
 let g:rustfmt_autosave = 1
+
+""" Goyo
+nnoremap <silent><leader>vv :Goyo<cr>:set linebreak<cr>:set wrap<cr>
