@@ -44,6 +44,7 @@
       - arch-wiki-docs
       - python-pip
       - python-pipenv
+      - go
       - rclone
       - fuse2
     state: present
