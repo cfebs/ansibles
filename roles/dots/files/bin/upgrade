@@ -53,11 +53,21 @@ run_upgrade_pkgs() {
         apt update && sudo apt upgrade -y
     fi
 
-    # Vim plug update
+    # Vim update plugins:
+    # - Plug
+    # - vim-go
     if which nvim 1>/dev/null 2>&1; then
-        (nvim +PlugInstall +PlugUpdate +qall; exit 0)
+        (
+            nvim +PlugInstall +PlugUpdate +qall;
+            nvim +GoInstallBinaries +qall;
+            exit 0;
+        )
     elif which vim 1>/dev/null 2>&1; then
-        (vim +PlugInstall +PlugUpdate +qall; exit 0)
+        (
+            vim +PlugInstall +PlugUpdate +qall;
+            vim +GoInstallBinaries +qall;
+            exit 0;
+        )
     fi
 
     )
