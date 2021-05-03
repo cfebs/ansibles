@@ -53,23 +53,6 @@ run_upgrade_pkgs() {
         apt update && sudo apt upgrade -y
     fi
 
-    # Vim update plugins:
-    # - Plug
-    # - vim-go
-    if which nvim 1>/dev/null 2>&1; then
-        (
-            nvim +PlugInstall +PlugUpdate +qall;
-            nvim +GoInstallBinaries +qall;
-            exit 0;
-        )
-    elif which vim 1>/dev/null 2>&1; then
-        (
-            vim +PlugInstall +PlugUpdate +qall;
-            vim +GoInstallBinaries +qall;
-            exit 0;
-        )
-    fi
-
     )
     rc=$?
     echo ">> ${FUNCNAME[0]} function returned with code $?"
@@ -97,6 +80,24 @@ run_ansible() {
     echo ">> Running ansible"
     git pull
     sudo ./run
+
+    echo ">> Updating vim plugins"
+    # Vim update plugins:
+    # - Plug
+    # - vim-go
+    if which nvim 1>/dev/null 2>&1; then
+        (
+            nvim +PlugInstall +PlugUpdate +qall;
+            nvim +GoInstallBinaries +qall;
+            exit 0;
+        )
+    elif which vim 1>/dev/null 2>&1; then
+        (
+            vim +PlugInstall +PlugUpdate +qall;
+            vim +GoInstallBinaries +qall;
+            exit 0;
+        )
+    fi
 
     popd 1>/dev/null
     )
