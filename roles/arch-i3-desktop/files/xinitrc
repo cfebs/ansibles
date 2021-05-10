@@ -39,6 +39,7 @@ _debug() {
 }
 
 _debug 'Starting custom xinitrc stuff'
+_debug "xinitrc args: $@"
 
 # sets up other important vars for use by i3 programs
 # ex. flatpak uses XDG_DATA_DIRS, i3-dmenu-desktop needs this
@@ -47,19 +48,26 @@ if [ -f /etc/profile ]; then
     source /etc/profile
 fi
 
+export_gtk_stuff=1
+if [ "$1" = "/usr/bin/startplasma-x11" ]; then
+    export_gtk_stuff=0
+fi
+
 # for i3's terminal selection
 export TERMINAL=alacritty
 
-# for qt apps to use gtk themes when launched via rofi/dmenu in i3
-export QT_QPA_PLATFORMTHEME=gtk2
+if [ "$export_gtk_stuff" -eq "1" ]; then
+    # for qt apps to use gtk themes when launched via rofi/dmenu in i3
+    export QT_QPA_PLATFORMTHEME=gtk2
 
-# so every app that launches will export current GTK_THEME which should enable dark mode
-# in certain apps like chrome
-if [ -s "$XDG_CONFIG_HOME/gtk-3.0/settings.ini" ]; then
-    theme_name="$(cat "$XDG_CONFIG_HOME/gtk-3.0/settings.ini" | grep '^gtk-theme-name' | awk -F= '{print $2}')"
-    if [ -n "$theme_name" ]; then
-        _debug "Exporting theme $theme_name"
-        export GTK_THEME="$theme_name"
+    # so every app that launches will export current GTK_THEME which should enable dark mode
+    # in certain apps like chrome
+    if [ -s "$XDG_CONFIG_HOME/gtk-3.0/settings.ini" ]; then
+        theme_name="$(cat "$XDG_CONFIG_HOME/gtk-3.0/settings.ini" | grep '^gtk-theme-name' | awk -F= '{print $2}')"
+        if [ -n "$theme_name" ]; then
+            _debug "Exporting theme $theme_name"
+            export GTK_THEME="$theme_name"
+        fi
     fi
 fi
 
