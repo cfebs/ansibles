@@ -24,6 +24,9 @@ alias somafm="~/.yarn/bin/somafm"
 alias somafm-groove="~/.yarn/bin/somafm play groovesalad"
 alias somafm-drone="~/.yarn/bin/somafm play dronezone"
 
+alias yarn-linked="find . -type l | grep -v .bin | sed 's/^\.\/node_modules\///'"
+alias yarn-unlink-all="yarn-linked | xargs yarn unlink && yarn install --check-files"
+
 digany() {
     dig +noall +answer "$1" ANY
 }
