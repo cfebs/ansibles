@@ -41,7 +41,7 @@ Plug 'fgsch/vim-varnish'
 Plug 'maksimr/vim-jsbeautify'
 Plug 'tpope/vim-vinegar'
 Plug 'dart-lang/dart-vim-plugin'
-Plug 'fatih/vim-go'
+"" Plug 'fatih/vim-go'
 Plug 'jvirtanen/vim-hcl'
 Plug 'jakwings/vim-pony'
 Plug 'dracula/vim', { 'as': 'dracula' }
@@ -189,8 +189,12 @@ augroup vimrcEx
   autocmd FileType phtml setlocal ai et sw=4 sts=4 tabstop=4
   autocmd FileType go setlocal noexpandtab ai sw=4 sts=4 tabstop=4
   autocmd! FileType yaml setlocal ts=2 sts=2 sw=2 expandtab indentkeys-=0# indentkeys-=<:>
-  autocmd! FileType gitcommit setlocal spell
 
+  "" 2 spaces vimeo frontend
+  au BufRead,BufNewFile,BufEnter *frontend/apps/vimeo/src/*.ts setlocal ts=2 sts=2 sw=2
+  au BufRead,BufNewFile,BufEnter *frontend/apps/vimeo/src/*.tsx setlocal ts=2 sts=2 sw=2
+
+  "" Custom fts
   autocmd! BufRead,BufNewFile *.jade set ft=pug
   autocmd! BufRead,BufNewFile *.es6 set ft=javascript.jsx
   autocmd! BufRead,BufNewFile *.sass set ft=sass
@@ -200,6 +204,8 @@ augroup vimrcEx
   autocmd! BufRead,BufNewFile *.tsx,*.jsx set ft=typescript.tsx
   autocmd! BufRead,BufNewFile *.tsv set ft=tsv
   autocmd! BufRead,BufNewFile *.j2 set ft=jinja
+
+  autocmd! FileType gitcommit setlocal spell
 
   autocmd FileType json setlocal conceallevel=0
 
@@ -422,17 +428,18 @@ inoremap <silent> <C-Space> <C-\><C-O>:ALEComplete<CR>
 "let g:ale_python_pylint_executable = "find-pylint.sh"
 
 " govet broken
-"\ '\.go$': {'ale_linters': [ 'govet', 'gofmt', 'gobuild' ], 'ale_fixers': ['gofmt', 'goimports']},
+"\ '\.go$': {'ale_linters': [ 'gopls', 'govet', 'gofmt', 'gobuild' ], 'ale_fixers': ['gofmt', 'goimports']},
+"" \ '\.go$': {'ale_linters': [ 'gopls', ], 'ale_fixers': ['gofmt', 'goimports']},
 let g:ale_pattern_options = {
 \ '\.sql$': {'ale_linters': [ ], 'ale_fixers': []},
 \ '\.rb$': {'ale_linters': [ 'ruby', 'solargraph' ], 'ale_fixers': []},
 \ '\.erb$': {'ale_linters': [ 'erb' ], 'ale_fixers': []},
 \ '\.php$': {'ale_linters': [ 'php', 'psalm' ], 'ale_fixers': [ ]},
 \ '\.js$': {'ale_linters': [ 'eslint', 'tsserver' ], 'ale_fixers': []},
-\ '\.go$': {'ale_linters': [ 'gofmt', 'gobuild' ], 'ale_fixers': ['gofmt', 'goimports']},
 \ '\.py$': {'ale_linters': [ 'pylint', 'jedils' ], 'ale_fixers': []},
 \ '\.phtml$': {'ale_linters': [ 'prettier' ], 'ale_fixers': []},
 \ '\.tf$': {'ale_linters': ['terraform'], 'ale_fixers': ['terraform']},
+\ '\.go$': {'ale_linters': [ 'gopls', ], 'ale_fixers': ['gofmt', 'goimports']},
 \}
 
 " If you configure g:ale_pattern_options outside of vimrc, you need this.
@@ -445,7 +452,11 @@ let g:ale_fix_on_save = 1
 let g:ale_history_enabled = 1
 let g:ale_history_log_output = 1
 
-nnoremap <leader>a :ALEFix<cr>
+nnoremap <leader>af :ALEFix<cr>
+nnoremap <leader>at :ALEGoToTypeDefinition<cr>
+nnoremap <leader>ad :ALEGoToDefinition<cr>
+nnoremap <leader>aa :ALEDetail<cr>
+nnoremap <leader>ai :ALEInfo<cr>
 
 " let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
 let g:go_fmt_fail_silently = 1
