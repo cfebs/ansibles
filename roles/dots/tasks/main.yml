@@ -65,6 +65,16 @@
     owner: "{{ user }}"
     group: "{{ user }}"
 
+- name: Link alacritty dark
+  file:
+    state: link
+    force: yes
+    src: "{{ role_path }}/files/alacritty-dark.yml"
+    dest: "{{ user_home }}/.config/alacritty/alacritty-dark.yml"
+    owner: "{{ user }}"
+    group: "{{ user }}"
+
+
 - name: Src dir
   file:
     path: "{{ user_home }}/src"
