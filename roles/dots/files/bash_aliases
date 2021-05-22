@@ -17,7 +17,7 @@ alias sshno="ssh -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null"
 alias sshbatch="ssh -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -oConnectTimeout=5 -oBatchMode=yes -n"
 
 alias nethack-remote="alacritty --config-file ~/.config/alacritty/alacritty-dark.yml -e /bin/bash -c 'ssh nethack@alt.org'"
-alias nethack-new="alacritty --config-file ~/.config/alacritty/alacritty-dark.yml"
+alias alacritty-dark="alacritty --config-file ~/.config/alacritty/alacritty-dark.yml"
 
 alias gistdiff="gist -f diff.diff"
 
