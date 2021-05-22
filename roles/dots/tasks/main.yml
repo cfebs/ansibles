@@ -8,6 +8,7 @@
   with_items:
     - nvim
     - alacritty
+    - rofi
 
 - name: Link dots
   file:
@@ -74,6 +75,14 @@
     owner: "{{ user }}"
     group: "{{ user }}"
 
+- name: Link rofi config
+  file:
+    state: link
+    force: yes
+    src: "{{ role_path }}/files/roficonfig"
+    dest: "{{ user_home }}/.config/rofi/config"
+    owner: "{{ user }}"
+    group: "{{ user }}"
 
 - name: Src dir
   file:
