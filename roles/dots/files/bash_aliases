@@ -86,7 +86,7 @@ fi
 
 alias c='clear'
 alias bc='bc -l'
-alias lh='ls --hide="*.pyc"'
+alias lt='ls -lat | head -n20'
 alias l='ls'
 alias lsat='ls -at'
 
@@ -438,7 +438,16 @@ alias qdig="dig +noall +answer"
 alias diggoog="dig +noall +answer @8.8.8.8"
 alias digiac="dig +noall +answer @192.168.200.29"
 
+alias gpgdecrypt="gpg -d"
+# gpgimport ./priv.asc
+alias gpgimport="gpg --import"
 alias gpglist="gpg --list-secret-keys --keyid-format LONG"
+alias gpglistpub="gpg --list-keys --keyid-format LONG"
+gpgencrypt() {
+    # use gpglistpub to list recips
+    recip="$1"
+    gpg -r "$recip" --encrypt --armor
+}
 gpgexport() {
     id="$1"
     echo "Using key id $id, listing key"

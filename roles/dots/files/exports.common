@@ -67,4 +67,4 @@ if [ -f $HOME/src/vimeo/etcutl/vimeo-functions.sh ]; then
     prepend_path "$HOME/src/vimeo/etcutl/agignore"
 fi
 
-eval $(keychain --eval --quiet $(find ~/.ssh -type f -iname 'id_*' -not -iname '*.pub'))
+eval $(keychain --agents gpg,ssh --eval --quiet $(find ~/.ssh -type f -iname 'id_*' -not -iname '*.pub'))
