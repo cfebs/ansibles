@@ -68,20 +68,18 @@
   notify:
     - regen-systemdboot
 
-- name: lid switch
+- name: directory logind.conf.d
   become: yes
-  lineinfile:
-    path: /etc/systemd/logind.conf
-    backup: yes
-    state: present
-    regexp: '#HandleLidSwitch=suspend'
-    line: HandleLidSwitch=hibernate
+  file:
+    state: directory
+    dest: /etc/systemd/logind.conf.d
 
-- name: lid switch external
+# note default logind conf is here
+# https://github.com/systemd/systemd/blob/main/src/login/logind.conf.in
+- name: logind suspend switch
   become: yes
-  lineinfile:
-    path: /etc/systemd/logind.conf
-    backup: yes
-    state: present
-    regexp: '#HandleLidSwitchExternalPower=suspend'
-    line: HandleLidSwitchExternalPower=hibernate
+  copy:
+    dest: /etc/systemd/logind.conf.d/hibernate.conf
+    content: |
+      HandleLidSwitch=hibernate
+      HandleLidSwitchExternalPower=hibernate
