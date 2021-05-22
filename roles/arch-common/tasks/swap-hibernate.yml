@@ -81,5 +81,6 @@
   copy:
     dest: /etc/systemd/logind.conf.d/hibernate.conf
     content: |
+      [Login]
       HandleLidSwitch=hibernate
       HandleLidSwitchExternalPower=hibernate
