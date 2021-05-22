@@ -16,8 +16,6 @@
       - sudo
       - ruby
       - ruby-irb
-      - crystal
-      - shards
       - rsync
       - openssh
       - make
@@ -55,4 +53,6 @@
   pacman:
     name:
       - reflector
+      - crystal
+      - shards
     state: present

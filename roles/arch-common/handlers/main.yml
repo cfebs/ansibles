@@ -13,6 +13,7 @@
 - name: regen-hwclock
   become: yes
   command: hwclock --systohc
+  ignore_errors: yes
 
 - name: regen-locale
   become: yes
