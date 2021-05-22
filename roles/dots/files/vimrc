@@ -253,6 +253,7 @@ nnoremap <leader>ev :vsp $MYVIMRC<cr>
 nnoremap <leader>eb :vsp ~/.bashrc<cr>
 nnoremap <leader>eba :vsp ~/.bash_aliases<cr>
 
+nnoremap <S-t> :tab split<cr>
 nnoremap <S-h> gT
 nnoremap <S-l> gt
 tnoremap <S-h> <C-\><C-n>gT
