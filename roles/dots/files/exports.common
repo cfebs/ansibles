@@ -8,7 +8,13 @@ else
     alias ls='ls --color=auto'
 fi
 
-export PATH="$HOME/go/bin:$HOME/.local/bin/:$HOME/.cargo/bin:$HOME/bin:$HOME/src/Nim/bin:$HOME/.luarocks/bin:$PATH"
+# export PATH="$HOME/go/bin:$HOME/.local/bin/:$HOME/.cargo/bin:$HOME/bin:$HOME/src/Nim/bin:$HOME/.luarocks/bin:$PATH"
+prepend_path "$HOME/go/bin"
+prepend_path "$HOME/.local/bin"
+prepend_path "$HOME/.cargo/bin"
+prepend_path "$HOME/bin"
+prepend_path "$HOME/src/Nim/bin"
+prepend_path "$HOME/.luarocks/bin"
 
 [ -n "$TMUX" ] && export TERM=screen-256color
 export TERMINAL=alacritty
@@ -41,7 +47,7 @@ if which rbenv 1>/dev/null 2>&1; then
 fi
 
 if which ruby >/dev/null && which gem >/dev/null; then
-    PATH="$(ruby -r rubygems -e 'puts Gem.user_dir')/bin:$PATH"
+    prepend_path "$(ruby -r rubygems -e 'puts Gem.user_dir')/bin"
 fi
 
 if [[ -e /usr/share/nvm/init-nvm.sh ]]; then
@@ -57,12 +63,8 @@ fi
 if [ -f $HOME/src/vimeo/etcutl/vimeo-functions.sh ]; then
     . $HOME/src/vimeo/etcutl/vimeo-functions.sh
 
-    export PATH="$HOME/src/vimeo/etcutl/bin:$HOME/src/vimeo/etcutl/agignore:$PATH"
+    prepend_path "$HOME/src/vimeo/etcutl/bin"
+    prepend_path "$HOME/src/vimeo/etcutl/agignore"
 fi
-
-# Bins should be linked to /usr/local/bin instead
-# if [ -d $HOME/src/ansibles/roles/dots/files/bin ]; then
-#     export PATH="$HOME/src/ansibles/roles/dots/files/bin:$PATH"
-# fi
 
 eval $(keychain --eval --quiet $(find ~/.ssh -type f -iname 'id_*' -not -iname '*.pub'))
