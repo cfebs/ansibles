@@ -137,3 +137,22 @@
     url: https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
     dest: "{{ user_home }}/.git-completion.sh"
     mode: "0755"
+
+- name: hexchat config
+  file:
+    state: directory
+    dest: "{{ user_home }}/.config/hexchat"
+    owner: "{{ user }}"
+    group: "{{ user }}"
+
+- name: Link hexchat dots
+  file:
+    state: link
+    force: yes
+    src: "{{ role_path }}/files/hexchat/{{ item }}"
+    dest: "{{ user_home }}/.config/hexchat/{{ item }}"
+    owner: "{{ user }}"
+    group: "{{ user }}"
+  with_items:
+    - hexchat.conf
+    - colors.conf

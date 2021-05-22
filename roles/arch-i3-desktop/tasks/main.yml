@@ -75,6 +75,7 @@
       - ttf-roboto
       - ttf-roboto-mono
       - mpv
+      - hexchat
     state: present
 
 - name: conf dirs
