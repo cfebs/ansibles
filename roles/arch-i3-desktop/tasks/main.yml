@@ -74,6 +74,7 @@
       - xdotool
       - ttf-roboto
       - ttf-roboto-mono
+      - mpv
     state: present
 
 - name: conf dirs
