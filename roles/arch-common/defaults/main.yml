@@ -8,6 +8,9 @@ arch_common_docker: yes
 # arch_common_swap_hibernate
 arch_common_swap_hibernate: no
 
+# arch_common_sleep_powerbtn
+arch_common_sleep_powerbtn: no
+
 # default hooks from install
 # HOOKS=(base udev autodetect modconf block filesystems keyboard fsck)
 mkinitcpio_hooks_list: default
