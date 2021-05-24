@@ -10,7 +10,7 @@
 - name: logind suspend switch
   become: yes
   copy:
-    dest: /etc/systemd/logind.conf.d/hibernate.conf
+    dest: /etc/systemd/logind.conf.d/sleep-powerbtn.conf
     content: |
       [Login]
       HandlePowerKey=suspend
