@@ -45,6 +45,8 @@
       - go
       - rclone
       - fuse2
+      - irssi
+      - weechat
     state: present
 
 - name: Install on non arm
