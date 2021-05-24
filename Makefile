@@ -12,7 +12,7 @@ this:
 	ansible-playbook -v -i hosts.ini $(hostname).yml --limit $(hostname) --ask-become-pass
 
 .PHONY: this-no-become
-this-no-beocome:
+this-no-become:
 	@echo Running playbook for $(hostname)
 	ansible-playbook -v -i hosts.ini $(hostname).yml --limit $(hostname)
 
