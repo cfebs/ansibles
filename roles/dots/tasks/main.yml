@@ -156,3 +156,24 @@
   with_items:
     - hexchat.conf
     - colors.conf
+
+- name: weechat dir
+  file:
+    state: directory
+    dest: "{{ user_home }}/.weechat"
+    owner: "{{ user }}"
+    group: "{{ user }}"
+
+- name: Link weechat dots
+  file:
+    state: link
+    force: yes
+    src: "{{ role_path }}/files/weechat/{{ item }}"
+    dest: "{{ user_home }}/.weechat/{{ item }}"
+    owner: "{{ user }}"
+    group: "{{ user }}"
+  with_items:
+    - irc.conf
+    - weechat.conf
+    - buflist.conf
+    - sec.conf
