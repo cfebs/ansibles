@@ -5,11 +5,8 @@ ansible configs for my own machines
 ## Usage
 
 ```
-# as root
-./ run
-
-# as sudo user
-sudo ./run
+# runs ansible for current hostname
+make this
 ```
 
 ## Layout
@@ -32,6 +29,5 @@ tennislhua:
 the chroot step into a new install
     - Set `hostname_init` in playbook file for the host.
 - `dots`: links dot files
-- `pacman`: installs common base pkgs
 - `arch-i3-desktop`: installs an i3 "desktop environment"
 - `arch-laptop`: installs laptop specific tools
