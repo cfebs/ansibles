@@ -1,0 +1,16 @@
+
+- name: directory logind.conf.d
+  become: yes
+  file:
+    state: directory
+    dest: /etc/systemd/logind.conf.d
+
+# note default logind conf is here
+# https://github.com/systemd/systemd/blob/main/src/login/logind.conf.in
+- name: logind suspend switch
+  become: yes
+  copy:
+    dest: /etc/systemd/logind.conf.d/hibernate.conf
+    content: |
+      [Login]
+      HandlePowerKey=suspend

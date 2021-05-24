@@ -2,6 +2,7 @@
 - hosts: tennisd2
   vars:
     hostname_init: tennisd2
+    arch_common_sleep_powerbtn: yes
   roles:
     - arch-common
     - dots

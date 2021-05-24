@@ -7,8 +7,8 @@
       - Var dump
       - " - user {{ user }}"
       - " - user home {{ user_home }}"
-      - " - arch_common_swap_hibernate val {{ arch_common_swap_hibernate }}"
       - " - arch_common_swap_hibernate {{ arch_common_swap_hibernate | bool }}"
+      - " - arch_common_sleep_powerbtn {{ arch_common_sleep_powerbtn | bool }}"
       - " - arch_common_docker {{ arch_common_docker | bool }}"
       - " - mkinitcpio_hooks_list {{ mkinitcpio_hooks_list }}"
 
@@ -25,5 +25,8 @@
 
 - import_tasks: swap-hibernate.yml
   when: "arch_common_swap_hibernate|bool"
+
+- import_tasks: sleep-powerbtn.yml
+  when: "arch_common_sleep_powerbtn|bool"
 
 - import_tasks: mkinitcpio.yml
