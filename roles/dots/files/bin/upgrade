@@ -79,7 +79,7 @@ run_ansible() {
 
     echo ">> Running ansible"
     git pull
-    make this
+    sudo make this-no-become
 
     echo ">> Updating vim plugins"
     # Vim update plugins:

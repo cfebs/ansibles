@@ -11,6 +11,11 @@ this:
 	@echo Running playbook for $(hostname)
 	ansible-playbook -v -i hosts.ini $(hostname).yml --limit $(hostname) --ask-become-pass
 
+.PHONY: this-no-become
+this-no-beocome:
+	@echo Running playbook for $(hostname)
+	ansible-playbook -v -i hosts.ini $(hostname).yml --limit $(hostname)
+
 .PHONY: this-debug
 this-debug:
 	@echo Running playbook for $(hostname) with debug tag
