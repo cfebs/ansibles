@@ -665,3 +665,9 @@ n ()
             rm -f "$NNN_TMPFILE" > /dev/null
     fi
 }
+
+check-internet() {
+    ping 8.8.8.8 | grep --line-buffered 'time=' | while read -r line; do
+        echo "$line"; echo internet | speak-ng; sleep 2;
+    done;
+}
