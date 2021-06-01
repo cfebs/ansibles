@@ -23,6 +23,7 @@
       - htop
       - fzf
       - bash-completion
+      - starship
       - bc
       - screen
       - tmux
