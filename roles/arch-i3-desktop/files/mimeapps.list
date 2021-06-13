@@ -10,12 +10,12 @@ image/png=sxiv.desktop;gimp.desktop;
 
 [Default Applications]
 inode/directory=thunar.desktop;
-text/html=google-chrome.desktop;chromium.desktop;
+text/html=firefox.desktop;google-chrome.desktop;chromium.desktop;
 text/plain=geany.desktop;
-application/pdf=google-chrome.desktop;chromium.desktop;
-x-scheme-handler/about=google-chrome.desktop;chromium.desktop;
-x-scheme-handler/http=google-chrome.desktop;chromium.desktop;
-x-scheme-handler/https=google-chrome.desktop;chromium.desktop;
-x-scheme-handler/mailto=google-chrome.desktop;chromium.desktop;
-x-scheme-handler/unknown=google-chrome.desktop;chromium.desktop;
-x-scheme-handler/webcal=google-chrome.desktop;chromium.desktop;
+application/pdf=firefox.desktop;google-chrome.desktop;chromium.desktop;
+x-scheme-handler/about=firefox.desktop;google-chrome.desktop;chromium.desktop;
+x-scheme-handler/http=firefox.desktop;google-chrome.desktop;chromium.desktop;
+x-scheme-handler/https=firefox.desktop;google-chrome.desktop;chromium.desktop;
+x-scheme-handler/mailto=firefox.desktop;google-chrome.desktop;chromium.desktop;
+x-scheme-handler/unknown=firefox.desktop;google-chrome.desktop;chromium.desktop;
+x-scheme-handler/webcal=firefox.desktop;google-chrome.desktop;chromium.desktop;
