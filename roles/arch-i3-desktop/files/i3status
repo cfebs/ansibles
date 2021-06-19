@@ -76,3 +76,9 @@ read_file WTTR {
     path = "/tmp/wttrbar.txt"
     format_bad = ""
 }
+
+read_file PACMANUPG {
+    color_good = "#FFFFFF"
+    path = "/tmp/i3status-upgrade.txt"
+    format_bad = ""
+}

@@ -1,0 +1,7 @@
+[Unit]
+Description=Get pacman upgrade status for i3status
+
+[Service]
+Type=oneshot
+# From dots role
+ExecStart=/usr/local/bin/pacman-bar

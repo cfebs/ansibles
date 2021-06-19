@@ -1,0 +1,9 @@
+[Unit]
+Description=Timer to get pacman upgrade status for i3status
+
+[Timer]
+OnBootSec=2min
+OnUnitActiveSec=15min
+
+[Install]
+WantedBy=timers.target

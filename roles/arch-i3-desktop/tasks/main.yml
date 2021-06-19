@@ -252,3 +252,40 @@
       Host droplet2
           HostName 162.243.19.32
           User collin
+
+##############################
+### timers
+##############################
+- name: pacman-bar service file
+  file:
+    src: "{{ role_path }}/files/pacman-bar.service"
+    dest: "/home/{{user}}/.config/systemd/user/pacman-bar.service"
+    state: link
+    owner: "{{ user }}"
+    group: "{{ user }}"
+
+- name: pacman-bar service timer
+  file:
+    src: "{{ role_path }}/files/pacman-bar.timer"
+    dest: "/home/{{user}}/.config/systemd/user/pacman-bar.timer"
+    state: link
+    owner: "{{ user }}"
+    group: "{{ user }}"
+
+- name: pacman-bar service
+  become: yes
+  become_user: "{{ user }}"
+  systemd:
+    scope: user
+    name: pacman-bar.service
+    daemon_reload: yes
+
+- name: pacman-bar timer
+  become: yes
+  become_user: "{{ user }}"
+  systemd:
+    scope: user
+    name: pacman-bar.timer
+    enabled: yes
+    state: started
+    daemon_reload: yes
