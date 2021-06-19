@@ -196,13 +196,6 @@
 ##############################
 ### Services
 ##############################
-- name: systemd-timesyncd
-  become: yes
-  systemd:
-    name: systemd-timesyncd.service
-    enabled: yes
-    state: started
-
 - name: bluetooth
   become: yes
   systemd:
@@ -217,7 +210,7 @@
     enabled: yes
     state: started
 
-- name: systemd-timesyncd
+- name: docker sytemd
   become: yes
   systemd:
     name: docker
