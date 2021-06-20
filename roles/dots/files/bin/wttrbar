@@ -6,7 +6,7 @@ res="$(curl -m10 -sL "https://wttr.in/$LOCATION?m&format=%c%f+%l")"
 rc=$?
 
 if [[ "$rc" != "0" ]]; then
-    truncate -s0 > /tmp/wttrbar.txt
+    truncate -s0 "$FILE_OUT"
     echo "Removing $FILE_OUT, return code $rc" 1>&2
     exit 0
 fi
