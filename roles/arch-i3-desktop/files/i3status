@@ -13,6 +13,7 @@ general {
 }
 
 #order += "ipv6"
+order += "read_file PACMANUPG"
 order += "read_file WTTR"
 order += "disk /"
 #order += "wireless _first_"
@@ -79,6 +80,6 @@ read_file WTTR {
 
 read_file PACMANUPG {
     color_good = "#FFFFFF"
-    path = "/tmp/i3status-upgrade.txt"
+    path = "/tmp/pacman-bar.txt"
     format_bad = ""
 }

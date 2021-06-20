@@ -20,13 +20,13 @@ run_upgrade_pkgs() {
 
         if which paru 1>/dev/null 2>&1; then
             echo ">> Upgrading paru" 1>&2
-            paru
+            paru && run_pacman_bar
         elif which yay 1>/dev/null 2>&1; then
             echo ">> Upgrading yay" 1>&2
-            yay
+            yay && run_pacman_bar
         else
             echo ">> Upgrading pacman" 1>&2
-            pacman -Syu
+            pacman -Syu && run_pacman_bar
         fi
 
         if which paccache 1>/dev/null 2>&1; then
@@ -57,6 +57,12 @@ run_upgrade_pkgs() {
     rc=$?
     echo ">> ${FUNCNAME[0]} function returned with code $?"
     return $rc
+}
+
+run_pacman_bar() {
+    echo ">> Running pacman-bar service"
+    systemctl start --user pacman-bar.service
+    return 0
 }
 
 run_ansible() {
