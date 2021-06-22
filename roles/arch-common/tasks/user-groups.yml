@@ -58,3 +58,11 @@
     owner: root
     group: root
     line: 'Defaults timestamp_timeout=10'
+
+- name: systemd user config units
+  file:
+    state: directory
+    dest: "{{ user_home }}/.config/systemd/user"
+    recurse: yes
+    owner: "{{ user }}"
+    group: "{{ user }}"
