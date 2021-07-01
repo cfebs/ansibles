@@ -619,6 +619,11 @@ tenor() {
     curl -sL "https://api.tenor.com/v1/search?q=${query}&key=&limit=3" | jq -r '.results[].media[].mediumgif.url'
 }
 
+jwt-decode() {
+     jq -R 'split(".") | .[0],.[1] | @base64d | fromjson' <<< "${1}"
+     echo "Signature: $(echo "${1}" | awk -F'.' '{print $3}')"
+}
+
 # bt-sony-pair() {
 #     scanned="$(timeout 15s bluetoothctl scan on)"
 #     if ! echo "$scanned" | grep -q 'CC:98:8B:B6:B3:3B'; then
