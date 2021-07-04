@@ -58,6 +58,10 @@ else
     [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 fi
 
+if [[ -e $HOME/.ghcup/bin ]]; then
+    prepend_path "$HOME/.ghcup/bin"
+fi
+
 [ -f ~/.bash_aliases ] && source ~/.bash_aliases
 
 if [ -f $HOME/src/vimeo/etcutl/vimeo-functions.sh ]; then
