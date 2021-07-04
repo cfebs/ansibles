@@ -177,3 +177,21 @@
     - weechat.conf
     - buflist.conf
     - sec.conf
+
+- name: paru dir
+  file:
+    state: directory
+    dest: "{{ user_home }}/.config/paru"
+    owner: "{{ user }}"
+    group: "{{ user }}"
+
+- name: Link paru dots
+  file:
+    state: link
+    force: yes
+    src: "{{ role_path }}/files/{{ item }}"
+    dest: "{{ user_home }}/.config/paru/{{ item }}"
+    owner: "{{ user }}"
+    group: "{{ user }}"
+  with_items:
+    - paru.conf
