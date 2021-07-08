@@ -13,6 +13,7 @@ inode/directory=thunar.desktop;
 text/html=google-chrome.desktop;chromium.desktop;
 text/plain=geany.desktop;
 application/pdf=google-chrome.desktop;chromium.desktop;
+video/mp4=vlc.desktop;google-chrome.desktop;chromium.desktop;
 x-scheme-handler/about=google-chrome.desktop;chromium.desktop;
 x-scheme-handler/http=google-chrome.desktop;chromium.desktop;
 x-scheme-handler/https=google-chrome.desktop;chromium.desktop;
