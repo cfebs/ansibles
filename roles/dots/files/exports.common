@@ -62,6 +62,10 @@ if [[ -e $HOME/.ghcup/bin ]]; then
     prepend_path "$HOME/.ghcup/bin"
 fi
 
+if [[ -e $HOME/.cabal/bin ]]; then
+    prepend_path "$HOME/.cabal/bin"
+fi
+
 [ -f ~/.bash_aliases ] && source ~/.bash_aliases
 
 if [ -f $HOME/src/vimeo/etcutl/vimeo-functions.sh ]; then
