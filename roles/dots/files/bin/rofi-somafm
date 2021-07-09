@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+station="$(curl -sL 'https://somafm.com/listen/' | pup 'a attr{href}' | grep '[^0-9].pls' | rofi -dmenu 2>/dev/null)"
+# echo required to close soma
+echo "$station"
+mpv --volume=60 "https://somafm.com/${station}"
