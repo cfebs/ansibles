@@ -30,6 +30,8 @@ alias yarn-unlink-all="yarn-linked | xargs yarn unlink && yarn install --check-f
 
 alias bonsai="cbonsai -li -t 0.35 -M 7"
 
+alias ncdu-full="sudo ncdu --exclude '/media/*' --exclude '/proc/*' --exclude '/sys/*' /"
+
 iscmd() {
     # does the command exist
     [ -x "$(command -v "$1")" ] || declare -F "$1" &>/dev/null
