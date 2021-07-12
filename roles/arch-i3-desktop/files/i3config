@@ -183,6 +183,8 @@ for_window [class="^Steam$" title="^Steam Guard - Computer Authorization Require
 for_window [title="^Steam Keyboard$"] floating enable
 for_window [class="^Steam$" title=".*Library.*Folder.*"] floating enable
 for_window [class="^Steam$" title=".*library.*folder.*"] floating enable
+for_window [class="^KeePassXC$"] floating enable
+for_window [class="^KeePassXC$"] move position center
 
 
 # custom
@@ -195,6 +197,7 @@ exec --no-startup-id pasystray
 exec nitrogen --restore
 exec --no-startup-id xss-lock -l -- i3lock -c 111111
 
+bindsym $mod+f exec thunar
 bindsym Ctrl+Mod1+Delete exec i3lock -c 111111
 bindsym $mod+n workspace next
 bindsym $mod+p workspace prev
@@ -203,7 +206,7 @@ bindsym $mod+Shift+s exec flameshot gui
 bindsym Mod1+space exec rofimoji
 bindsym $mod+Shift+b exec blueman-manager
 bindsym $mod+Shift+v exec ~/src/ansibles/roles/dots/files/bin/rofi-vpn
-bindsym $mod+f exec thunar
+bindsym $mod+Shift+p exec keepassxc
 
 # laptop btns
 # should work with lenovo + huawei
