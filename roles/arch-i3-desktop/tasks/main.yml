@@ -76,6 +76,8 @@
       - ttf-roboto-mono
       - mpv
       - hexchat
+      - syncthing
+      - keepassxc
     state: present
 
 - name: conf dirs
@@ -254,6 +256,18 @@
           User collin
 
 ##############################
+### syncthing
+##############################
+- name: syncthing service
+  become: yes
+  become_user: "{{ user }}"
+  systemd:
+    name: "syncthing@{{ user }}.service"
+    daemon_reload: no
+    state: started
+    enabled: yes
+
+##############################
 ### timers
 ##############################
 - name: pacman-bar service file
@@ -271,6 +285,24 @@
     state: link
     owner: "{{ user }}"
     group: "{{ user }}"
+
+- name: pacman-bar service
+  become: yes
+  become_user: "{{ user }}"
+  systemd:
+    scope: user
+    name: pacman-bar.service
+    daemon_reload: yes
+    state: started
+    enabled: yes
+
+- name: pacman-bar service
+  become: yes
+  become_user: "{{ user }}"
+  systemd:
+    scope: user
+    name: pacman-bar.service
+    daemon_reload: yes
 
 - name: pacman-bar service
   become: yes
