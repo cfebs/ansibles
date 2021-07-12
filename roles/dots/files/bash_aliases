@@ -540,6 +540,10 @@ eth-proxy() {
     sshtun droplet2 8545 9545
 }
 
+syncthing-proxy() {
+    sshtun droplet2 8384 8385
+}
+
 eth-attach() {
     geth attach http://127.0.0.1:9545
 }
