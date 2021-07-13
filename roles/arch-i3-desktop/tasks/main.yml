@@ -260,7 +260,6 @@
 ##############################
 - name: syncthing service
   become: yes
-  become_user: "{{ user }}"
   systemd:
     name: "syncthing@{{ user }}.service"
     daemon_reload: no
