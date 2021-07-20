@@ -11,6 +11,7 @@ run_upgrade_pkgs() {
         if which flatpak 1>/dev/null 2>&1; then
             echo ">> Upgrading flatpack" 1>&2
             flatpak update
+            flatpak uninstall --unused
         fi
 
         if which snap 1>/dev/null 2>&1; then
