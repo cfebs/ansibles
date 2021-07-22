@@ -12,6 +12,7 @@
     dc = diff --cached
     d = diff
     dpr = "!f() { local this_branch=$(git symbolic-ref --short HEAD); git diff \"$@\" $(git merge-base master $this_branch)...$this_branch; }; f"
+    dfiles = diff --name-only --relative
     sup = submodule update --init --recursive
     sub-reset = submodule foreach --recursive git reset --hard
     commitall = !git add . && git commit
