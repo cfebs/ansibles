@@ -78,6 +78,7 @@
       - hexchat
       - syncthing
       - keepassxc
+      - flatpak
     state: present
 
 - name: conf dirs
