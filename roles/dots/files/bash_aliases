@@ -684,3 +684,11 @@ check-internet() {
         echo "$line"; echo internet | speak-ng; sleep 2;
     done;
 }
+
+agr() {
+    ag -0 -l "$1" | xargs -0 perl -pi -e "s/$1/$2/g"
+}
+
+agrbak() {
+    ag -0 -l "$1" | xargs -0 perl -pi.bak -e "s/$1/$2/g"
+}
