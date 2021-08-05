@@ -422,6 +422,20 @@ let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 0
 
 """" Ale
 
+"" For debugging ale LSP input/output
+"" https://github.com/dense-analysis/ale/issues/2137#issuecomment-797468471
+"" let g:ale_command_wrapper = '~/bin/ale_wrapper.sh'
+
+"" For launching psalm with an explicit wrapper
+"" Ripped from https://github.com/dense-analysis/ale/blob/master/ale_linters/php/psalm.vim
+call ale#linter#Define('php', {
+\   'name': 'psalm_custom',
+\   'lsp': 'stdio',
+\   'executable': '/home/collin/bin/psalm_wrapper.sh',
+\   'command': function('ale_linters#php#psalm#GetCommand'),
+\   'project_root': function('ale_linters#php#psalm#GetProjectRoot'),
+\})
+
 let g:ale_completion_enabled = 0
 set omnifunc=ale#completion#OmniFunc
 inoremap <silent> <C-Space> <C-\><C-O>:ALEComplete<CR>
@@ -435,7 +449,7 @@ let g:ale_pattern_options = {
 \ '\.sql$': {'ale_linters': [ ], 'ale_fixers': []},
 \ '\.rb$': {'ale_linters': [ 'ruby', 'solargraph' ], 'ale_fixers': []},
 \ '\.erb$': {'ale_linters': [ 'erb' ], 'ale_fixers': []},
-\ '\.php$': {'ale_linters': [ 'php', 'psalm' ], 'ale_fixers': [ ]},
+\ '\.php$': {'ale_linters': [ 'php', 'psalm_custom' ], 'ale_fixers': [ ]},
 \ '\.js$': {'ale_linters': [ 'eslint', 'tsserver' ], 'ale_fixers': []},
 \ '\.py$': {'ale_linters': [ 'pylint', 'jedils' ], 'ale_fixers': []},
 \ '\.phtml$': {'ale_linters': [ 'prettier' ], 'ale_fixers': []},
@@ -456,7 +470,8 @@ let g:ale_history_log_output = 1
 nnoremap <leader>af :ALEFix<cr>
 nnoremap <leader>at :ALEGoToTypeDefinition<cr>
 nnoremap <leader>ad :ALEGoToDefinition<cr>
-nnoremap <leader>aa :ALEDetail<cr>
+nnoremap <leader>ae :ALEDetail<cr>
+nnoremap <leader>aa :ALEHover<cr>
 nnoremap <leader>ai :ALEInfo<cr>
 
 " let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
