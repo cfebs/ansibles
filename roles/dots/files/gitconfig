@@ -57,3 +57,5 @@
 	ff = only
 [merge]
 	renameLimit = 999999
+[init]
+	defaultBranch = main
