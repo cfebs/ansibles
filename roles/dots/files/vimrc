@@ -183,7 +183,7 @@ augroup vimrcEx
   autocmd FileType python,javascript setlocal tabstop=4 softtabstop=4 shiftwidth=4
 
   "" 2 spaces
-  autocmd FileType coffee,ruby,haml,eruby,html,sass,cucumber,pug,haskell setlocal ai sw=2 sts=2 et
+  autocmd FileType crystal,coffee,ruby,haml,eruby,html,sass,cucumber,pug,haskell setlocal ai sw=2 sts=2 et
 
   autocmd FileType tsv setlocal ai noexpandtab sw=4 sts=4 tabstop=4
   autocmd FileType phtml setlocal ai et sw=4 sts=4 tabstop=4
@@ -421,6 +421,11 @@ let g:gh_use_canonical = 1
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 0
 
 """" Ale
+
+"" highlight SignColumn ctermbg=Black
+highlight clear SignColumn
+let g:ale_sign_error = '● '
+let g:ale_sign_warning = '· '
 
 "" For debugging ale LSP input/output
 "" https://github.com/dense-analysis/ale/issues/2137#issuecomment-797468471
