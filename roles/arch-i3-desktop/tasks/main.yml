@@ -304,14 +304,6 @@
     name: pacman-bar.service
     daemon_reload: yes
 
-- name: pacman-bar service
-  become: yes
-  become_user: "{{ user }}"
-  systemd:
-    scope: user
-    name: pacman-bar.service
-    daemon_reload: yes
-
 - name: pacman-bar timer
   become: yes
   become_user: "{{ user }}"
