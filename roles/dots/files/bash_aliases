@@ -692,3 +692,13 @@ agr() {
 agrbak() {
     ag -0 -l "$1" | xargs -0 perl -pi.bak -e "s/$1/$2/g"
 }
+
+youtube-dl-gem() {
+    url="$1"
+    shift 1
+    output="$1"
+    shift 1
+    if [[ -z "$url" ]]; then echo "Missing url first arg"; return 1; fi
+    if [[ -z "$output" ]]; then echo "Missing output format second arg"; return 1; fi
+    youtube-dl -f 'bestvideo+bestaudio[format_id=audio-English]' -o "$output" "$@" "$url"
+}
