@@ -275,7 +275,7 @@
   ansible.builtin.lineinfile:
     path: /etc/bluetooth/main.conf
     regexp: 'AutoEnable='
-    line: AutoEnable=false
+    line: AutoEnable=true
 
 ##############################
 ### timers
