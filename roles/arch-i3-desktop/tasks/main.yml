@@ -199,13 +199,6 @@
 ##############################
 ### Services
 ##############################
-- name: bluetooth
-  become: yes
-  systemd:
-    name: bluetooth
-    enabled: yes
-    state: started
-
 - name: docker
   become: yes
   systemd:
@@ -266,6 +259,23 @@
     daemon_reload: no
     state: started
     enabled: yes
+
+##############################
+### bluetooth
+##############################
+- name: bluetooth
+  become: yes
+  systemd:
+    name: bluetooth
+    enabled: yes
+    state: started
+
+- name: bluetooth auto enable
+  become: yes
+  ansible.builtin.lineinfile:
+    path: /etc/bluetooth/main.conf
+    regexp: 'AutoEnable='
+    line: AutoEnable=false
 
 ##############################
 ### timers
