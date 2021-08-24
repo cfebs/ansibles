@@ -699,6 +699,12 @@ youtube-dl-gem() {
     output="$1"
     shift 1
     if [[ -z "$url" ]]; then echo "Missing url first arg"; return 1; fi
+    output=
+    ism_name="$(echo "$url" | awk -F'/' '{print $5}')"
+    if [[ -n "$ism_name" ]] && echo "$ism_name" | grep -q '.ism'; then
+        output="$(echo "$ism_name" | sed 's/.ism$/.mp4/g')"
+        echo "Using output: $output" 1>&2
+    fi
     if [[ -z "$output" ]]; then echo "Missing output format second arg"; return 1; fi
     youtube-dl -f 'bestvideo+bestaudio[format_id=audio-English]' -o "$output" "$@" "$url"
 }
