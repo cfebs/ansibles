@@ -48,6 +48,7 @@
       - fuse2
       - irssi
       - weechat
+      - kernel-modules-hook
     state: present
 
 - name: Install on non arm
