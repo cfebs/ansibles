@@ -5,8 +5,8 @@
 [Added Associations]
 application/vnd.openxmlformats-officedocument.wordprocessingml.document=abiword.desktop;
 application/xhtml+xml=nvim.desktop;
-image/jpeg=sxiv.desktop;feh.desktop;
-image/png=sxiv.desktop;gimp.desktop;
+image/jpeg=ristretto.desktop;sxiv.desktop;feh.desktop;
+image/png=ristretto.desktop;sxiv.desktop;gimp.desktop;
 
 [Default Applications]
 inode/directory=thunar.desktop;

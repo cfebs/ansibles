@@ -79,6 +79,7 @@
       - syncthing
       - keepassxc
       - flatpak
+      - ristretto
     state: present
 
 - name: conf dirs
