@@ -460,6 +460,7 @@ let g:ale_pattern_options = {
 \ '\.phtml$': {'ale_linters': [ 'prettier' ], 'ale_fixers': []},
 \ '\.tf$': {'ale_linters': ['terraform'], 'ale_fixers': ['terraform']},
 \ '\.go$': {'ale_linters': [ 'gopls', ], 'ale_fixers': ['gofmt', 'goimports']},
+\ '\.tsx$': {'ale_linters': [ 'eslint', 'standard', 'tslint', 'tsserver', 'typecheck', 'xo' ], 'ale_fixers': []},
 \}
 
 " If you configure g:ale_pattern_options outside of vimrc, you need this.
