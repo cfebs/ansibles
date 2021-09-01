@@ -192,7 +192,7 @@ augroup vimrcEx
 
   "" 2 spaces vimeo frontend
   au BufRead,BufNewFile,BufEnter *frontend/apps/vimeo/src/*.ts setlocal ts=2 sts=2 sw=2
-  au BufRead,BufNewFile,BufEnter *frontend/apps/vimeo/src/*.tsx setlocal ts=2 sts=2 sw=2
+  au BufRead,BufNewFile,BufEnter *vimeo/vimeo*frontend/*.tsx setlocal ts=2 sts=2 sw=2
 
   "" Custom fts
   autocmd! BufRead,BufNewFile *.jade set ft=pug
