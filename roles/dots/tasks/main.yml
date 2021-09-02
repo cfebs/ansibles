@@ -80,7 +80,7 @@
     state: link
     force: yes
     src: "{{ role_path }}/files/roficonfig"
-    dest: "{{ user_home }}/.config/rofi/config"
+    dest: "{{ user_home }}/.config/rofi/config.rasi"
     owner: "{{ user }}"
     group: "{{ user }}"
 
