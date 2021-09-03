@@ -536,38 +536,12 @@ vimeo-vpn() {
     nmcli c up Vimeo_collin@vimeo.com_us-udp
 }
 
-eth-proxy() {
-    sshtun droplet2 8545 9545
-}
-
-syncthing-proxy() {
+tunnel-syncthing() {
     sshtun droplet2 8384 8385
-}
-
-eth-attach() {
-    geth attach http://127.0.0.1:9545
-}
-
-eth-miner() {
-    ethminer -P http://127.0.0.1:9545
-}
-
-eth-watch-sync() {
-    watch -n30 geth attach http://127.0.0.1:9545 --exec 'eth.syncing'
-}
-
-eth-watch-balance() {
-    watch -n30 geth attach http://127.0.0.1:9545 --exec 'web3.fromWei\(eth.getBalance\(eth.coinbase\),\"ether\"\)'
 }
 
 percent-change() {
 python3 -c 'import sys; z, a, b = sys.argv; r=(float(b) - float(a)) / float(a); print(round(r*100.0, 4),"%change")' $@
-}
-
-strongbox() {
-    # https://github.com/ogri-la/strongbox/releases
-    # curl -sL '...' -o ~/strongbox.jar
-    java -jar ~/strongbox.jar
 }
 
 docxtotxt() {
