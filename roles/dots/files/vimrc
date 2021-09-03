@@ -200,6 +200,7 @@ augroup vimrcEx
   autocmd! BufRead,BufNewFile *.tsx,*.jsx set ft=typescript.tsx
   autocmd! BufRead,BufNewFile *.tsv set ft=tsv
   autocmd! BufRead,BufNewFile *.j2 set ft=jinja
+  autocmd! BufRead,BufNewFile .gitconfig-* set ft=gitconfig
 
   "" 2 spaces vimeo frontend
   au BufRead,BufNewFile,BufEnter *vimeo/frontend/*.ts setlocal ts=2 sts=2 sw=2

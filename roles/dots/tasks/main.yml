@@ -27,6 +27,7 @@
     - screenrc
     - tmux.conf
     - gitconfig
+    - gitconfig-vimeo
 
 - name: Link bins
   become: yes
