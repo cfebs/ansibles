@@ -190,10 +190,6 @@ augroup vimrcEx
   autocmd FileType go setlocal noexpandtab ai sw=4 sts=4 tabstop=4
   autocmd! FileType yaml setlocal ts=2 sts=2 sw=2 expandtab indentkeys-=0# indentkeys-=<:>
 
-  "" 2 spaces vimeo frontend
-  au BufRead,BufNewFile,BufEnter *frontend/apps/vimeo/src/*.ts setlocal ts=2 sts=2 sw=2
-  au BufRead,BufNewFile,BufEnter *vimeo/vimeo*frontend/*.tsx setlocal ts=2 sts=2 sw=2
-
   "" Custom fts
   autocmd! BufRead,BufNewFile *.jade set ft=pug
   autocmd! BufRead,BufNewFile *.es6 set ft=javascript.jsx
@@ -204,6 +200,10 @@ augroup vimrcEx
   autocmd! BufRead,BufNewFile *.tsx,*.jsx set ft=typescript.tsx
   autocmd! BufRead,BufNewFile *.tsv set ft=tsv
   autocmd! BufRead,BufNewFile *.j2 set ft=jinja
+
+  "" 2 spaces vimeo frontend
+  au BufRead,BufNewFile,BufEnter *vimeo/frontend/*.ts setlocal ts=2 sts=2 sw=2
+  au BufRead,BufNewFile,BufEnter *vimeo/frontend/*.tsx setlocal ts=2 sts=2 sw=2
 
   autocmd! FileType gitcommit setlocal spell
 
@@ -460,7 +460,8 @@ let g:ale_pattern_options = {
 \ '\.phtml$': {'ale_linters': [ 'prettier' ], 'ale_fixers': []},
 \ '\.tf$': {'ale_linters': ['terraform'], 'ale_fixers': ['terraform']},
 \ '\.go$': {'ale_linters': [ 'gopls', ], 'ale_fixers': ['gofmt', 'goimports']},
-\ '\.tsx$': {'ale_linters': [ 'eslint', 'standard', 'tslint', 'tsserver', 'typecheck', 'xo' ], 'ale_fixers': ['prettier']},
+\ '^.*vimeo\/frontend.*\.tsx$': {'ale_linters': [ 'eslint', 'standard', 'tslint', 'tsserver', 'typecheck', 'xo' ], 'ale_fixers': ['prettier']},
+\ '^.*vimeo\/frontend.*\.ts$': {'ale_linters': [ 'eslint', 'standard', 'tslint', 'tsserver', 'typecheck', 'xo' ], 'ale_fixers': ['prettier']},
 \}
 
 " If you configure g:ale_pattern_options outside of vimrc, you need this.
