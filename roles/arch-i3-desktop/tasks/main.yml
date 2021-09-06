@@ -242,13 +242,13 @@
           StrictHostKeyChecking no
           UserKnownHostsFile=/dev/null
 
-      Host droplet
-          HostName 162.243.53.195
-          User deploy
-
       Host droplet2
           HostName 162.243.19.32
           User collin
+
+      Host pixeltermux
+          User u0_a523
+          Port 8022
 
 ##############################
 ### syncthing
