@@ -682,3 +682,8 @@ youtube-dl-gem() {
     if [[ -z "$output" ]]; then echo "Missing output format second arg"; return 1; fi
     youtube-dl -f 'bestvideo+bestaudio[format_id=audio-English]' -o "$output" "$@" "$url"
 }
+
+git-init-bare() {
+    dest="~/src/${1}.git"
+    ssh no.city "git init --bare $dest; cd $dest; git symbolic-ref HEAD refs/head/main"
+}
