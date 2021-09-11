@@ -17,10 +17,13 @@
       - sxiv
       - bluez
       - bluez-utils
-      - pulseaudio
-      - pulseaudio-alsa
-      - pulseaudio-bluetooth
-      - pulseaudio-equalizer
+      - pipewire
+      - pipewire-pulse
+      - pipewire-alsa
+      #- pulseaudio
+      #- pulseaudio-alsa
+      #- pulseaudio-bluetooth
+      #- pulseaudio-equalizer
       - pavucontrol
       - pasystray
       - alacritty
