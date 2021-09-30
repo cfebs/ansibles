@@ -23,6 +23,13 @@
     append: true
     groups: sudo
 
+- name: add to realtime
+  become: yes
+  user:
+    name: "{{ user }}"
+    append: true
+    groups: realtime
+
 - name: add to docker
   become: yes
   when: "arch_common_docker|bool"

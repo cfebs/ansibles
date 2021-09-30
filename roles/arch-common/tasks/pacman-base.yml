@@ -49,6 +49,7 @@
       - irssi
       - weechat
       - kernel-modules-hook
+      - realtime-privileges
     state: present
 
 - name: Install on non arm
