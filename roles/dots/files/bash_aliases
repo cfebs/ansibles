@@ -9,6 +9,7 @@ alias dok="docker"
 alias dokc="docker-compose"
 alias makej="make -j$(getmakej)"
 alias tmux="TERM=screen-256color-bce tmux"
+alias rgi="rg -i"
 
 alias tm="tmux"
 alias tmn="tmux new-session -s"
