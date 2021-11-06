@@ -75,7 +75,7 @@ _debug "$(env)"
 _debug "Done"
 
 if [ -z "$DBUS_SESSION_BUS_ADDRESS" ]; then
-    echo ".xinitrc: No session bus detected, using dbus-launch" 1>&2
+    _debug ".xinitrc: No session bus detected, using dbus-launch"
     exec dbus-launch $@
 else
     exec $@
