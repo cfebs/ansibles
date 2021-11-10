@@ -81,7 +81,6 @@
       - hexchat
       - syncthing
       - keepassxc
-      - flatpak
       - ristretto
     state: present
 
