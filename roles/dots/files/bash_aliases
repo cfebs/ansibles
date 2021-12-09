@@ -82,13 +82,6 @@ alias grep="$grep_alias"
 
 alias less="less -R"
 
-# xampp
-alias lampp="sudo /opt/lampp/lampp"
-if [ -d "$lampp" ]
-then
-  export LAMPP_HOME="/opt/lampp/lampp"
-fi
-
 alias c='clear'
 alias bc='bc -l'
 alias lt='ls -lat | head -n20'
@@ -693,3 +686,5 @@ datemili() {
     milis="$1"
     date -d@$((milis / 1000))
 }
+
+export CHROME_USER_AGENT="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36"
