@@ -22,12 +22,12 @@
     group: "{{ user }}"
 
 
+# TODO: can remove this after a while
 - name: Link bins
   become: yes
   file:
     state: absent
     force: no
-    src: "{{ item }}"
     dest: "/usr/local/bin/{{ item | basename }}"
   with_fileglob:
     - "{{ role_path }}/files/bin/*"
