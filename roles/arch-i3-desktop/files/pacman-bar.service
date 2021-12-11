@@ -3,5 +3,5 @@ Description=Get pacman upgrade status for i3status
 
 [Service]
 Type=oneshot
-# From dots role
-ExecStart=/usr/local/bin/pacman-bar
+# TODO from dotfiles repo
+ExecStart=%h/bin/pacman-bar

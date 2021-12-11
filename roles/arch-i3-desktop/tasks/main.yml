@@ -111,6 +111,7 @@
 - name: i3 conf
   file:
     state: link
+    force: yes
     src: "{{ role_path }}/files/i3config"
     dest: "{{ user_home }}/.config/i3/config"
     owner: "{{ user }}"
@@ -119,6 +120,7 @@
 - name: i3 status conf
   file:
     state: link
+    force: yes
     src: "{{ role_path }}/files/i3status"
     dest: "{{ user_home }}/.config/i3status/config"
     owner: "{{ user }}"
@@ -127,6 +129,7 @@
 - name: font config
   file:
     state: link
+    force: yes
     src: "{{ role_path }}/files/fonts.conf"
     dest: "{{ user_home }}/.config/fontconfig/fonts.conf"
     owner: "{{ user }}"
@@ -135,6 +138,7 @@
 - name: dunst config
   file:
     state: link
+    force: yes
     src: "{{ role_path }}/files/dunstrc"
     dest: "{{ user_home }}/.config/dunst/dunstrc"
     owner: "{{ user }}"
@@ -143,6 +147,7 @@
 - name: xinitrc
   file:
     state: link
+    force: yes
     src: "{{ role_path }}/files/xinitrc"
     dest: "{{ user_home }}/.xinitrc"
     owner: "{{ user }}"
@@ -152,6 +157,7 @@
 - name: sxrc
   file:
     state: link
+    force: yes
     src: "{{ role_path }}/files/sxrc"
     dest: "{{ user_home }}/.config/sx/sxrc"
     owner: "{{ user }}"
@@ -174,6 +180,7 @@
 - name: pulseaudio conf
   file:
     state: link
+    force: yes
     src: "{{ role_path }}/files/pulse_default.pa"
     dest: "{{ user_home }}/.config/pulse/default.pa"
     owner: "{{ user }}"
@@ -182,6 +189,7 @@
 - name: redshift conf
   file:
     state: link
+    force: yes
     src: "{{ role_path }}/files/redshift.conf"
     dest: "{{ user_home }}/.config/redshift/redshift.conf"
     owner: "{{ user }}"
@@ -306,8 +314,8 @@
     scope: user
     name: pacman-bar.service
     daemon_reload: yes
-    state: started
-    enabled: yes
+    state: stopped
+    enabled: no
 
 - name: pacman-bar service
   become: yes
@@ -323,6 +331,6 @@
   systemd:
     scope: user
     name: pacman-bar.timer
-    enabled: yes
-    state: started
+    enabled: no
+    state: stopped
     daemon_reload: yes

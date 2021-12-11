@@ -1,90 +1,4 @@
 ---
-- name: Conf dirs
-  file:
-    dest: "{{ user_home }}/.config/{{ item }}"
-    state: directory
-    owner: "{{ user }}"
-    group: "{{ user }}"
-  with_items:
-    - nvim
-    - alacritty
-    - rofi
-
-- name: Link dots
-  file:
-    state: link
-    force: yes
-    src: "{{ role_path }}/files/{{ item }}"
-    dest: "{{ user_home }}/.{{ item }}"
-    owner: "{{ user }}"
-    group: "{{ user }}"
-  with_items:
-    - zshrc
-    - bashrc
-    - bash_aliases
-    - exports.common
-    - vimrc
-    - screenrc
-    - tmux.conf
-    - gitconfig
-    - gitconfig-vimeo
-
-- name: Link bins
-  become: yes
-  file:
-    state: link
-    force: no
-    src: "{{ item }}"
-    dest: "/usr/local/bin/{{ item | basename }}"
-  with_fileglob:
-    - "{{ role_path }}/files/bin/*"
-
-- name: Link config others
-  file:
-    state: link
-    force: yes
-    src: "{{ role_path }}/files/{{ item }}"
-    dest: "{{ user_home }}/.config/{{ item }}"
-    owner: "{{ user }}"
-    group: "{{ user }}"
-  with_items:
-    - starship.toml
-
-- name: Link nvim
-  file:
-    state: link
-    src: "{{ user_home }}/.vimrc"
-    dest: "{{ user_home }}/.config/nvim/init.vim"
-    owner: "{{ user }}"
-    group: "{{ user }}"
-
-- name: Link alacritty
-  file:
-    state: link
-    force: yes
-    src: "{{ role_path }}/files/alacritty.yml"
-    dest: "{{ user_home }}/.config/alacritty/alacritty.yml"
-    owner: "{{ user }}"
-    group: "{{ user }}"
-
-- name: Link alacritty dark
-  file:
-    state: link
-    force: yes
-    src: "{{ role_path }}/files/alacritty-dark.yml"
-    dest: "{{ user_home }}/.config/alacritty/alacritty-dark.yml"
-    owner: "{{ user }}"
-    group: "{{ user }}"
-
-- name: Link rofi config
-  file:
-    state: link
-    force: yes
-    src: "{{ role_path }}/files/roficonfig"
-    dest: "{{ user_home }}/.config/rofi/config.rasi"
-    owner: "{{ user }}"
-    group: "{{ user }}"
-
 - name: Src dir
   file:
     path: "{{ user_home }}/src"
@@ -106,6 +20,17 @@
     state: directory
     owner: "{{ user }}"
     group: "{{ user }}"
+
+
+- name: Link bins
+  become: yes
+  file:
+    state: absent
+    force: no
+    src: "{{ item }}"
+    dest: "/usr/local/bin/{{ item | basename }}"
+  with_fileglob:
+    - "{{ role_path }}/files/bin/*"
 
 # Replicate Plug setup for nvim
 # https://github.com/junegunn/vim-plug
@@ -138,61 +63,3 @@
     url: https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
     dest: "{{ user_home }}/.git-completion.sh"
     mode: "0755"
-
-- name: hexchat config
-  file:
-    state: directory
-    dest: "{{ user_home }}/.config/hexchat"
-    owner: "{{ user }}"
-    group: "{{ user }}"
-
-- name: Link hexchat dots
-  file:
-    state: link
-    force: yes
-    src: "{{ role_path }}/files/hexchat/{{ item }}"
-    dest: "{{ user_home }}/.config/hexchat/{{ item }}"
-    owner: "{{ user }}"
-    group: "{{ user }}"
-  with_items:
-    - hexchat.conf
-    - colors.conf
-
-- name: weechat dir
-  file:
-    state: directory
-    dest: "{{ user_home }}/.weechat"
-    owner: "{{ user }}"
-    group: "{{ user }}"
-
-- name: Link weechat dots
-  file:
-    state: link
-    force: yes
-    src: "{{ role_path }}/files/weechat/{{ item }}"
-    dest: "{{ user_home }}/.weechat/{{ item }}"
-    owner: "{{ user }}"
-    group: "{{ user }}"
-  with_items:
-    - irc.conf
-    - weechat.conf
-    - buflist.conf
-    - sec.conf
-
-- name: paru dir
-  file:
-    state: directory
-    dest: "{{ user_home }}/.config/paru"
-    owner: "{{ user }}"
-    group: "{{ user }}"
-
-- name: Link paru dots
-  file:
-    state: link
-    force: yes
-    src: "{{ role_path }}/files/{{ item }}"
-    dest: "{{ user_home }}/.config/paru/{{ item }}"
-    owner: "{{ user }}"
-    group: "{{ user }}"
-  with_items:
-    - paru.conf
