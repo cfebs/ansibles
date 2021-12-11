@@ -205,7 +205,7 @@ bindsym Mod1+Shift+3 exec flameshot gui
 bindsym $mod+Shift+s exec flameshot gui
 bindsym $mod+semicolon exec rofimoji
 bindsym $mod+Shift+b exec blueman-manager
-bindsym $mod+Shift+v exec ~/src/ansibles/roles/dots/files/bin/rofi-vpn
+bindsym $mod+Shift+v exec ~/bin/rofi-vpn
 bindsym $mod+Shift+p exec keepassxc
 
 # laptop btns
