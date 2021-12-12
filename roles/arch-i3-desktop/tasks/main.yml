@@ -94,6 +94,14 @@
     src: "{{ role_path }}/files/empttyconf"
     dest: "/etc/emptty/conf"
 
+- name: xresources
+  file:
+    state: link
+    force: yes
+    src: "{{ role_path }}/files/{{ xresources_file }}"
+    dest: "{{ user_home}}/.Xresources"
+    owner: "{{ user }}"
+    group: "{{ user }}"
 
 ##############################
 ### Services
