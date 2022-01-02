@@ -157,6 +157,40 @@
           Port 8022
 
 ##############################
+### pipewire pulse
+##############################
+
+# Copies upstream config and applies a patch
+
+- name: pipewire etc
+  become: yes
+  file:
+    path: /etc/pipewire
+    state: directory
+
+- name: pipewire pulse patches
+  become: yes
+  copy:
+    src: "{{ role_path }}/files/pipewire-pulse.conf.patch"
+    dest: /etc/pipewire/pipewire-pulse.conf.patch
+
+- name: pipewire pulse copy default config to tmp
+  become: yes
+  copy:
+    src: /usr/share/pipewire/pipewire-pulse.conf
+    dest: /tmp/pipewire-pulse.conf.new
+
+- name: pipewire pulse apply patch to temp
+  ansible.posix.patch:
+    src: /etc/pipewire/pipewire-pulse.conf.patch
+    dest: /tmp/pipewire-pulse.conf.new
+
+- name: pipewire pulse copy conf
+  copy:
+    src: /tmp/pipewire-pulse.conf.new
+    dest: /etc/pipewire/pipewire-pulse.conf
+
+##############################
 ### syncthing
 ##############################
 - name: syncthing service
