@@ -54,7 +54,7 @@
     dest: /etc/sudoers.d/sudo_group
     owner: root
     group: root
-    line: '%sudo   ALL=(ALL) ALL'
+    line: '%sudo   ALL=(ALL:ALL) ALL'
 
 - name: sudo timeout config
   become: yes
