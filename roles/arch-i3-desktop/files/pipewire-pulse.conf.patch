@@ -1,9 +1,9 @@
---- /tmp/pipewire-pulse.conf    2022-01-02 11:36:40.801537700 -0500
-+++ /tmp/pipewire-pulse.conf.new        2022-01-02 11:37:26.848259718 -0500
-@@ -59,7 +59,7 @@
-
+--- /tmp/pipewire-pulse.conf	2022-02-22 19:05:49.683280695 -0500
++++ /tmp/pipewire-pulse.conf.new	2022-02-22 19:06:19.000311303 -0500
+@@ -73,7 +73,7 @@
  # Extra modules can be loaded here. Setup in default.pa can be moved here
  context.exec = [
+     { path = "pactl"        args = "load-module module-always-sink" }
 -    #{ path = "pactl"        args = "load-module module-switch-on-connect" }
 +    { path = "pactl"        args = "load-module module-switch-on-connect" }
      #{ path = "/usr/bin/sh"  args = "~/.config/pipewire/default.pw" }
