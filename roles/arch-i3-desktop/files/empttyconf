@@ -19,6 +19,9 @@ AUTOLOGIN=false
 # The default session used, if Autologin is enabled. If session is not found in list of session, it proceeds to manual selection.
 # AUTOLOGIN_SESSION=i3
 
+# If Autologin is enabled and session does not start correctly, the number of retries in short period is kept to eventually stop the infinite loop of restarts. -1 is for infinite retries, 0 is for no retry.
+# AUTOLOGIN_MAX_RETRY=2
+
 # Default LANG, if user does not have set own in init script.
 #LANG=en_US.UTF-8
 
@@ -35,13 +38,19 @@ VERTICAL_SELECTION=true
 #LOGGING=default
 
 # Overrides path of log file
-#LOGGING_FILE=/var/log/emptty
+#LOGGING_FILE=/var/log/emptty/[TTY_NUMBER].log
 
 # Arguments passed to Xorg server.
 #XORG_ARGS=
 
-# Allows to use /etc/emptty/motd-gen.sh script to generate custom MOTD.
+# Allows to use dynamic motd script to generate custom MOTD.
 #DYNAMIC_MOTD=false
+
+# Allows to override default path to dynamic motd.
+#DYNAMIC_MOTD_PATH=/etc/emptty/motd-gen.sh
+
+# Allows to override default path to static motd.
+#MOTD_PATH=/etc/emptty/motd
 
 # Foreground color, available only in daemon mode.
 #FG_COLOR=LIGHT_BLACK
@@ -56,7 +65,7 @@ VERTICAL_SELECTION=true
 #SESSION_ERROR_LOGGING=disabled
 
 # Overrides path of session errors log file
-#SESSION_ERROR_LOGGING_FILE=/var/log/emptty-session-errors
+#SESSION_ERROR_LOGGING_FILE=/var/log/emptty/session-errors.[TTY_NUMBER].log
 
 # If set true, it will not use `.emptty-xauth` file, but the standard `~/.Xauthority` file. This allows to handle xauth issues.
 #DEFAULT_XAUTHORITY=false
