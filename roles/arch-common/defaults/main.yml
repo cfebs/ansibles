@@ -26,6 +26,17 @@ mkinitcpio_hooks_lists:
     - keyboard
     - fsck
 
+  luks:
+    - base
+    - udev
+    - autodetect
+    - keyboard
+    - modconf
+    - block
+    - encrypt
+    - filesystems
+    - fsck
+
   resume:
     - base
     - udev
