@@ -1,0 +1,13 @@
+---
+
+- name: nvidia suspend
+  systemd:
+    service: nvidia-suspend.service
+    enabled: yes
+
+- name: nvidia power manage
+  become: yes
+  file:
+    state: link
+    src: '{{ role_path }}/files/nvidia-power-management.conf'
+    dest: '/etc/modprobe.d/nvidia-power-management.conf'

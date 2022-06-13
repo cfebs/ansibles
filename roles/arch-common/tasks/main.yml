@@ -29,4 +29,8 @@
 - import_tasks: sleep-powerbtn.yml
   when: "arch_common_sleep_powerbtn|bool"
 
+- import_tasks: nvidia.yml
+  when: "arch_common_nvidia|bool"
+
 - import_tasks: mkinitcpio.yml
+

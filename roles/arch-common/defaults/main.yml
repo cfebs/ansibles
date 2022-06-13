@@ -11,6 +11,9 @@ arch_common_swap_hibernate: no
 # arch_common_sleep_powerbtn
 arch_common_sleep_powerbtn: no
 
+# arch_common_nvidia
+arch_common_nvidia: no
+
 # default hooks from install
 # HOOKS=(base udev autodetect modconf block filesystems keyboard fsck)
 mkinitcpio_hooks_list: default

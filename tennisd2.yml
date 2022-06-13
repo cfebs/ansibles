@@ -3,6 +3,7 @@
   vars:
     hostname_init: tennisd2
     arch_common_sleep_powerbtn: yes
+    arch_common_nvidia: yes
   roles:
     - arch-common
     - dots

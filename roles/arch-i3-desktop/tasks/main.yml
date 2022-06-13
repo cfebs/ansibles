@@ -181,11 +181,13 @@
     dest: /tmp/pipewire-pulse.conf.new
 
 - name: pipewire pulse apply patch to temp
+  become: yes
   ansible.posix.patch:
     src: /etc/pipewire/pipewire-pulse.conf.patch
     dest: /tmp/pipewire-pulse.conf.new
 
 - name: pipewire pulse copy conf
+  become: yes
   copy:
     src: /tmp/pipewire-pulse.conf.new
     dest: /etc/pipewire/pipewire-pulse.conf
