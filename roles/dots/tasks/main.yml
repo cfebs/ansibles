@@ -22,16 +22,6 @@
     group: "{{ user }}"
 
 
-# TODO: can remove this after a while
-- name: Link bins
-  become: yes
-  file:
-    state: absent
-    force: no
-    dest: "/usr/local/bin/{{ item | basename }}"
-  with_fileglob:
-    - "{{ role_path }}/files/bin/*"
-
 # Replicate Plug setup for nvim
 # https://github.com/junegunn/vim-plug
 #
