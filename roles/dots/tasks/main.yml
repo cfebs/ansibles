@@ -21,6 +21,20 @@
     owner: "{{ user }}"
     group: "{{ user }}"
 
+- name: config nvim
+  file:
+    path: "{{ user_home }}/.config/nvim"
+    state: directory
+    owner: "{{ user }}"
+    group: "{{ user }}"
+
+- name: link vimrc
+  become: yes
+  file:
+    state: link
+    force: yes
+    src: "{{ user_home }}/.vimrc"
+    dest: "{{ user_home }}/.config/nvim/init.vim"
 
 # Replicate Plug setup for nvim
 # https://github.com/junegunn/vim-plug
