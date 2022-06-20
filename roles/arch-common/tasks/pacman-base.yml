@@ -50,6 +50,7 @@
       - weechat
       - kernel-modules-hook
       - realtime-privileges
+      - z
     state: present
 
 - name: Install on non arm
