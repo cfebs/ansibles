@@ -179,12 +179,13 @@
     enabled: yes
     state: started
 
-- name: bluetooth auto enable
-  become: yes
-  ansible.builtin.lineinfile:
-    path: /etc/bluetooth/main.conf
-    regexp: 'AutoEnable='
-    line: AutoEnable=true
+# Bluetooth is not auto enable true by default
+#- name: bluetooth auto enable
+#  become: yes
+#  ansible.builtin.lineinfile:
+#    path: /etc/bluetooth/main.conf
+#    regexp: 'AutoEnable='
+#    line: AutoEnable=true
 
 ##############################
 ### timers
