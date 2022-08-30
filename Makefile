@@ -1,6 +1,6 @@
 export ANSIBLE_NOCOWS=1
 
-hostname:=$(shell hostname)
+hostname:=$(shell hostname || hostnamectl hostname)
 
 .PHONY: dummy
 dummy:
