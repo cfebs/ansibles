@@ -8,3 +8,10 @@
     line: "HOOKS=({{ mkinitcpio_hooks_lists[mkinitcpio_hooks_list] | join(' ') }})"
   notify:
     - regen-mkinitcpio
+
+- name: kernel modules cleanup from kernel-modules-hook
+  become: yes
+  systemd:
+    name: linux-modules-cleanup
+    enabled: yes
+    state: started
