@@ -14,7 +14,7 @@ this:
 .PHONY: this-no-become
 this-no-become:
 	@echo Running playbook for $(hostname)
-	ansible-playbook -v -i hosts.ini $(hostname).yml --limit $(hostname)
+	ANSIBLE_VERBOSITY=4 ansible-playbook -v -i hosts.ini $(hostname).yml --limit $(hostname)
 
 .PHONY: this-debug
 this-debug:
