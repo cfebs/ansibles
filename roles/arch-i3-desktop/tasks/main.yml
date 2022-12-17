@@ -126,37 +126,30 @@
 ### pipewire pulse
 ##############################
 
-# Copies upstream config and applies a patch
+- name: check pipewire patch exists
+  stat:
+    path: /etc/pipewire/pipewire-pulse.conf.patch
+  register: pipewire_patch_path
 
-- name: pipewire etc
+- name: cleanup old pipewire patch
   become: yes
-  file:
-    path: /etc/pipewire
-    state: directory
+  when: pipewire_patch_path.stat.exists == True
+  ansible.builtin.file:
+    path: /etc/pipewire/pipewire-pulse.conf.patch
+    state: absent
 
-- name: pipewire pulse patches
+- name: cleanup old pipewire patch
   become: yes
-  copy:
-    src: "{{ role_path }}/files/pipewire-pulse.conf.patch"
-    dest: /etc/pipewire/pipewire-pulse.conf.patch
+  when: pipewire_patch_path.stat.exists == True
+  ansible.builtin.file:
+    path: /etc/pipewire/pipewire-pulse.conf
+    state: absent
 
-- name: pipewire pulse copy default config to tmp
-  become: yes
-  copy:
-    src: /usr/share/pipewire/pipewire-pulse.conf
-    dest: /tmp/pipewire-pulse.conf.new
-
-- name: pipewire pulse apply patch to temp
-  become: yes
-  ansible.posix.patch:
-    src: /etc/pipewire/pipewire-pulse.conf.patch
-    dest: /tmp/pipewire-pulse.conf.new
-
-- name: pipewire pulse copy conf
+- name: pipewire custom configs
   become: yes
   copy:
-    src: /tmp/pipewire-pulse.conf.new
-    dest: /etc/pipewire/pipewire-pulse.conf
+    src: "{{ role_path }}/files/50-pulse-autoswitch.conf"
+    dest: /etc/pipewire/pipewire-pulse.conf.d/50-pulse-autoswitch.conf
 
 ##############################
 ### syncthing
@@ -178,14 +171,6 @@
     name: bluetooth
     enabled: yes
     state: started
-
-# Bluetooth is not auto enable true by default
-#- name: bluetooth auto enable
-#  become: yes
-#  ansible.builtin.lineinfile:
-#    path: /etc/bluetooth/main.conf
-#    regexp: 'AutoEnable='
-#    line: AutoEnable=true
 
 ##############################
 ### timers
