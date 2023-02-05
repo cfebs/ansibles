@@ -1,0 +1,9 @@
+---
+
+- name: root vimrc
+  become: yes
+  ansible.builtin.copy:
+    owner: root
+    group: root
+    src: '{{ role_path }}/files/vimrc'
+    dest: '/root/.vimrc'

@@ -34,3 +34,4 @@
 
 - import_tasks: mkinitcpio.yml
 
+- import_tasks: root-config.yml
