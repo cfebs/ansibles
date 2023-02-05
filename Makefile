@@ -14,8 +14,8 @@ this:
 .PHONY: this-no-become
 this-no-become:
 	@echo Running playbook for $(hostname)
-	#ANSIBLE_VERBOSITY=4 strace -fttTyyy -s 1024 -o/tmp/ansible_strace ansible-playbook -v -i hosts.ini $(hostname).yml --limit $(hostname)
-	ansible-playbook -v -i hosts.ini $(hostname).yml --limit $(hostname)
+	strace -fttTyyy -s 1024 -o/tmp/ansible_strace.txt ansible-playbook -v -i hosts.ini $(hostname).yml --limit $(hostname)
+	#ansible-playbook -v -i hosts.ini $(hostname).yml --limit $(hostname)
 
 .PHONY: this-debug
 this-debug:
@@ -39,6 +39,6 @@ tennislhua:
 tennispi1:
 	ansible-playbook -i hosts.ini tennispi1.yml --limit tennispi1 --ask-become-pass
 
-.PHONY: facts
-facts:
-	ansible -i hosts.ini -m setup $(hostname)
+.PHONY: debug-facts
+debug-facts:
+	sudo strace -fvttTyy -s 256 -o /tmp/ansible_facts_strace.txt time ansible-playbook -i hosts.ini facts.yaml
