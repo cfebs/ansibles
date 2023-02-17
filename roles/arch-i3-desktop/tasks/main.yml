@@ -24,6 +24,7 @@
       - pasystray
       - alacritty
       - wezterm
+      - ueberzug
       - arandr
       - dhclient
       - wireless_tools
