@@ -23,6 +23,7 @@
       - pavucontrol
       - pasystray
       - alacritty
+      - wezterm
       - arandr
       - dhclient
       - wireless_tools
