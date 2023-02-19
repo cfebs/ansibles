@@ -25,6 +25,7 @@
       - alacritty
       - wezterm
       - ueberzug
+      - viu
       - arandr
       - dhclient
       - wireless_tools
