@@ -23,6 +23,7 @@
       - pavucontrol
       - pasystray
       - alacritty
+      - kitty
       - wezterm
       - ueberzug
       - viu
