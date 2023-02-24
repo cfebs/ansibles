@@ -24,7 +24,6 @@
       - pasystray
       - alacritty
       - kitty
-      - wezterm
       - ueberzug
       - viu
       - arandr
@@ -83,6 +82,14 @@
       - keepassxc
       - ristretto
     state: present
+
+- name: Pkgs absent
+  become: yes
+  pacman:
+    name:
+      # wezterm and starship don't play well together, just don't install
+      - wezterm
+    state: absent
 
 - name: emptty dir dirs
   become: yes
