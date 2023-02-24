@@ -51,6 +51,7 @@
       - kernel-modules-hook
       - realtime-privileges
       - z
+      - dante
     state: present
 
 - name: Install on non arm
