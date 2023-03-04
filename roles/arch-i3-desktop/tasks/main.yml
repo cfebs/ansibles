@@ -81,6 +81,7 @@
       - syncthing
       - keepassxc
       - ristretto
+      - w3m
     state: present
 
 - name: Pkgs absent
