@@ -4,6 +4,7 @@
     hostname_init: tennisd2
     arch_common_sleep_powerbtn: yes
     arch_common_nvidia: no
+    arch_common_swap_hibernate: no
   roles:
     - arch-common
     - dots
