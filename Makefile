@@ -22,6 +22,10 @@ this-debug:
 	@echo Running playbook for $(hostname) with debug tag
 	ansible-playbook -i hosts.ini $(hostname).yml --limit $(hostname) --tags debug --ask-become-pass
 
+.PHONY: this-dry
+this-dry:
+	@echo Running playbook for $(hostname) with check and diff tag
+	ansible-playbook -i hosts.ini $(hostname).yml --check --diff --limit $(hostname) --ask-become-pass
 
 .PHONY: tennisl1
 tennisl1:
