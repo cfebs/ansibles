@@ -26,16 +26,16 @@ AUTOLOGIN=false
 #LANG=en_US.UTF-8
 
 # Starts desktop with calling "dbus-launch".
-DBUS_LAUNCH=false
+DBUS_LAUNCH=true
 
 # Starts Xorg desktop with calling "~/.xinitrc" script, if is true, file exists and selected WM/DE is Xorg session, it overrides DBUS_LAUNCH.
-XINITRC_LAUNCH=true
+XINITRC_LAUNCH=false
 
 # Prints available WM/DE each on new line instead of printing on single line.
 VERTICAL_SELECTION=true
 
-# Defines the way, how is logging handled. Possible values are "default", "appending" or "disabled".
-#LOGGING=default
+# Defines the way, how is logging handled. Possible values are "rotate", "appending" or "disabled".
+#LOGGING=rotate
 
 # Overrides path of log file
 #LOGGING_FILE=/var/log/emptty/[TTY_NUMBER].log
@@ -61,7 +61,7 @@ VERTICAL_SELECTION=true
 # Enables numlock in daemon mode. Possible values are "true" or "false".
 #ENABLE_NUMLOCK=false
 
-# Defines the way, how is logging of session errors handled. Possible values are "default", "appending" or "disabled".
+# Defines the way, how is logging of session errors handled. Possible values are "rotate", "appending" or "disabled".
 #SESSION_ERROR_LOGGING=disabled
 
 # Overrides path of session errors log file
