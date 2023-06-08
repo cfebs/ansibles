@@ -83,6 +83,9 @@
       - keepassxc
       - ristretto
       - w3m
+      - sway
+      - wtype
+      - wl-clipboard
     state: present
 
 - name: Pkgs absent
