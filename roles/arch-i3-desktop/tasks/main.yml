@@ -86,6 +86,7 @@
       - sway
       - wtype
       - wl-clipboard
+      - lxpolkit
     state: present
 
 - name: Pkgs absent
