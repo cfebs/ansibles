@@ -14,8 +14,8 @@ this:
 .PHONY: this-no-become
 this-no-become:
 	@echo Running playbook for $(hostname)
-	strace -fttTyyy -s 1024 -o/tmp/ansible_strace.txt ansible-playbook -v -i hosts.ini $(hostname).yml --limit $(hostname)
-	#ansible-playbook -v -i hosts.ini $(hostname).yml --limit $(hostname)
+	#strace -fttTyyy -s 1024 -o/tmp/ansible_strace.txt ansible-playbook -v -i hosts.ini $(hostname).yml --limit $(hostname)
+	ansible-playbook -v -i hosts.ini $(hostname).yml --limit $(hostname)
 
 .PHONY: this-debug
 this-debug:
