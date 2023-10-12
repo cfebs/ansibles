@@ -43,6 +43,10 @@ tennislhua:
 tennispi1:
 	ansible-playbook -i hosts.ini tennispi1.yml --limit tennispi1 --ask-become-pass
 
+.PHONY: tennislframe
+tennislframe:
+	ansible-playbook -i hosts.ini tennislframe.yml --limit tennislframe --ask-become-pass
+
 .PHONY: debug-facts
 debug-facts:
 	sudo strace -fvttTyy -s 256 -o /tmp/ansible_facts_strace.txt time ansible-playbook -i hosts.ini facts.yaml
