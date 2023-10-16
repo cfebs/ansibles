@@ -11,6 +11,7 @@
       - " - arch_common_sleep_powerbtn {{ arch_common_sleep_powerbtn | bool }}"
       - " - arch_common_docker {{ arch_common_docker | bool }}"
       - " - mkinitcpio_hooks_list {{ mkinitcpio_hooks_list }}"
+      - " - xresources_file {{ xresources_file }}"
 
 - import_tasks: pacman-base.yml
 
