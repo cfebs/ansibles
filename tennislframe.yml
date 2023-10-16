@@ -3,7 +3,7 @@
   vars:
     hostname_init: tennislframe
     arch_common_swap_hibernate: no
-    xresources_file: Xresources.larger
+    xresources_file: Xresources.framework
     mkinitcpio_hooks_list: lukslvmresume
   roles:
     - arch-common
