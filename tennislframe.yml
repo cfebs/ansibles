@@ -1,10 +1,11 @@
 ---
-#mkinitcpio_hooks_list: resume
 - hosts: tennislframe
   vars:
     hostname_init: tennislframe
     arch_common_swap_hibernate: no
     xresources_file: Xresources.larger
+    mkinitcpio_hooks_list: lukslvmresume
+- hosts: tennislframe
   roles:
     - arch-common
     - dots

@@ -40,6 +40,22 @@ mkinitcpio_hooks_lists:
     - filesystems
     - fsck
 
+  lukslvmresume:
+    - base
+    - udev
+    - autodetect
+    - modconf
+    - kms
+    - keyboard
+    - keymap
+    - consolefont
+    - block
+    - encrypt
+    - lvm2
+    - resume
+    - filesystems
+    - fsck
+
   resume:
     - base
     - udev
