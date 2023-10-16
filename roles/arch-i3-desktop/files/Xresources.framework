@@ -3,8 +3,8 @@ Xcursor.size: 32
 !Xft.dpi: 112
 !Xft.dpi: 128
 !Xft.dpi: 136
-!Xft.dpi: 144
-Xft.dpi: 168
+Xft.dpi: 144
+!Xft.dpi: 168
 !Xft.dpi: 192
 
 Sxiv.foreground: #bbbbbb
