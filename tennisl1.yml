@@ -3,7 +3,7 @@
   vars:
     hostname_init: tennisl1
     #arch_common_swap_hibernate: yes
-    mkinitcpio_hooks_list: luks
+    mkinitcpio_hooks_list: lukslvmresume
   roles:
     - arch-common
     - dots
