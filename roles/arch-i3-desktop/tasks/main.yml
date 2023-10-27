@@ -235,3 +235,47 @@
     enabled: no
     state: stopped
     daemon_reload: yes
+
+
+# wttr bar
+- name: wttr-bar service file
+  become_user: "{{ user }}"
+  become: true
+  file:
+    src: "{{ role_path }}/files/wttr-bar.service"
+    dest: "/home/{{user}}/.config/systemd/user/wttr-bar.service"
+    state: link
+    owner: "{{ user }}"
+    group: "{{ user }}"
+  notify:
+    - 'handle_systemd_user_daemon_reload'
+
+- name: wttr-bar service timer
+  become_user: "{{ user }}"
+  become: true
+  file:
+    src: "{{ role_path }}/files/wttr-bar.timer"
+    dest: "/home/{{user}}/.config/systemd/user/wttr-bar.timer"
+    state: link
+    owner: "{{ user }}"
+    group: "{{ user }}"
+  notify:
+    - 'handle_systemd_user_daemon_reload'
+
+- name: wttr-bar service on
+  become_user: "{{ user }}"
+  become: true
+  systemd:
+    scope: 'user'
+    name: 'wttr-bar.service'
+    state: 'started'
+    enabled: true
+
+- name: wttr-bar timer on
+  become_user: "{{ user }}"
+  become: true
+  systemd:
+    scope: 'user'
+    name: 'wttr-bar.timer'
+    state: 'started'
+    enabled: true

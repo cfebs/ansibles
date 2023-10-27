@@ -18,3 +18,8 @@
 - name: regen-locale
   become: yes
   command: locale-gen
+
+- name: handle_systemd_user_daemon_reload
+  systemd:
+    scope: 'user'
+    daemon_reload: true

@@ -1,0 +1,6 @@
+[Unit]
+Description=Get wttr.in status for i3status
+
+[Service]
+Type=oneshot
+ExecStart=%h/bin/wttrbar
