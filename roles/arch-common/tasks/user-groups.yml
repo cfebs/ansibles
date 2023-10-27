@@ -57,19 +57,20 @@
     line: '%sudo   ALL=(ALL:ALL) ALL'
 
 - name: sudo timeout config
-  become: yes
+  become: true
   lineinfile:
-    create: yes
+    create: true
     mode: '0440'
-    dest: /etc/sudoers.d/sudo_timeout
-    owner: root
-    group: root
+    dest: '/etc/sudoers.d/sudo_timeout'
+    owner: 'root'
+    group: 'root'
     line: 'Defaults timestamp_timeout=10'
 
 - name: systemd user config units
+  become: true
   file:
     state: directory
     dest: "{{ user_home }}/.config/systemd/user"
-    recurse: yes
+    recurse: true
     owner: "{{ user }}"
     group: "{{ user }}"
