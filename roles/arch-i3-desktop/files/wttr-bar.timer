@@ -3,7 +3,7 @@ Description=Timer to get wttr.in weather for i3status
 
 [Timer]
 OnBootSec=2min
-OnUnitActiveSec=30min
+OnUnitActiveSec=15min
 
 [Install]
 WantedBy=timers.target
