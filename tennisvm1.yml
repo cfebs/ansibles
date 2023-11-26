@@ -2,6 +2,7 @@
 - hosts: tennisvm1
   vars:
     hostname_init: tennisvm1
+    xresources_file: Xresources.default
   roles:
     - arch-common
     - dots
