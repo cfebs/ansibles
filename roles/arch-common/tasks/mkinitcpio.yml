@@ -9,6 +9,17 @@
   notify:
     - regen-mkinitcpio
 
+- name: mkinitcpio modules
+  become: yes
+  lineinfile:
+    path: /etc/mkinitcpio.conf
+    backup: yes
+    state: present
+    regexp: '^MODULES='
+    line: "MODULES=(vfat)"
+  notify:
+    - regen-mkinitcpio
+
 - name: kernel modules cleanup from kernel-modules-hook
   become: yes
   systemd:
