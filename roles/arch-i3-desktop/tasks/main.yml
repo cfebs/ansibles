@@ -86,7 +86,7 @@
       - sway
       - wtype
       - wl-clipboard
-      - lxsession-gtk3
+      - lxsession
     state: present
 
 - name: Pkgs absent
