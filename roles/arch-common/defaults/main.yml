@@ -36,6 +36,7 @@ mkinitcpio_hooks_lists:
     - keyboard
     - modconf
     - block
+    - vfat
     - encrypt
     - filesystems
     - fsck
@@ -50,6 +51,7 @@ mkinitcpio_hooks_lists:
     - keymap
     - consolefont
     - block
+    - vfat
     - encrypt
     - lvm2
     - resume
