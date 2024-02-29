@@ -53,6 +53,7 @@
       - z
       - dante
       - catimg
+      - lvm2
     state: present
 
 - name: Install on non arm
