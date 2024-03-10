@@ -52,8 +52,8 @@ mkinitcpio_hooks_lists:
     - block
     - encrypt
     - lvm2
-    - resume
     - filesystems
+    - resume
     - fsck
 
   resume:
