@@ -3,17 +3,9 @@
   become: yes
   pacman:
     name:
-      - tlp
       - xorg-xbacklight
       - brightnessctl
     state: present
-
-- name: tlp
-  become: yes
-  systemd:
-    name: tlp
-    enabled: yes
-    state: started
 
 - name: touchpad xorg
   become: yes
