@@ -5,6 +5,8 @@
     arch_common_swap_hibernate: no
     xresources_file: Xresources.framework
     mkinitcpio_hooks_list: lukslvmresume
+    # helps fix hibernate on framework laptop
+    use_sleep_wifi_radios: yes
   roles:
     - arch-common
     - dots

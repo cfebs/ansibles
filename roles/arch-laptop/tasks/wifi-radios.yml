@@ -1,0 +1,8 @@
+---
+- name: system-sleep radios script
+  copy:
+    src: 'radios'
+    dest: "/usr/lib/systemd/system-sleep/radios"
+    mode: '0755'
+    owner: 'root'
+    group: 'root'

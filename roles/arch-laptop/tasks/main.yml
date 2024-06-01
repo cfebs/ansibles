@@ -13,3 +13,6 @@
     state: link
     src: "{{ role_path }}/files/30-touchpad.conf"
     path: '/etc/X11/xorg.conf.d/30-touchpad.conf'
+
+- import_tasks: wifi-radios.yml
+  when: "use_sleep_wifi_radios|bool"
