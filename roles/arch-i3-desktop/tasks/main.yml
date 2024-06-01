@@ -49,7 +49,6 @@
       - sshfs
       - chromium
       - dunst
-      - tlp
       - z
       - blueman
       - lxappearance
