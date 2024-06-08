@@ -1,15 +1,14 @@
 #!/bin/sh
-
+# grab this from lspci or lshw (driver=$wifi)
+wifi="mt7921e"
+logger "$0 - radios $1. wifi: $wifi"
 if [ "$1" == "pre" ]; then
-	logger "$0 - radios pre. wifi: $wifi"
-	rfkill block all
-	sleep 1
-	modprobe -r $wifi
+        rfkill block all
+        sleep 1
+        [ -n "$wifi" ] && modprobe -r $wifi
 fi
-
 if [ "$1" == "post" ]; then
-	logger "$0 - radios post. wifi: $wifi"
-	modprobe $wifi
-	sleep 1
-	rfkill unblock all
+        [ -n "$wifi" ] && modprobe $wifi
+        sleep 1
+        rfkill unblock all
 fi
