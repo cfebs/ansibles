@@ -18,8 +18,10 @@
       - bluez
       - bluez-utils
       - pipewire
+      - pipewire-audio
       - pipewire-pulse
       - pipewire-alsa
+      - wireplumber
       - pavucontrol
       - pasystray
       - alacritty
@@ -86,6 +88,8 @@
       - wtype
       - wl-clipboard
       - lxsession
+      - ccid
+      - libfido2
     state: present
 
 - name: Pkgs absent
