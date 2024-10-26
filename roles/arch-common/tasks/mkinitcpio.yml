@@ -1,8 +1,9 @@
+---
 - name: mkinitcpio hooks
-  become: yes
+  become: true
   lineinfile:
     path: /etc/mkinitcpio.conf
-    backup: yes
+    backup: true
     state: present
     regexp: '^HOOKS='
     line: "HOOKS=({{ mkinitcpio_hooks_lists[mkinitcpio_hooks_list] | join(' ') }})"
@@ -10,10 +11,10 @@
     - regen-mkinitcpio
 
 - name: mkinitcpio modules
-  become: yes
+  become: true
   lineinfile:
     path: /etc/mkinitcpio.conf
-    backup: yes
+    backup: true
     state: present
     regexp: '^MODULES='
     line: "MODULES=(vfat)"
@@ -21,8 +22,7 @@
     - regen-mkinitcpio
 
 - name: kernel modules cleanup from kernel-modules-hook
-  become: yes
+  become: true
   systemd:
     name: linux-modules-cleanup
-    enabled: yes
-    state: started
+    enabled: true
