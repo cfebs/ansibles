@@ -1,6 +1,6 @@
 ---
 - name: Pkgs
-  become: yes
+  become: true
   pacman:
     name:
       - i3-wm
@@ -36,9 +36,9 @@
       - networkmanager-openvpn
       - networkmanager-vpnc
       - ttf-dejavu
-      - noto-fonts
-      - noto-fonts-cjk
-      - noto-fonts-emoji
+      - falseto-fonts
+      - falseto-fonts-cjk
+      - falseto-fonts-emoji
       - ttf-jetbrains-mono
       - ttf-nerd-fonts-symbols
       - ttf-nerd-fonts-symbols-mono
@@ -93,7 +93,7 @@
     state: present
 
 - name: Pkgs absent
-  become: yes
+  become: true
   pacman:
     name:
       # wezterm and starship don't play well together, just don't install
@@ -101,23 +101,23 @@
     state: absent
 
 - name: emptty dir dirs
-  become: yes
+  become: true
   file:
     state: directory
     dest: "/etc/emptty"
 
 - name: emptty conf
-  become: yes
+  become: true
   file:
     state: link
-    force: yes
+    force: true
     src: "{{ role_path }}/files/empttyconf"
     dest: "/etc/emptty/conf"
 
 - name: xresources
   file:
     state: link
-    force: yes
+    force: true
     src: "{{ role_path }}/files/{{ xresources_file }}"
     dest: "{{ user_home}}/.Xresources"
     owner: "{{ user }}"
@@ -127,17 +127,17 @@
 ### Services
 ##############################
 - name: docker
-  become: yes
+  become: true
   systemd:
     name: docker
-    enabled: yes
+    enabled: true
     state: started
 
 - name: docker sytemd
-  become: yes
+  become: true
   systemd:
     name: docker
-    enabled: yes
+    enabled: true
     state: started
 
 
@@ -152,21 +152,21 @@
   register: pipewire_patch_path
 
 - name: cleanup old pipewire patch
-  become: yes
+  become: true
   when: pipewire_patch_path.stat.exists == True
   ansible.builtin.file:
     path: /etc/pipewire/pipewire-pulse.conf.patch
     state: absent
 
 - name: cleanup old pipewire patch
-  become: yes
+  become: true
   when: pipewire_patch_path.stat.exists == True
   ansible.builtin.file:
     path: /etc/pipewire/pipewire-pulse.conf
     state: absent
 
 - name: pipewire custom configs
-  become: yes
+  become: true
   copy:
     src: "{{ role_path }}/files/50-pulse-autoswitch.conf"
     dest: /etc/pipewire/pipewire-pulse.conf.d/50-pulse-autoswitch.conf
@@ -175,21 +175,21 @@
 ### syncthing
 ##############################
 - name: syncthing service
-  become: yes
+  become: true
   systemd:
     name: "syncthing@{{ user }}.service"
-    daemon_reload: no
+    daemon_reload: false
     state: started
-    enabled: yes
+    enabled: true
 
 ##############################
 ### bluetooth
 ##############################
 - name: bluetooth
-  become: yes
+  become: true
   systemd:
     name: bluetooth
-    enabled: yes
+    enabled: true
     state: started
 
 ##############################
@@ -212,32 +212,32 @@
     group: "{{ user }}"
 
 - name: pacman-bar service
-  become: yes
+  become: true
   become_user: "{{ user }}"
   systemd:
     scope: user
     name: pacman-bar.service
-    daemon_reload: yes
+    daemon_reload: true
     state: stopped
-    enabled: no
+    enabled: false
 
 - name: pacman-bar service
-  become: yes
+  become: true
   become_user: "{{ user }}"
   systemd:
     scope: user
     name: pacman-bar.service
-    daemon_reload: yes
+    daemon_reload: true
 
 - name: pacman-bar timer
-  become: yes
+  become: true
   become_user: "{{ user }}"
   systemd:
     scope: user
     name: pacman-bar.timer
-    enabled: no
+    enabled: false
     state: stopped
-    daemon_reload: yes
+    daemon_reload: true
 
 
 # wttr bar
@@ -250,7 +250,7 @@
     state: link
     owner: "{{ user }}"
     group: "{{ user }}"
-  notify:
+  falsetify:
     - 'handle_systemd_user_daemon_reload'
 
 - name: wttr-bar service timer
@@ -262,7 +262,7 @@
     state: link
     owner: "{{ user }}"
     group: "{{ user }}"
-  notify:
+  falsetify:
     - 'handle_systemd_user_daemon_reload'
 
 - name: wttr-bar service on
@@ -271,7 +271,6 @@
   systemd:
     scope: 'user'
     name: 'wttr-bar.service'
-    state: 'started'
     enabled: true
 
 - name: wttr-bar timer on
