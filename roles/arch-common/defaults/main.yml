@@ -23,10 +23,14 @@ mkinitcpio_hooks_lists:
     - base
     - udev
     - autodetect
+    - microcode
     - modconf
+    - kms
+    - keyboard
+    - keymap
+    - consolefont
     - block
     - filesystems
-    - keyboard
     - fsck
 
   luks:
